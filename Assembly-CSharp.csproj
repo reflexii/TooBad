@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{69607015-042F-BED9-7763-E45C4BB02A3B}</ProjectGuid>
+    <ProjectGuid>{4246AED6-0501-5EBF-AB5A-930B409ECA1D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -38,20 +38,39 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEngine">
-      <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+      <HintPath>D:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
-      <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+      <HintPath>D:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\CameraController.cs" />
+     <Compile Include="Assets\Scripts\Handlers\LootHandler.cs" />
+     <Compile Include="Assets\Scripts\Handlers\MouseHandler.cs" />
+     <Compile Include="Assets\Scripts\Handlers\OnClickActions.cs" />
+     <Compile Include="Assets\Scripts\Handlers\OnHoverActions.cs" />
+     <Compile Include="Assets\Scripts\Handlers\SlotHandler.cs" />
+     <Compile Include="Assets\Scripts\InventoryRelated\ClickAbleObject.cs" />
+     <Compile Include="Assets\Scripts\InventoryRelated\ClickAbleUI.cs" />
+     <Compile Include="Assets\Scripts\InventoryRelated\Inventory.cs" />
+     <Compile Include="Assets\Scripts\InventoryRelated\SizeComparedToParent.cs" />
+     <Compile Include="Assets\Scripts\InventoryRelated\SlotScipt.cs" />
+     <Compile Include="Assets\Scripts\ItemScripts\Item.cs" />
+     <Compile Include="Assets\Scripts\ItemScripts\LootableItem.cs" />
+     <Compile Include="Assets\Scripts\ItemScripts\Potion.cs" />
+     <Compile Include="Assets\Scripts\ItemScripts\Potions.cs" />
+     <Compile Include="Assets\Scripts\ItemScripts\Weapon.cs" />
+     <Compile Include="Assets\Scripts\ItemScripts\Weapons.cs" />
      <Compile Include="Assets\Scripts\MovementScript.cs" />
+     <Compile Include="Assets\Scripts\Singleton.cs" />
+     <Compile Include="Assets\Scripts\TEST\SlotScriptWithPointer.cs" />
+     <Compile Include="Assets\Scripts\TEST\SlotScriptWithoutPointers.cs" />
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ <HintPath>D:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ <HintPath>D:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
