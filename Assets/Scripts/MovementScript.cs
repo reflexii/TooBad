@@ -7,6 +7,9 @@ public class MovementScript : MonoBehaviour {
 	public float verticalSpeed;
 	public float strafeSpeed;
 	private Vector3 strafeDirection;
+    public GameObject rotateDirectionObject;
+    public float rotationDirectionEuler;
+    private Animator animator;
 
 	public bool keyboardMovement1 = false;
 	public bool keyboardMovement2 = false;
@@ -15,13 +18,14 @@ public class MovementScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+        animator = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
 		mouseLook();
+        animations();
 		if (keyboardMovement1) {
 			keyboardMovement ();
 		} else if (keyboardMovement2) {
@@ -38,8 +42,14 @@ public class MovementScript : MonoBehaviour {
 		Vector3 position = Camera.main.WorldToScreenPoint(transform.position);
 		Vector3 direction = Input.mousePosition - position;
 		float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-		transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+		rotateDirectionObject.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        rotationDirectionEuler = rotateDirectionObject.transform.localEulerAngles.z;
+        Debug.Log(rotationDirectionEuler);
 	}
+
+    void animations() {
+        animator.SetFloat("Euler", rotationDirectionEuler);
+    }
 
 	void keyboardMovement() {
 
