@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class LootHandler : MonoBehaviour 
 {
+	public Character looter;
 	public Inventory inventory;
 	public GameObject lootPrefab;
 
@@ -27,12 +28,14 @@ public class LootHandler : MonoBehaviour
 
 	public void LootItem(Item item)
 	{
+		item.master = looter;
 		inventory.AddItem (item);
 		//	print ("INVENTORY IS FULL");
 	}
 
 	public void LootItem(LootableItem lootItem)
 	{
+		lootItem.GetItem().master = looter;
 		if (inventory.AddItem (lootItem.GetItem()))
 			/*print ("INVENTORY IS FULL");
 		else*/

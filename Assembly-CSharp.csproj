@@ -46,6 +46,8 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\CameraController.cs" />
+     <Compile Include="Assets\Scripts\Characters\Character.cs" />
+     <Compile Include="Assets\Scripts\Characters\Player.cs" />
      <Compile Include="Assets\Scripts\Handlers\LootHandler.cs" />
      <Compile Include="Assets\Scripts\Handlers\MouseHandler.cs" />
      <Compile Include="Assets\Scripts\Handlers\OnClickActions.cs" />
@@ -62,7 +64,9 @@
      <Compile Include="Assets\Scripts\ItemScripts\Potions.cs" />
      <Compile Include="Assets\Scripts\ItemScripts\Weapon.cs" />
      <Compile Include="Assets\Scripts\ItemScripts\Weapons.cs" />
+     <Compile Include="Assets\Scripts\MeleeAttackCollider.cs" />
      <Compile Include="Assets\Scripts\MovementScript.cs" />
+     <Compile Include="Assets\Scripts\RangedAttack.cs" />
      <Compile Include="Assets\Scripts\Singleton.cs" />
      <Compile Include="Assets\Scripts\TEST\SlotScriptWithPointer.cs" />
      <Compile Include="Assets\Scripts\TEST\SlotScriptWithoutPointers.cs" />

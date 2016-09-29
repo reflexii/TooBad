@@ -8,6 +8,7 @@ public class Item {
 	public int itemAmount;
 	//Placeholder for sprite.
 	public Color itemIcon;
+	public Character master;
 
 	public Item(string itemName, ItemType itemType, Color itemColor)
 	{
@@ -15,6 +16,15 @@ public class Item {
 		this.itemType = itemType;
 		this.itemIcon = itemColor;
 		itemAmount = 1;
+	}
+
+	public Item(string itemName, ItemType itemType, Color itemColor, Character master)
+	{
+		this.itemName = itemName;
+		this.itemType = itemType;
+		this.itemIcon = itemColor;
+		itemAmount = 1;
+		this.master = master;
 	}
 
 	public virtual void TakeAction(SlotScipt slot)

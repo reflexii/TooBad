@@ -10,6 +10,7 @@ public class MovementScript : MonoBehaviour {
     public GameObject rotateDirectionObject;
     public float rotationDirectionEuler;
     private Animator animator;
+    private Player player;
 
 	public bool keyboardMovement1 = false;
 	public bool keyboardMovement2 = false;
@@ -19,6 +20,7 @@ public class MovementScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         animator = GetComponent<Animator>();
+        player = GetComponent<Player>();
 	}
 	
 	// Update is called once per frame
@@ -26,6 +28,7 @@ public class MovementScript : MonoBehaviour {
 
 		mouseLook();
         animations();
+        attack();
 		if (keyboardMovement1) {
 			keyboardMovement ();
 		} else if (keyboardMovement2) {
@@ -35,7 +38,7 @@ public class MovementScript : MonoBehaviour {
 		} else if (keyboardMovement4) {
 			keyboardMovement4th ();
 		}
-
+        Debug.Log(rotationDirectionEuler);
 	}
 
 	void mouseLook() {
@@ -44,8 +47,27 @@ public class MovementScript : MonoBehaviour {
 		float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 		rotateDirectionObject.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         rotationDirectionEuler = rotateDirectionObject.transform.localEulerAngles.z;
-        Debug.Log(rotationDirectionEuler);
 	}
+
+    void attack()
+    {
+        if (!Input.GetMouseButtonDown(0))
+            return;
+
+        Character.FacingDir dir = Character.FacingDir.Up;
+
+        if (rotationDirectionEuler <= 133 && rotationDirectionEuler >= 40)
+            dir = Character.FacingDir.Up;
+        else if (rotationDirectionEuler >= 310 || rotationDirectionEuler <= 40)
+            dir = Character.FacingDir.Left;
+        else if(rotationDirectionEuler <= 222 && rotationDirectionEuler >= 133)
+            dir = Character.FacingDir.Right;
+        else 
+            dir = Character.FacingDir.Down;
+
+        player.facingDir = dir;
+        player.Attack();
+    }
 
     void animations() {
         animator.SetFloat("Euler", rotationDirectionEuler);
