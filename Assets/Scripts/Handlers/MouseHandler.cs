@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class MouseHandler : MonoBehaviour {
 	public OnClickActions onClickActions;
 	public OnHoverActions onHoverActions;
+    public Player player;
 
 	private ClickAbleObject currentObjectTarget;
 	private ClickAbleUI currentUITarget;
@@ -15,11 +16,15 @@ public class MouseHandler : MonoBehaviour {
 	private PointerEventData cursor = new PointerEventData(EventSystem.current);
 	private List<RaycastResult> objectsHit = new List<RaycastResult> ();
 
-	void Update()
+    private bool pointingClickAble;
+    private bool pointingClickAbleUI;
+
+    void Update()
 	{
 		if (Input.GetMouseButtonDown (0)) {
 			UIRaycastClick ();
 			MouseRaycastClick ();
+            Attack();
 		}
 	}
 
@@ -34,23 +39,34 @@ public class MouseHandler : MonoBehaviour {
 	{
 		RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition),Vector2.zero);
 
-		if(hit.collider != null)
-		{
-			if (hit.transform.tag == "ClickAble") {
-				ClickAbleObject tmpTarget = hit.transform.GetComponent<ClickAbleObject> ();
+        if (hit.collider != null)
+        {
+            if (hit.transform.tag == "ClickAble")
+            {
+                pointingClickAble = true;
+                ClickAbleObject tmpTarget = hit.transform.GetComponent<ClickAbleObject>();
 
-				if (tmpTarget != currentObjectTarget) {
-					if (currentObjectTarget != null) {
-						UndoOnHoverAction ();
-					}
-					currentObjectTarget = tmpTarget;
-					currentObjectTarget.PerformOnHoverAction (this);
-				}
-			} else
-				UndoOnHoverAction ();
-		} 
-		else
-			UndoOnHoverAction ();
+                if (tmpTarget != currentObjectTarget)
+                {
+                    if (currentObjectTarget != null)
+                    {
+                        UndoOnHoverAction();
+                    }
+                    currentObjectTarget = tmpTarget;
+                    currentObjectTarget.PerformOnHoverAction(this);
+                }
+            }
+            else
+            {
+                pointingClickAble = false;
+                UndoOnHoverAction();
+            }
+        }
+        else
+        {
+            pointingClickAble = false;
+            UndoOnHoverAction();
+        }
 	}
 
 	//Used at update. Only when mousebutton has been pressed.
@@ -61,12 +77,15 @@ public class MouseHandler : MonoBehaviour {
 		if(hit.collider != null)
 		{
 			if (hit.transform.tag == "ClickAble") {
-				ClickAbleObject tmpTarget = hit.transform.GetComponent<ClickAbleObject> ();
+                pointingClickAble = true;
+                ClickAbleObject tmpTarget = hit.transform.GetComponent<ClickAbleObject> ();
 				UndoOnHoverAction ();
 				tmpTarget.PerformClickAction (this);
 			}
 		}
-	}
+        else
+            pointingClickAble = false;
+    }
 		
 	//Used at FixedUpdate.
 	void UIRaycast()
@@ -75,17 +94,21 @@ public class MouseHandler : MonoBehaviour {
 		EventSystem.current.RaycastAll(cursor, objectsHit);
 		if (objectsHit.Count != 0) {
 			if (objectsHit [0].gameObject.tag == "ClickAbleUI") {
-				ClickAbleUI tmpTarget = objectsHit [0].gameObject.GetComponent<ClickAbleUI> ();
+                pointingClickAbleUI = true;
+                ClickAbleUI tmpTarget = objectsHit [0].gameObject.GetComponent<ClickAbleUI> ();
 				if (tmpTarget != currentUITarget) {
 					UndoOnHoverUIAction ();
 					currentUITarget = tmpTarget;
 					currentUITarget.PerformOnHoverAction (this);
 				}
 			} else {
-				UndoOnHoverUIAction ();
+                pointingClickAbleUI = false;
+                UndoOnHoverUIAction ();
 			}
-		} else {
-			UndoOnHoverUIAction ();
+		} else
+        {
+            pointingClickAbleUI = false;
+            UndoOnHoverUIAction ();
 		}
 	}
 
@@ -94,13 +117,24 @@ public class MouseHandler : MonoBehaviour {
 	{
 		cursor.position = Input.mousePosition;
 		EventSystem.current.RaycastAll(cursor, objectsHit);
-		if (objectsHit.Count != 0) {
-			if (objectsHit [0].gameObject.tag == "ClickAbleUI") {
-				ClickAbleUI tmpTarget = objectsHit [0].gameObject.GetComponent<ClickAbleUI> ();
-				tmpTarget.PerformClickAction (this);
-				UndoOnHoverUIAction ();
-			}
-		} 
+        if (objectsHit.Count != 0)
+        {
+            if (objectsHit[0].gameObject.tag == "ClickAbleUI")
+            {
+                pointingClickAbleUI = true;
+                ClickAbleUI tmpTarget = objectsHit[0].gameObject.GetComponent<ClickAbleUI>();
+                tmpTarget.PerformClickAction(this);
+                UndoOnHoverUIAction();
+            }
+            else
+            {
+                pointingClickAbleUI = false;
+            }
+        }
+        else
+        {
+            pointingClickAbleUI = false;
+        } 
 	}
 
 	void UndoOnHoverAction ()
@@ -118,4 +152,13 @@ public class MouseHandler : MonoBehaviour {
 			currentUITarget = null;
 		}
 	}
+
+    void Attack()
+    {
+        if (!pointingClickAble && !pointingClickAbleUI)
+        {
+            player.Attack();
+
+        }
+    }
 }
