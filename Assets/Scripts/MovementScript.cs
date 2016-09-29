@@ -9,8 +9,8 @@ public class MovementScript : MonoBehaviour {
 	private Vector3 strafeDirection;
     public GameObject rotateDirectionObject;
     public float rotationDirectionEuler;
+    public bool moving = false;
     private Animator animator;
-    private Player player;
 
 	public bool keyboardMovement1 = false;
 	public bool keyboardMovement2 = false;
@@ -20,7 +20,6 @@ public class MovementScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         animator = GetComponent<Animator>();
-        player = GetComponent<Player>();
 	}
 	
 	// Update is called once per frame
@@ -28,17 +27,8 @@ public class MovementScript : MonoBehaviour {
 
 		mouseLook();
         animations();
-        attack();
-		if (keyboardMovement1) {
-			keyboardMovement ();
-		} else if (keyboardMovement2) {
-			keyboardMovement2nd ();
-		} else if (keyboardMovement3) {
-			keyboardMovement3rd ();
-		} else if (keyboardMovement4) {
-			keyboardMovement4th ();
-		}
-        Debug.Log(rotationDirectionEuler);
+        keyboardMovement();
+
 	}
 
 	void mouseLook() {
@@ -47,94 +37,41 @@ public class MovementScript : MonoBehaviour {
 		float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 		rotateDirectionObject.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         rotationDirectionEuler = rotateDirectionObject.transform.localEulerAngles.z;
+        Debug.Log(rotationDirectionEuler);
 	}
-
-    void attack()
-    {
-        if (!Input.GetMouseButtonDown(0))
-            return;
-
-        Character.FacingDir dir = Character.FacingDir.Up;
-
-        if (rotationDirectionEuler <= 133 && rotationDirectionEuler >= 40)
-            dir = Character.FacingDir.Up;
-        else if (rotationDirectionEuler >= 310 || rotationDirectionEuler <= 40)
-            dir = Character.FacingDir.Left;
-        else if(rotationDirectionEuler <= 222 && rotationDirectionEuler >= 133)
-            dir = Character.FacingDir.Right;
-        else 
-            dir = Character.FacingDir.Down;
-
-        player.facingDir = dir;
-        player.Attack();
-    }
 
     void animations() {
         animator.SetFloat("Euler", rotationDirectionEuler);
+        animator.SetBool("Moving", moving);
     }
 
+	
+
+	
+
 	void keyboardMovement() {
-
-		Vector3 direction = (Input.mousePosition - Camera.main.WorldToScreenPoint (transform.position)).normalized;
-
-		if (Input.GetKey(KeyCode.UpArrow)) {
-			gameObject.transform.position += direction * verticalSpeed * Time.deltaTime;
-		}
-		if (Input.GetKey(KeyCode.DownArrow)) {
-			gameObject.transform.position += -direction * verticalSpeed * Time.deltaTime;
-		}
-		if (Input.GetKeyDown(KeyCode.LeftArrow)) {
-			strafeDirection = Quaternion.Euler(0, 0, 90) * direction;
-		}
-		if (Input.GetKey(KeyCode.LeftArrow)) {
-			gameObject.transform.position += strafeDirection * strafeSpeed * Time.deltaTime;
-		}
-		if (Input.GetKeyDown(KeyCode.RightArrow)) {
-			strafeDirection = Quaternion.Euler(0, 0, -90) * direction;
-		}
-		if (Input.GetKey(KeyCode.RightArrow)) {
-			gameObject.transform.position += strafeDirection * strafeSpeed * Time.deltaTime;
-		}
-	}
-
-	void keyboardMovement2nd() {
-		float vertical = Input.GetAxis ("Vertical");
-		float horizontal = Input.GetAxis ("Horizontal");
-
-		gameObject.transform.position += new Vector3 (horizontal, vertical, gameObject.transform.position.z) * Time.deltaTime * verticalSpeed;
-	}
-
-	void keyboardMovement3rd() {
-		if (Input.GetKey(KeyCode.UpArrow)) {
+		if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) {
 			gameObject.transform.position += Vector3.up * verticalSpeed * Time.deltaTime;
+            moving = true;
 		}
-		if (Input.GetKey(KeyCode.DownArrow)) {
+		if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)) {
 			gameObject.transform.position += Vector3.down * verticalSpeed * Time.deltaTime;
-		}
-		if (Input.GetKey(KeyCode.LeftArrow)) {
+            moving = true;
+        }
+		if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) {
 			gameObject.transform.position += Vector3.left * verticalSpeed * Time.deltaTime;
-		}
-		if (Input.GetKey(KeyCode.RightArrow)) {
+            moving = true;
+        }
+		if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) {
 			gameObject.transform.position += Vector3.right * verticalSpeed * Time.deltaTime;
-		}
-	}
+            moving = true;
+        }
+        if (Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.W) ||
+            Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.S) ||
+            Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.A) ||
+            Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.D)) {
 
-	void keyboardMovement4th() {
-		Vector3 direction = (Input.mousePosition - Camera.main.WorldToScreenPoint (transform.position)).normalized;
-
-		if (Input.GetKey(KeyCode.UpArrow)) {
-			gameObject.transform.position += direction * verticalSpeed * Time.deltaTime;
-		}
-		if (Input.GetKey(KeyCode.DownArrow)) {
-			gameObject.transform.position += -direction * verticalSpeed * Time.deltaTime;
-		}
-		if (Input.GetKey(KeyCode.LeftArrow)) {
-			strafeDirection = Quaternion.Euler(0, 0, 90) * direction;
-			gameObject.transform.position += strafeDirection * strafeSpeed * Time.deltaTime;
-		}
-		if (Input.GetKey(KeyCode.RightArrow)) {
-			strafeDirection = Quaternion.Euler(0, 0, -90) * direction;
-			gameObject.transform.position += strafeDirection * strafeSpeed * Time.deltaTime;
-		}
+            moving = false;
+        }
 	}
 }
