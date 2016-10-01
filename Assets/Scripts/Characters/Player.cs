@@ -4,11 +4,10 @@ using System.Collections;
 public class Player : Character 
 {
 	public MeleeAttackCollider meleeAttackAction;
-	public RangedAttack rangedAttackAction;
 		
-	public override void Attack()
+	public override void Attack(Vector3 dir)
 	{
 		if(equippedWeapon != null)
-			equippedWeapon.Attack (this);
+			equippedWeapon.Attack (this,dir);
 	}
 }

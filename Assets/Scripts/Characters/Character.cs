@@ -25,7 +25,7 @@ public abstract class Character : MonoBehaviour
 		equippedWeapon = weapon;
 	}
 
-	public virtual void Attack ()
+	public virtual void Attack (Vector3 dir)
 	{
 		//ADD something here.
 	}

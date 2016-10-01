@@ -4,8 +4,11 @@ using System.Collections;
 public class Weapon : Item {
 
 	public float damage;
+    public float attackSpeed;
 	public int durability;
 	public int currentDurability;
+
+    protected float lastTimeAttacked;
 
 	public Weapon (string itemName, float damage, int durability, Color itemIcon) : base (itemName, ItemType.Weapon , itemIcon)
 	{
@@ -21,7 +24,7 @@ public class Weapon : Item {
 	}
 
     //Sword swing, shoot projectile...
-    public virtual void Attack(Player player)
+    public virtual void Attack(Player player, Vector3 dir)
 	{
 
 	}

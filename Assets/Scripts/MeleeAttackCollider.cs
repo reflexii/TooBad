@@ -25,12 +25,17 @@ public class MeleeAttackCollider : MonoBehaviour {
 
 			if (rotationChange >= weapon.swingAngle) 
 			{
-				swing = false;
-				rotationChange = 0;
-				_transform.gameObject.SetActive (false);
+                DeActive();
 			}
 		}
 	}
+
+    void DeActive()
+    {
+        swing = false;
+        rotationChange = 0;
+        _transform.gameObject.SetActive(false);
+    }
 
 	public void StartAttack(MeleeWeapon weapon)
 	{
@@ -56,9 +61,11 @@ public class MeleeAttackCollider : MonoBehaviour {
 
 	public void OnTriggerEnter2D(Collider2D col)
 	{
-		/*if (!swing)
+		if (!swing)
 			return;
-		if (col is Character && col != weapon.master)
-			col.GetComponent<Character> ().TakeDamage (weapon.damage);*/
+        if (col.GetType() == typeof(Character) && col != weapon.master)
+        {
+            col.GetComponent<Character>().TakeDamage(weapon.damage);
+        }
 	}
 }

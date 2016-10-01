@@ -18,4 +18,12 @@ public class Weapons
 
 		}
 	}
+
+    public class ShortBow : RangedWeapon
+    {
+        public ShortBow() : base("Short Bow",5,5,1,10,7,ProjectileType.Arrow, Color.yellow)
+        {
+
+        }
+    }
 }

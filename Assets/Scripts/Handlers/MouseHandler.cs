@@ -157,7 +157,8 @@ public class MouseHandler : MonoBehaviour {
     {
         if (!pointingClickAble && !pointingClickAbleUI)
         {
-            player.Attack();
+            Vector3 dir = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            player.Attack(dir);
 
         }
     }

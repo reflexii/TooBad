@@ -15,7 +15,7 @@ public class MeleeWeapon : Weapon {
         this.swingSpeed = swingSpeed;
     }
 
-    public override void Attack(Player player)
+    public override void Attack(Player player, Vector3 dir)
     {
         player.meleeAttackAction.transform.parent.gameObject.SetActive(true);
         player.meleeAttackAction.StartAttack(this);
