@@ -102,11 +102,23 @@ public class SlotScipt : ClickAbleUI {
 
 	public void RemoveItem()
 	{
+        if (item == null)
+            return;
+
+        if (slotType == SlotType.ActionBarSlot)
+        {
+            CancelHighlight();
+
+            if (item.master.equippedWeapon == item)
+            {
+                item.master.UnEquip();
+            }
+        }
+
 		item = null;
 		itemIcon.gameObject.SetActive (false);
 
-		if(slotType == SlotType.ActionBarSlot)
-			CancelHighlight ();
+
 	}
 
 	public void IncreaseAmount(int amount)

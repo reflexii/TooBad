@@ -15,10 +15,10 @@ public class ObjectPool : MonoBehaviour
 
     public void FireProjectile(RangedWeapon weapon, Vector3 direction)
     {
-        ActiveOrCreateProjectile(weapon, direction);
+        ActivateOrCreateProjectile(weapon, direction);
     }
 
-    void ActiveOrCreateProjectile(RangedWeapon weapon, Vector3 direction)
+    void ActivateOrCreateProjectile(RangedWeapon weapon, Vector3 direction)
     {
         if (projectilePool.Count == 0)
         {
@@ -30,11 +30,13 @@ public class ObjectPool : MonoBehaviour
         {
             if (proj.projectileType == weapon.projectileType)
             {
-                ActiveProjectile(proj,weapon,direction);
+                ActivateProjectile(proj,weapon,direction);
                 projectilePool.Remove(proj);
                 return;
             }
         }
+
+        CreateProjectile(weapon, direction);
     }
 
     void CreateProjectile(RangedWeapon weapon, Vector3 direction)
@@ -46,7 +48,7 @@ public class ObjectPool : MonoBehaviour
         }
     }
 
-    void ActiveProjectile(Projectile projectile, RangedWeapon weapon, Vector3 dir)
+    void ActivateProjectile(Projectile projectile, RangedWeapon weapon, Vector3 dir)
     {
         projectile.gameObject.SetActive(true);
         projectile.SetPreferences(weapon,dir);
