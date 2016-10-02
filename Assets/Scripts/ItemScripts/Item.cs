@@ -9,6 +9,7 @@ public class Item {
 	//Placeholder for sprite.
 	public Color itemIcon;
 	public Character master;
+    public SlotScipt slot;
 
 	public Item(string itemName, ItemType itemType, Color itemColor)
 	{

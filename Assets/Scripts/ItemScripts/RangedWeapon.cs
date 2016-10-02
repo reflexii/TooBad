@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System;
 
 public class RangedWeapon : Weapon
 {
@@ -18,10 +17,11 @@ public class RangedWeapon : Weapon
 
     public override void Attack(Player player, Vector3 dir)
     {
-        if (DateTime.Now.Second - lastTimeAttacked >= attackSpeed ||lastTimeAttacked == 0)
+        if (Time.time - lastTimeAttacked >= attackSpeed ||lastTimeAttacked == 0)
         {
+            ReduceDurability();
             GameManager.Instance.objectPool.FireProjectile(this, dir);
-            lastTimeAttacked = DateTime.Now.Second;
+            lastTimeAttacked = Time.time;
         }
     }
     public enum ProjectileType

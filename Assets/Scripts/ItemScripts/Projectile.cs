@@ -62,7 +62,7 @@ public class Projectile : MonoBehaviour {
     {
         if (col.tag != user.tag)
         {
-            if(col.GetType() == typeof(Character))
+            if(col.gameObject.GetComponent<Character>() != null)
             {
                 col.GetComponent<Character>().TakeDamage(damage); 
             }

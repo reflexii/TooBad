@@ -1,16 +1,34 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using System;
 
 public class ObjectPool : MonoBehaviour
 {
     public GameObject arrowPrefab;
+    public GameObject lootPrefab;
+
     private List<Projectile> projectilePool;
+    private List<LootableItem> lootPool;
 
     public ObjectPool()
     {
         projectilePool = new List<Projectile>();
+        lootPool = new List<LootableItem>();
+    }
+
+    //ADD change this method.
+    public void DropItem(Vector3 pos)
+    {
+        GameObject o = (GameObject)Instantiate(lootPrefab);
+        o.transform.position = pos;
+        int random = Random.Range(0, 3);
+
+        if(random == 0)
+            o.GetComponent<LootableItem>().SetItem(new Weapons.ShortSword());
+        else if (random == 1)
+            o.GetComponent<LootableItem>().SetItem(new Weapons.LongSword());
+        else if (random == 2)
+            o.GetComponent<LootableItem>().SetItem(new Weapons.ShortBow());
     }
 
     public void FireProjectile(RangedWeapon weapon, Vector3 direction)

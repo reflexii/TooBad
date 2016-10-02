@@ -93,11 +93,14 @@ public class SlotScipt : ClickAbleUI {
 		}
 		else
 			itemAmount.gameObject.SetActive (false);
-		
-		if (item.itemType == Item.ItemType.Weapon)
-			durabilityObject.gameObject.SetActive (true);
-		else
-			durabilityObject.gameObject.SetActive (false);
+
+        if (item.itemType == Item.ItemType.Weapon)
+        {
+            durabilityObject.gameObject.SetActive(true);
+            UpdateItemDurability();
+        }
+        else
+            durabilityObject.gameObject.SetActive(false);
 	}
 
 	public void RemoveItem()
@@ -126,6 +129,15 @@ public class SlotScipt : ClickAbleUI {
 		item.itemAmount += amount;
 		itemAmount.text = item.itemAmount.ToString ();
 	}
+
+    public void UpdateItemDurability()
+    {
+        if (durabilityBar != null)
+        {
+            Weapon weapon = item as Weapon;
+            durabilityBar.transform.localScale = new Vector3((float)weapon.currentDurability / (float)weapon.durability, 1, 1);
+        }
+    }
 		
 	void UpdateItemValues()
 	{

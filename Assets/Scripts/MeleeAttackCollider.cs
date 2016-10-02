@@ -63,9 +63,14 @@ public class MeleeAttackCollider : MonoBehaviour {
 	{
 		if (!swing)
 			return;
-        if (col.GetType() == typeof(Character) && col != weapon.master)
+
+        if (col.tag != weapon.master.tag)
         {
-            col.GetComponent<Character>().TakeDamage(weapon.damage);
+            if (col.gameObject.GetComponent<Character>() != null)
+            {
+                weapon.ReduceDurability();
+                col.GetComponent<Character>().TakeDamage(weapon.damage);
+            }
         }
-	}
+    }
 }

@@ -12,4 +12,15 @@ public class Enemy : Character {
     {
 	
 	}
+
+    void DropLoot()
+    {
+        GameManager.Instance.objectPool.DropItem(transform.position);
+    }
+
+    public override void OnDeath()
+    {
+        DropLoot();
+        Destroy(gameObject);
+    }
 }

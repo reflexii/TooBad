@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Weapon : Item {
+public abstract class Weapon : Item {
 
 	public float damage;
     public float attackSpeed;
@@ -20,12 +20,23 @@ public class Weapon : Item {
 	//Used by actionBar. When weapon is clicked or hotkey has been pressed.
 	public override void TakeAction(SlotScipt slot)
 	{
+        this.slot = slot;
 		master.SetWeapon (this);
 	}
 
     //Sword swing, shoot projectile...
     public virtual void Attack(Player player, Vector3 dir)
 	{
-
+        
 	}
+
+    public void ReduceDurability()
+    {
+        currentDurability -= 1;
+        slot.UpdateItemDurability();
+        if (currentDurability <= 0)
+        {
+            slot.RemoveItem();
+        }
+    }
 }

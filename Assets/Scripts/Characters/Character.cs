@@ -7,8 +7,14 @@ public abstract class Character : MonoBehaviour
 	public Weapon equippedWeapon;
     [HideInInspector]
 	public FacingDir facingDir;
-	public float maxHealth;
+    public MeleeAttackCollider meleeAttackAction;
+    public float maxHealth;
 	private float currentHealth;
+
+    void Start()
+    {
+        currentHealth = maxHealth;
+    }
 
 	public void TakeDamage (float dmgAmount)
 	{
@@ -16,7 +22,7 @@ public abstract class Character : MonoBehaviour
 
 		if (currentHealth <= 0) 
 		{
-			//ADD something here.
+            OnDeath();
 		}
 	}
 
@@ -28,6 +34,10 @@ public abstract class Character : MonoBehaviour
     public void UnEquip()
     {
         equippedWeapon = null;
+    }
+
+    public virtual void OnDeath()
+    {
     }
 
     public virtual void Attack (Vector3 dir)
