@@ -7,13 +7,15 @@ public abstract class Weapon : Item {
     public float attackSpeed;
 	public int durability;
 	public int currentDurability;
+    public float attackRange;
 
     protected float lastTimeAttacked;
 
-	public Weapon (string itemName, float damage, int durability, Color itemIcon) : base (itemName, ItemType.Weapon , itemIcon)
+	public Weapon (string itemName, float damage, float attackRange, int durability, Color itemIcon) : base (itemName, ItemType.Weapon , itemIcon)
 	{
 		this.damage = damage;
 		this.durability = durability;
+        this.attackRange = attackRange;
 		currentDurability = durability;
 	}
 
@@ -25,7 +27,7 @@ public abstract class Weapon : Item {
 	}
 
     //Sword swing, shoot projectile...
-    public virtual void Attack(Player player, Vector3 dir)
+    public virtual void Attack(Character player, Vector3 dir)
 	{
         
 	}

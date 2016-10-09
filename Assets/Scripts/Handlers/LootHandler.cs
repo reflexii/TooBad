@@ -11,16 +11,14 @@ public class LootHandler : MonoBehaviour
 	void Update()
 	{
 		//REMOVE THESE!
-		if (Input.GetKeyDown (KeyCode.Keypad1))
+		if (Input.GetKeyDown (KeyCode.Alpha0))
 			LootItem (new Weapons.LongSword ());
-		if (Input.GetKeyDown (KeyCode.Keypad2))
+		if (Input.GetKeyDown (KeyCode.Alpha8))
 			LootItem (new Potions.SmallPotion ());
-        if (Input.GetKeyDown(KeyCode.Keypad3))
+        if (Input.GetKeyDown(KeyCode.Alpha7))
             LootItem(new Weapons.ShortBow());
-        if (Input.GetKeyDown (KeyCode.Keypad0))
-			inventory.gameObject.SetActive (false);
-		if (Input.GetKeyDown (KeyCode.KeypadPeriod))
-			inventory.gameObject.SetActive (true);
+		if (Input.GetKeyDown (KeyCode.Alpha0))
+			inventory.gameObject.SetActive (!inventory.gameObject.activeSelf);
 
 		if (Input.GetKeyDown (KeyCode.KeypadPlus)) {
 			GameObject o = (GameObject)Instantiate (lootPrefab);

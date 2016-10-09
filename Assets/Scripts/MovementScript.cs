@@ -60,18 +60,7 @@ public class MovementScript : MonoBehaviour {
         if (!Input.GetMouseButtonDown(0))
             return;
 
-        Character.FacingDir dir = Character.FacingDir.Up;
-
-        if (rotationDirectionEuler <= 133 && rotationDirectionEuler >= 40)
-            dir = Character.FacingDir.Up;
-        else if (rotationDirectionEuler >= 310 || rotationDirectionEuler <= 40)
-            dir = Character.FacingDir.Left;
-        else if (rotationDirectionEuler <= 222 && rotationDirectionEuler >= 133)
-            dir = Character.FacingDir.Right;
-        else
-            dir = Character.FacingDir.Down;
-
-        player.facingDir = dir;
+        player.facingDir = DirectionConverter.DirectionPlayerToMouse(transform.position, Input.mousePosition); ;
     }
    
 	void keyboardMovement() {

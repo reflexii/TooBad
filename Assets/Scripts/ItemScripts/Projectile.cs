@@ -38,7 +38,7 @@ public class Projectile : MonoBehaviour {
         user = weapon.master;
         movementSpeed = weapon.projectileSpeed;
         damage = weapon.damage;
-        range = weapon.range;
+        range = weapon.attackRange;
         projectileType = weapon.projectileType;
         direction = dir - _transform.position;
 
@@ -47,6 +47,7 @@ public class Projectile : MonoBehaviour {
 
     void SetRotation(Vector3 targetPos)
     {
+        targetPos = new Vector3(targetPos.x, targetPos.y, -10);
         Quaternion rot = Quaternion.LookRotation(_transform.position - targetPos, Vector3.forward);
         _transform.rotation = rot;
         _transform.eulerAngles = new Vector3(0, 0, _transform.eulerAngles.z);

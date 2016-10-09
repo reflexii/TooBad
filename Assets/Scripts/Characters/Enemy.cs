@@ -10,9 +10,14 @@ public class Enemy : Character {
     public float movementSpeed;
     public float spotDistance;
 
+    private float attackRange;
+
     void Awake()
     {
         transform.tag = "Enemy";
+        equippedWeapon = new Weapons.ShortSword();
+        equippedWeapon.master = this;
+        attackRange = equippedWeapon.attackRange;
     }
 
 	void Update ()
@@ -31,14 +36,21 @@ public class Enemy : Character {
         Destroy(gameObject);
     }
 
+    public override void Attack(Vector3 dir)
+    {
+        if (equippedWeapon != null)
+        {
+            facingDir = DirectionConverter.DirectionPlayerToPlayer(transform.position, player.position);
+            equippedWeapon.Attack(this, dir);
+        }
+    }
+
     public void aggroPlayer() {
         if (player.gameObject != null && gameObject != null) {
             Vector3 direction = player.transform.position - gameObject.transform.position;
-            if ((player.transform.position - gameObject.transform.position).magnitude < 1.5f) {
-                Debug.Log("Stopping to attack player");
-                Attack(player.transform.position - gameObject.transform.position);
+            if ((player.transform.position - gameObject.transform.position).magnitude < attackRange) {
+                Attack(player.position);
             } else {
-                Debug.Log("Chasing!");
                 gameObject.transform.position += direction * movementSpeed * Time.deltaTime;
             }
         } 
