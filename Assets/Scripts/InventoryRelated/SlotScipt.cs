@@ -132,7 +132,7 @@ public class SlotScipt : ClickAbleUI {
 
     public void UpdateItemDurability()
     {
-        if (durabilityBar != null)
+        if (durabilityBar != null && item != null)
         {
             Weapon weapon = item as Weapon;
             durabilityBar.transform.localScale = new Vector3((float)weapon.currentDurability / (float)weapon.durability, 1, 1);

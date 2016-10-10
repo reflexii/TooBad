@@ -17,7 +17,7 @@ public class LootHandler : MonoBehaviour
 			LootItem (new Potions.SmallPotion ());
         if (Input.GetKeyDown(KeyCode.Alpha7))
             LootItem(new Weapons.ShortBow());
-		if (Input.GetKeyDown (KeyCode.Alpha0))
+		if (Input.GetKeyDown (KeyCode.I))
 			inventory.gameObject.SetActive (!inventory.gameObject.activeSelf);
 
 		if (Input.GetKeyDown (KeyCode.KeypadPlus)) {

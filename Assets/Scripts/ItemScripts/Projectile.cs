@@ -61,7 +61,7 @@ public class Projectile : MonoBehaviour {
 
     public void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag != user.tag)
+        if (col.tag != user.tag && col.tag != gameObject.tag)
         {
             if(col.gameObject.GetComponent<Character>() != null)
             {
