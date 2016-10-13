@@ -22,7 +22,7 @@ public class Enemy : Character {
 
 	void Update ()
     {
-        RayCasting();
+        Move();
 	}
 
     void DropLoot()
@@ -34,6 +34,11 @@ public class Enemy : Character {
     {
         DropLoot();
         Destroy(gameObject);
+    }
+
+    public override void Move()
+    {
+        RayCasting();
     }
 
     public override void Attack(Vector3 dir)

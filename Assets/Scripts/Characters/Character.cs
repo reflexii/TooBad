@@ -16,7 +16,7 @@ public abstract class Character : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-	public void TakeDamage (float dmgAmount)
+	public virtual void TakeDamage (float dmgAmount)
 	{
 		currentHealth -= dmgAmount;
 
@@ -37,6 +37,10 @@ public abstract class Character : MonoBehaviour
     }
 
     public virtual void OnDeath()
+    {
+    }
+
+    public virtual void Move()
     {
     }
 

@@ -84,4 +84,24 @@ public class Inventory : MonoBehaviour {
 
 		return spaceInInventory;
 	}
+
+    public bool ContainsKeyItemOfType(KeyItem.KeyItemType type)
+    {
+        foreach (SlotScipt slot in itemSlots)
+        {
+            if (slot.GetItem() != null)
+            {
+                if (slot.GetItem() is KeyItem)
+                {
+                    KeyItem keyItem = (KeyItem) slot.GetItem();
+
+                    if (keyItem.keyItemType == type)
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
 }

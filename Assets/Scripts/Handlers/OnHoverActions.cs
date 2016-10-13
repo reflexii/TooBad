@@ -27,7 +27,14 @@ public class OnHoverActions : MonoBehaviour {
 		onHoverInfo.GetComponentInChildren<Text> ().text = item.itemName;
 	}
 
-	public void HideOnHoverInfo()
+    public void DisplayOnHoverInfo(string toDisplay)
+    {
+        onHoverInfo.SetActive(true);
+        hovering = true;
+        onHoverInfo.GetComponentInChildren<Text>().text = toDisplay;
+    }
+
+    public void HideOnHoverInfo()
 	{
 		onHoverInfo.SetActive (false);
 		hovering = false;

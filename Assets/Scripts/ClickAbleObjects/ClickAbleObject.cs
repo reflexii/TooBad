@@ -3,7 +3,7 @@ using System.Collections;
 
 public abstract class ClickAbleObject: MonoBehaviour 
 {
-	void Awake()
+	public virtual void Awake()
 	{
 		transform.tag = "ClickAble";
 	}

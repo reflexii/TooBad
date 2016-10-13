@@ -5,12 +5,28 @@ using UnityEngine.UI;
 public class LootableItem : ClickAbleObject 
 {
 	public float lifeTime = 30;
+    public KeyItem.KeyItemType keyItemType;
 
 	private Item item;
 	private float timer;
 
-	void Update()
+    public override void Awake()
+    {
+        base.Awake();
+
+        if (keyItemType != KeyItem.KeyItemType.None)
+        {
+            CreateItem(keyItemType);
+        }
+    }
+
+    void Update()
 	{
+        if (keyItemType != KeyItem.KeyItemType.None)
+        {
+            return;
+        }
+
 		if (timer >= lifeTime)
 			Destroy (gameObject);
 		else
@@ -47,4 +63,12 @@ public class LootableItem : ClickAbleObject
 	{
 		clickActions.onHoverActions.HideOnHoverInfo();
 	}
+
+    void CreateItem(KeyItem.KeyItemType type)
+    {
+        if (type == KeyItem.KeyItemType.NormalKey)
+        {
+            SetItem(new KeyItems.NormalKey());
+        }
+    }
 }

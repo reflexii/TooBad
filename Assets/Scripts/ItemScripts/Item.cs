@@ -38,6 +38,7 @@ public class Item {
 		//Use Item only as slotType!!
 		Item,
 		Weapon,
-		Consumable
+		Consumable,
+        KeyItem
 	}
 }
