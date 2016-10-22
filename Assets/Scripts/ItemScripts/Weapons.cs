@@ -26,4 +26,20 @@ public class Weapons
 
         }
     }
+
+    public class FireWand : RangedWeapon
+    {
+        public FireWand() : base("Fire Wand", 5, 5, 1, 7, 12, ProjectileType.FireBall, Color.green)
+        {
+
+        }
+    }
+
+    public class Boomerang : RangedWeapon
+    {
+        public Boomerang() : base("Boomerang", 5, 5, 1, 1, 12, ProjectileType.Boomerang, Color.green)
+        {
+
+        }
+    }
 }

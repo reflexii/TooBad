@@ -10,7 +10,7 @@ public class Enemy : Character {
     public float movementSpeed;
     public float spotDistance;
 
-    private float attackRange;
+    protected float attackRange;
 
     void Awake()
     {

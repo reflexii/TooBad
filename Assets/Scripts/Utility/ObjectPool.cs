@@ -5,6 +5,8 @@ using System.Collections.Generic;
 public class ObjectPool : MonoBehaviour
 {
     public GameObject arrowPrefab;
+    public GameObject fireBallPrefab;
+    public GameObject boomerangPrefab;
     public GameObject lootPrefab;
 
     private List<Projectile> projectilePool;
@@ -20,10 +22,11 @@ public class ObjectPool : MonoBehaviour
     public void DropItem(Vector3 pos)
     {
         GameObject o = (GameObject)Instantiate(lootPrefab);
+        pos.z = -0.1f;
         o.transform.position = pos;
         int random = Random.Range(0, 3);
 
-        if(random == 0)
+        if (random == 0)
             o.GetComponent<LootableItem>().SetItem(new Weapons.ShortSword());
         else if (random == 1)
             o.GetComponent<LootableItem>().SetItem(new Weapons.LongSword());
@@ -40,7 +43,7 @@ public class ObjectPool : MonoBehaviour
     {
         if (projectilePool.Count == 0)
         {
-            CreateProjectile(weapon,direction);
+            CreateProjectile(weapon, direction);
             return;
         }
 
@@ -48,7 +51,7 @@ public class ObjectPool : MonoBehaviour
         {
             if (proj.projectileType == weapon.projectileType)
             {
-                ActivateProjectile(proj,weapon,direction);
+                ActivateProjectile(proj, weapon, direction);
                 projectilePool.Remove(proj);
                 return;
             }
@@ -64,12 +67,25 @@ public class ObjectPool : MonoBehaviour
             GameObject go = (GameObject)Instantiate(arrowPrefab);
             go.GetComponent<Projectile>().SetPreferences(weapon, direction);
         }
+
+        else if (weapon.projectileType == RangedWeapon.ProjectileType.FireBall)
+        {
+            GameObject go = (GameObject)Instantiate(fireBallPrefab);
+            go.GetComponent<Projectile>().SetPreferences(weapon, direction);
+        }
+
+        else if (weapon.projectileType == RangedWeapon.ProjectileType.Boomerang)
+        {
+            GameObject go = (GameObject)Instantiate(boomerangPrefab);
+            go.GetComponent<Projectile>().SetPreferences(weapon, direction);
+        }
+
     }
 
     void ActivateProjectile(Projectile projectile, RangedWeapon weapon, Vector3 dir)
     {
         projectile.gameObject.SetActive(true);
-        projectile.SetPreferences(weapon,dir);
+        projectile.SetPreferences(weapon, dir);
     }
 
     public void AddBackToPool(Projectile projectile)

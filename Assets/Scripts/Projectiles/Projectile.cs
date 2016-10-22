@@ -1,19 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Projectile : MonoBehaviour {
+public abstract class Projectile : MonoBehaviour {
 
     public RangedWeapon.ProjectileType projectileType;
 
-    private float movementSpeed;
-    private float damage;
-    private float range;
-    private Vector3 direction;
-    private Vector3 startingPos;
-    private Character user;
+    protected float movementSpeed;
+    protected float damage;
+    protected float range;
+    protected Vector3 direction;
+    protected Vector3 targetPos;
+    protected Vector3 startingPos;
+    protected Character user;
+    protected bool hitItself;
 
-    private Rigidbody2D _rigidbody;
-    private Transform _transform;
+    protected Rigidbody2D _rigidbody;
+    protected Transform _transform;
 
     void Awake()
     {
@@ -23,26 +25,25 @@ public class Projectile : MonoBehaviour {
 
 	void Update ()
     {
-        if (Vector3.Distance(startingPos, _transform.position) >= range)
-        {
-            DestroyObject();
-        }
+        Move();
     }
 
-    public void SetPreferences(RangedWeapon weapon, Vector3 dir)
+    public virtual void Move()
+    { }
+
+    public virtual void SetPreferences(RangedWeapon weapon, Vector3 targetPos)
     {
         _transform.position = weapon.master.transform.position;
         startingPos = _transform.position;
-        SetRotation(dir);
+        this.targetPos = targetPos;
+        SetRotation(targetPos);
 
         user = weapon.master;
         movementSpeed = weapon.projectileSpeed;
         damage = weapon.damage;
         range = weapon.attackRange;
         projectileType = weapon.projectileType;
-        direction = dir - _transform.position;
-
-        _rigidbody.velocity = new Vector2(direction.x, direction.y).normalized * movementSpeed;
+        direction = targetPos - _transform.position;
     }
 
     void SetRotation(Vector3 targetPos)
@@ -53,7 +54,7 @@ public class Projectile : MonoBehaviour {
         _transform.eulerAngles = new Vector3(0, 0, _transform.eulerAngles.z);
     }
 
-    void DestroyObject()
+    protected void DestroyObject()
     {
         GameManager.Instance.objectPool.AddBackToPool(this);
         gameObject.SetActive(false);
@@ -61,14 +62,18 @@ public class Projectile : MonoBehaviour {
 
     public void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag != user.tag && col.tag != gameObject.tag)
+        if (col.tag != user.tag)
         {
-            if(col.gameObject.GetComponent<Character>() != null)
+            if (col.gameObject.GetComponent<Character>() != null)
             {
-                col.GetComponent<Character>().TakeDamage(damage); 
+                col.GetComponent<Character>().TakeDamage(damage);
             }
 
             DestroyObject();
+        }
+        else
+        {
+            hitItself = true;
         }
     }
 }

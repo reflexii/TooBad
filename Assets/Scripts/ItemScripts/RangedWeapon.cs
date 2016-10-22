@@ -11,6 +11,7 @@ public class RangedWeapon : Weapon
         this.projectileSpeed = projectileSpeed;
         this.projectileType = projectileType;
         this.attackSpeed = attackSpeed;
+        this.attackRange = range;
     }
 
     public override void Attack(Character player, Vector3 dir)
@@ -27,6 +28,7 @@ public class RangedWeapon : Weapon
     public enum ProjectileType
     {
         Arrow,
-        FireBall
+        FireBall,
+        Boomerang
     }
 }
