@@ -6,7 +6,7 @@ public class RangedWeapon : Weapon
     public float projectileSpeed;
     public ProjectileType projectileType;
 
-    public RangedWeapon(string itemName, float damage, int durability, float attackSpeed, float projectileSpeed,float range, ProjectileType projectileType, Color itemIcon) : base(itemName, damage,range, durability, itemIcon)
+    public RangedWeapon(string itemName, float damage, int durability, float attackSpeed, float projectileSpeed,float range, ProjectileType projectileType, IconType iconType) : base(itemName, damage,range, durability, iconType)
     {
         this.projectileSpeed = projectileSpeed;
         this.projectileType = projectileType;

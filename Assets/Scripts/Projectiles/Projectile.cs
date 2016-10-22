@@ -17,6 +17,8 @@ public abstract class Projectile : MonoBehaviour {
     protected Rigidbody2D _rigidbody;
     protected Transform _transform;
 
+    private string userTag;
+
     void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
@@ -44,6 +46,8 @@ public abstract class Projectile : MonoBehaviour {
         range = weapon.attackRange;
         projectileType = weapon.projectileType;
         direction = targetPos - _transform.position;
+
+        userTag = user.tag;
     }
 
     void SetRotation(Vector3 targetPos)
@@ -62,7 +66,7 @@ public abstract class Projectile : MonoBehaviour {
 
     public void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag != user.tag)
+        if (col.tag != userTag)
         {
             if (col.gameObject.GetComponent<Character>() != null)
             {

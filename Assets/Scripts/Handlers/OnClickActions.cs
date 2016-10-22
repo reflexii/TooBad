@@ -27,7 +27,7 @@ public class OnClickActions : MonoBehaviour {
 
 		draggedIcon.gameObject.SetActive (true);
 		draggedIcon.transform.position = Camera.main.ScreenToWorldPoint (Input.mousePosition) + new Vector3 (0.3f, 0.2f, 1f);
-		draggedIcon.color = draggedItem.itemIcon;
+		draggedIcon.sprite = draggedItem.itemIcon;
 
 	}
 

@@ -84,7 +84,7 @@ public class SlotScipt : ClickAbleUI {
 		if (item == null) {
 			item = itemToAdd;
 			itemIcon.gameObject.SetActive (true);
-			itemIcon.color = itemToAdd.itemIcon;
+			itemIcon.sprite = itemToAdd.itemIcon;
 		} 
 
 		if (item.itemType == Item.ItemType.Consumable) {

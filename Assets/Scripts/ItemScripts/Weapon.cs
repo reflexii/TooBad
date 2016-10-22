@@ -11,7 +11,7 @@ public abstract class Weapon : Item {
 
     protected float lastTimeAttacked;
 
-	public Weapon (string itemName, float damage, float attackRange, int durability, Color itemIcon) : base (itemName, ItemType.Weapon , itemIcon)
+	public Weapon (string itemName, float damage, float attackRange, int durability, IconType iconType) : base (itemName, ItemType.Weapon , iconType)
 	{
 		this.damage = damage;
 		this.durability = durability;

@@ -5,7 +5,7 @@ public class Potion : Item {
 
 	public float healAmount;
 
-	public Potion (string itemName, float healAmount, Color itemIcon) : base (itemName, ItemType.Consumable , itemIcon)
+	public Potion (string itemName, float healAmount, IconType iconType) : base (itemName, ItemType.Consumable , iconType)
 	{
 		this.healAmount = healAmount;
 	}

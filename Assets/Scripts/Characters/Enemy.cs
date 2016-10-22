@@ -15,7 +15,7 @@ public class Enemy : Character {
     void Awake()
     {
         transform.tag = "Enemy";
-        equippedWeapon = new Weapons.ShortBow();
+        equippedWeapon = new Weapons.CrossBow();
         equippedWeapon.master = this;
         attackRange = equippedWeapon.attackRange;
     }

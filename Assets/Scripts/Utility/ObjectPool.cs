@@ -31,7 +31,7 @@ public class ObjectPool : MonoBehaviour
         else if (random == 1)
             o.GetComponent<LootableItem>().SetItem(new Weapons.LongSword());
         else if (random == 2)
-            o.GetComponent<LootableItem>().SetItem(new Weapons.ShortBow());
+            o.GetComponent<LootableItem>().SetItem(new Weapons.CrossBow());
     }
 
     public void FireProjectile(RangedWeapon weapon, Vector3 direction)

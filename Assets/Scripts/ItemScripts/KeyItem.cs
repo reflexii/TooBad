@@ -5,7 +5,7 @@ public class KeyItem : Item
 {
     public KeyItemType keyItemType;
 
-    public KeyItem(string name, KeyItemType keyItemType, Color itemIcon) : base(name, ItemType.KeyItem, itemIcon)
+    public KeyItem(string name, KeyItemType keyItemType, IconType iconType) : base(name, ItemType.KeyItem, iconType)
     {
         this.keyItemType = keyItemType;
     }

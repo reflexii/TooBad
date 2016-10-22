@@ -46,7 +46,7 @@ public class LootableItem : ClickAbleObject
 	public void SetItem(Item item)
 	{
 		this.item = item;
-		GetComponent<SpriteRenderer>().color = item.itemIcon;
+		GetComponent<SpriteRenderer>().sprite = item.itemIcon;
 	}
 
 	public override void PerformClickAction(MouseHandler clickActions)

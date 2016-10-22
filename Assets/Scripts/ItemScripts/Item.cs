@@ -7,24 +7,24 @@ public class Item {
 	public ItemType itemType;
 	public int itemAmount;
 	//Placeholder for sprite.
-	public Color itemIcon;
+	public Sprite itemIcon;
 	public Character master;
     public SlotScipt slot;
 
-	public Item(string itemName, ItemType itemType, Color itemColor)
+	public Item(string itemName, ItemType itemType, IconType iconType)
 	{
 		this.itemName = itemName;
 		this.itemType = itemType;
-		this.itemIcon = itemColor;
+		this.itemIcon = GameManager.Instance.assetManager.GetIcon(iconType);
 		itemAmount = 1;
 	}
 
-	public Item(string itemName, ItemType itemType, Color itemColor, Character master)
+	public Item(string itemName, ItemType itemType, IconType iconType, Character master)
 	{
 		this.itemName = itemName;
 		this.itemType = itemType;
-		this.itemIcon = itemColor;
-		itemAmount = 1;
+        this.itemIcon = GameManager.Instance.assetManager.GetIcon(iconType);
+        itemAmount = 1;
 		this.master = master;
 	}
 
@@ -41,4 +41,15 @@ public class Item {
 		Consumable,
         KeyItem
 	}
+
+    public enum IconType
+    {
+        Potion,
+        Sword,
+        Axe,
+        Crossbow,
+        NormalKey,
+        Wand,
+        Mace
+    }
 }
