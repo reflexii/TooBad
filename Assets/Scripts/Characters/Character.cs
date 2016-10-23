@@ -9,7 +9,7 @@ public abstract class Character : MonoBehaviour
 	public FacingDir facingDir;
     public MeleeAttackCollider meleeAttackAction;
     public float maxHealth;
-	private float currentHealth;
+	public float currentHealth;
 
     void Start()
     {
