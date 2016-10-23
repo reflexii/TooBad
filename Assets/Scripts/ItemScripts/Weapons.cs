@@ -27,6 +27,14 @@ public class Weapons
         }
     }
 
+    public class SplitFireCrossBow : RangedWeapon
+    {
+        public SplitFireCrossBow() : base("Splitfire Crosbow", 5, 5,0.08f, 10,100, ProjectileType.Arrow, IconType.Crossbow)
+        {
+
+        }
+    }
+
     public class FireWand : RangedWeapon
     {
         public FireWand() : base("Fire Wand", 5, 5, 1, 7, 12, ProjectileType.FireBall, IconType.Sword)

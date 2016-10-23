@@ -1,34 +1,82 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class LevelOneBoss : Enemy {
-    public float attackSpeed;
-    public bool targetThePlayer;
-    public GameObject shield;
 
-	void Awake ()
+    public float weaponOneAttackSpeed;
+    public float weaponTwoAttackSpeed;
+    public float wanderingRadius;
+    public float timeUntilUltimate = 7;
+
+    public bool targetThrow;
+    public bool randomThrow;
+    public bool spinThrow;
+    public int rangedWeaponAmount = 6;
+    public float turningSpeed;
+
+    public GameObject shield;
+    public GameObject spotToAttackDebug;
+
+    private Weapon weaponOne;
+    private Weapon weaponTwo;
+    private List<Weapon> weapons = new List<Weapon>();
+
+    private Vector3 movDestination;
+    private Vector3 startingPos;
+    private Vector2 spotToAttack;
+    private float angle = 0;
+    private Vector2 centre;
+    private Vector2 offset;
+    private float timer;
+
+    private bool prepareUltimate;
+    private bool readyForUltimate;
+    public bool phaseTwo;
+
+    void Awake ()
     {
         transform.tag = "Enemy";
-        equippedWeapon = new Weapons.Boomerang();
-        equippedWeapon.master = this;
-        attackRange = equippedWeapon.attackRange;
 
-        if(attackSpeed != 0)
-            equippedWeapon.attackSpeed = attackSpeed;
+        weaponOne = new Weapons.Boomerang();
+        weaponTwo = new Weapons.Boomerang();
+        for (int i = 0; i < 100; i++)
+            weapons.Add(new Weapons.SplitFireCrossBow());
+
+        EquipWeapon(weaponOne);
+        movDestination = transform.position;
+        startingPos = transform.position;
+
+        if(weaponOneAttackSpeed != 0)
+            weaponOne.attackSpeed = weaponOneAttackSpeed;
+
+        Vector3 spotToAttack = transform.position;
+        spotToAttack.y -= (int)Random.Range(2, 10);
+        spotToAttack.x -= (int)Random.Range(2, 10);
     }
 
     public override void Move()
     {
-        if (targetThePlayer)
+        AttackPattern();
+
+        if (!phaseTwo)
+            return;
+
+        if ((movDestination - gameObject.transform.position).magnitude <= 0.2f)
         {
-            Attack(player.transform.position);
+            if (!prepareUltimate)
+            {
+                Vector3 randomizePos = (Random.insideUnitCircle * wanderingRadius);
+                movDestination = randomizePos + startingPos;
+            }
+            else
+            {
+                readyForUltimate = true;
+            }
         }
         else
         {
-            Vector3 spotToAttack = transform.position;
-            spotToAttack.y -= (int)Random.Range(2, 10);
-            spotToAttack.x -= (int)Random.Range(2, 10);
-            Attack(spotToAttack);
+            transform.position = Vector3.MoveTowards(transform.position, movDestination, movementSpeed * Time.deltaTime);
         }
     }
 
@@ -36,8 +84,103 @@ public class LevelOneBoss : Enemy {
     {
         if (shield == null)
         {
+            phaseTwo = true;
+            EquipWeapon(weaponTwo);
             base.TakeDamage(dmgAmount);
         }
     }
 
+    void AttackPattern()
+    {
+        if (targetThrow && phaseTwo)
+        {
+            if (!prepareUltimate)
+            {
+                weaponTwo.attackSpeed = weaponTwoAttackSpeed;
+                TargetThrow();
+            }
+        }
+        else if (randomThrow)
+        {
+            weaponOne.attackSpeed = weaponOneAttackSpeed;
+            RandomThrow();
+        }
+        if (spinThrow)
+        {
+            if (timer >= timeUntilUltimate)
+            {
+                prepareUltimate = true;
+                movDestination = startingPos;
+
+                if (readyForUltimate)
+                {
+                    SpinThrow();
+                }
+            }
+            else
+            {
+                timer += Time.deltaTime;
+            }
+        }
+
+    }
+
+    void SpinThrow()
+    {
+        centre = transform.position;
+        angle += turningSpeed * Time.deltaTime;
+
+        var offset = new Vector2(Mathf.Sin(angle), Mathf.Cos(angle));
+        float tmpAngle = angle;
+        int i = 0;
+        foreach (Weapon weapon in weapons)
+        {
+            if (weapon is Weapons.SplitFireCrossBow && i < rangedWeaponAmount)
+            {
+                if (i == 0)
+                {
+                    EquipWeapon(weapon);
+                    Attack(centre + offset);
+                    spotToAttackDebug.transform.position = centre + offset;
+                }
+                else
+                {
+                    EquipWeapon(weapon);
+                    tmpAngle = GetShootingAngle(tmpAngle);
+                    var tmpOffset = new Vector2(Mathf.Sin(tmpAngle), Mathf.Cos(tmpAngle));
+                    Attack(centre + tmpOffset);
+                }
+                i++;
+            }
+        }
+
+        if (angle >= 6)
+        {
+            prepareUltimate = false;
+            readyForUltimate = false;
+            timer = 0;
+            angle = 0;
+            EquipWeapon(weaponTwo);
+        }
+    }
+
+    float GetShootingAngle(float angle)
+    {
+        float toReturn = angle - ((6.33f / 360f) * (360f / rangedWeaponAmount));
+        return toReturn;
+    }
+
+    void TargetThrow()
+    {
+        Attack(player.transform.position);
+    }
+
+    void RandomThrow()
+    {
+        spotToAttack = transform.position;
+        spotToAttack.y -= (int)Random.Range(-10, 10);
+        spotToAttack.x -= (int)Random.Range(-10, 10);
+        print(spotToAttack);
+        Attack(spotToAttack);
+    }
 }

@@ -26,10 +26,11 @@ public abstract class Character : MonoBehaviour
 		}
 	}
 
-	public void SetWeapon(Weapon weapon)
+	public void EquipWeapon(Weapon weapon)
 	{
-		equippedWeapon = weapon;
-	}
+        equippedWeapon = weapon;
+        weapon.master = this;
+    }
 
     public void UnEquip()
     {

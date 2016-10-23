@@ -23,7 +23,7 @@ public abstract class Weapon : Item {
 	public override void TakeAction(SlotScipt slot)
 	{
         this.slot = slot;
-		master.SetWeapon (this);
+		master.EquipWeapon (this);
 	}
 
     //Sword swing, shoot projectile...

@@ -23,6 +23,7 @@ public abstract class Projectile : MonoBehaviour {
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _transform = transform;
+        tag = "Projectile";
     }
 
 	void Update ()
@@ -66,7 +67,7 @@ public abstract class Projectile : MonoBehaviour {
 
     public void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag != userTag)
+        if (col.tag != userTag && col.tag != tag)
         {
             if (col.gameObject.GetComponent<Character>() != null)
             {
