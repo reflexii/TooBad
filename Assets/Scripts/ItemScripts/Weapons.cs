@@ -21,15 +21,15 @@ public class Weapons
 
     public class CrossBow : RangedWeapon
     {
-        public CrossBow() : base("Short Bow",5,5,1,10,7,ProjectileType.Arrow, IconType.Crossbow)
+        public CrossBow() : base("CrossBow",5,5,1,10,7,ProjectileType.Arrow, IconType.Crossbow)
         {
 
         }
     }
 
-    public class SplitFireCrossBow : RangedWeapon
+    public class AutomaticCrossBow : RangedWeapon
     {
-        public SplitFireCrossBow() : base("Splitfire Crosbow", 5, 5,0.08f, 10,100, ProjectileType.Arrow, IconType.Crossbow)
+        public AutomaticCrossBow() : base("Automatic Crossbow", 5, 5,0.08f, 10,100, ProjectileType.Arrow, IconType.Crossbow)
         {
 
         }

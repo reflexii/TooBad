@@ -41,7 +41,7 @@ public class LevelOneBoss : Enemy {
         weaponOne = new Weapons.Boomerang();
         weaponTwo = new Weapons.Boomerang();
         for (int i = 0; i < 100; i++)
-            weapons.Add(new Weapons.SplitFireCrossBow());
+            weapons.Add(new Weapons.AutomaticCrossBow());
 
         EquipWeapon(weaponOne);
         movDestination = transform.position;
@@ -135,7 +135,7 @@ public class LevelOneBoss : Enemy {
         int i = 0;
         foreach (Weapon weapon in weapons)
         {
-            if (weapon is Weapons.SplitFireCrossBow && i < rangedWeaponAmount)
+            if (weapon is Weapons.AutomaticCrossBow && i < rangedWeaponAmount)
             {
                 if (i == 0)
                 {
