@@ -180,7 +180,7 @@ public class LevelOneBoss : Enemy {
         spotToAttack = transform.position;
         spotToAttack.y -= (int)Random.Range(-10, 10);
         spotToAttack.x -= (int)Random.Range(-10, 10);
-        print(spotToAttack);
+        //print(spotToAttack);
         Attack(spotToAttack);
     }
 }

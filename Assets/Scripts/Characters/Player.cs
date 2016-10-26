@@ -7,18 +7,24 @@ public class Player : Character
 
     public Image healthBar;
     public Image rageBar;
-    private float currentRageAmount;
     public float maxRageAmount;
     public float rageDegenPerSecond;
 
+    private MovementScript ms;
+    private float currentRageAmount;
+
     void Awake() {
         currentRageAmount = maxRageAmount;
+        ms = GetComponent<MovementScript>();
     }
 
 	public override void Attack(Vector3 dir)
 	{
-		if(equippedWeapon != null)
-			equippedWeapon.Attack (this,dir);
+		if(equippedWeapon != null) {
+            equippedWeapon.Attack(this, dir);
+            playAnimation();
+        }
+			
 	}
 
     void Update() {
@@ -33,5 +39,11 @@ public class Player : Character
     public void drainRage() {
         currentRageAmount -= rageDegenPerSecond * Time.deltaTime;
         rageBar.fillAmount = (currentRageAmount / maxRageAmount);
+    }
+
+    public void playAnimation() {
+        if (equippedWeapon.itemName == "Long Sword") {
+            ms.swingSword = true;
+        }
     }
 }

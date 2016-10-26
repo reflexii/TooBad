@@ -30,6 +30,7 @@ public abstract class Character : MonoBehaviour
 	{
         equippedWeapon = weapon;
         weapon.master = this;
+        Debug.Log(equippedWeapon);
     }
 
     public void UnEquip()

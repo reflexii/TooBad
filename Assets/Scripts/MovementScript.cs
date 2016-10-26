@@ -3,16 +3,25 @@ using System.Collections;
 
 public class MovementScript : MonoBehaviour {
 
-	private Vector2 mousePosition;
+	
 	public float verticalSpeed;
 	public float strafeSpeed;
-	private Vector3 strafeDirection;
     public GameObject rotateDirectionObject;
     public float rotationDirectionEuler;
+
+    //animations
     public bool moving = false;
-    private Animator animator;
-    private Player player;
     public int layerMask = 1 << 9;
+
+    public bool longSwordEquipped = false;
+    public bool swingSword = false;
+    private float swingingDuration = 0.05f;
+    private float swingTimer = 0.0f;
+
+    private Animator animator;
+    public Player player;
+    private Vector3 strafeDirection;
+    private Vector2 mousePosition;
 
     //player raycast stuff
     private float yDif = 0.6f;
@@ -39,8 +48,29 @@ public class MovementScript : MonoBehaviour {
         keyboardMovement();
         updatePlayerDir();
         checkWalls();
+        checkEquippedWeapons();
+        returnAnimations();
 
 	}
+
+    void checkEquippedWeapons() {
+        if (player.equippedWeapon != null) {
+            if (player.equippedWeapon.itemName == "Long Sword") {
+                longSwordEquipped = true;
+            } else {
+                longSwordEquipped = false;
+            }
+        } else {
+            longSwordEquipped = false;
+        }
+        
+    }
+
+    void returnAnimations() {
+        if (swingSword) {
+            swingSword = false;
+        }
+    }
 
 	void mouseLook() {
 		Vector3 position = Camera.main.WorldToScreenPoint(transform.position);
@@ -53,6 +83,8 @@ public class MovementScript : MonoBehaviour {
     void animations() {
         animator.SetFloat("Euler", rotationDirectionEuler);
         animator.SetBool("Moving", moving);
+        animator.SetBool("LongSword", longSwordEquipped);
+        animator.SetBool("SwingSword", swingSword);
     }
 
      void updatePlayerDir()
