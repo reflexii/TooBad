@@ -7,7 +7,7 @@ public class LootableItem : ClickAbleObject
 	public float lifeTime = 30;
     public KeyItem.KeyItemType keyItemType;
 
-	private Item item;
+	protected Item item;
 	private float timer;
 
     public override void Awake()
@@ -22,7 +22,7 @@ public class LootableItem : ClickAbleObject
 
     void Update()
 	{
-        if (keyItemType != KeyItem.KeyItemType.None)
+        if (keyItemType != KeyItem.KeyItemType.None || lifeTime == 0)
         {
             return;
         }
@@ -56,6 +56,7 @@ public class LootableItem : ClickAbleObject
 
 	public override void PerformOnHoverAction(MouseHandler clickActions)
 	{
+        print("HOVEFR");
 		clickActions.onHoverActions.DisplayOnHoverInfo (item);
 	}
 

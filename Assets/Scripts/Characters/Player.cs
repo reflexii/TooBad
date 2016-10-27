@@ -9,9 +9,11 @@ public class Player : Character
     public Image rageBar;
     public float maxRageAmount;
     public float rageDegenPerSecond;
+    [HideInInspector]
+    public float currentRageAmount;
+
 
     private MovementScript ms;
-    private float currentRageAmount;
 
     void Awake() {
         currentRageAmount = maxRageAmount;

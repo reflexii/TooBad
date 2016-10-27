@@ -14,7 +14,7 @@ public class LootHandler : MonoBehaviour
 		if (Input.GetKeyDown (KeyCode.Alpha0))
 			LootItem (new Weapons.LongSword ());
 		if (Input.GetKeyDown (KeyCode.Alpha8))
-			LootItem (new Potions.SmallPotion ());
+			LootItem (new Consumables.SmallPotion ());
         if (Input.GetKeyDown(KeyCode.Alpha7))
             LootItem(new Weapons.CrossBow());
         if (Input.GetKeyDown(KeyCode.Alpha6))

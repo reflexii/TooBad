@@ -11,7 +11,7 @@ public class Item {
 	public Character master;
     public SlotScipt slot;
 
-	public Item(string itemName, ItemType itemType, IconType iconType)
+	public Item(string itemName, ItemType itemType, ItemClass iconType)
 	{
 		this.itemName = itemName;
 		this.itemType = itemType;
@@ -19,7 +19,7 @@ public class Item {
 		itemAmount = 1;
 	}
 
-	public Item(string itemName, ItemType itemType, IconType iconType, Character master)
+	public Item(string itemName, ItemType itemType, ItemClass iconType, Character master)
 	{
 		this.itemName = itemName;
 		this.itemType = itemType;
@@ -42,7 +42,7 @@ public class Item {
         KeyItem
 	}
 
-    public enum IconType
+    public enum ItemClass
     {
         Potion,
         Sword,
@@ -50,6 +50,7 @@ public class Item {
         Crossbow,
         NormalKey,
         Wand,
-        Mace
+        Mace,
+        RageDrug
     }
 }
