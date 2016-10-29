@@ -44,8 +44,13 @@ public class Player : Character
     }
 
     public void playAnimation() {
-        if (equippedWeapon.itemName == "Long Sword") {
-            ms.swingSword = true;
+        if (equippedWeapon != null) {
+            if (equippedWeapon.itemName == "Long Sword") {
+                ms.swingSword = true;
+            } else if (equippedWeapon.itemName == "CrossBow") {
+                ms.shootCrossBow = true;
+            }
         }
+        
     }
 }

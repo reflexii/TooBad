@@ -14,9 +14,9 @@ public class MovementScript : MonoBehaviour {
     public int layerMask = 1 << 9;
 
     public bool longSwordEquipped = false;
+    public bool crossBowEquipped = false;
     public bool swingSword = false;
-    private float swingingDuration = 0.05f;
-    private float swingTimer = 0.0f;
+    public bool shootCrossBow = false;
 
     private Animator animator;
     public Player player;
@@ -57,11 +57,17 @@ public class MovementScript : MonoBehaviour {
         if (player.equippedWeapon != null) {
             if (player.equippedWeapon.itemName == "Long Sword") {
                 longSwordEquipped = true;
+                crossBowEquipped = false;
+            } else if (player.equippedWeapon.itemName == "CrossBow") {
+                crossBowEquipped = true;
+                longSwordEquipped = false;
             } else {
                 longSwordEquipped = false;
+                crossBowEquipped = false;
             }
         } else {
             longSwordEquipped = false;
+            crossBowEquipped = false;
         }
         
     }
@@ -69,6 +75,9 @@ public class MovementScript : MonoBehaviour {
     void returnAnimations() {
         if (swingSword) {
             swingSword = false;
+        }
+        if (shootCrossBow) {
+            shootCrossBow = false;
         }
     }
 
@@ -84,7 +93,9 @@ public class MovementScript : MonoBehaviour {
         animator.SetFloat("Euler", rotationDirectionEuler);
         animator.SetBool("Moving", moving);
         animator.SetBool("LongSword", longSwordEquipped);
+        animator.SetBool("CrossBow", crossBowEquipped);
         animator.SetBool("SwingSword", swingSword);
+        animator.SetBool("ShootCrossBow", shootCrossBow);
     }
 
      void updatePlayerDir()
