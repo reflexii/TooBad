@@ -1,13 +1,16 @@
 fileFormatVersion: 2
-guid: ec2695c5e3be8ba40b7f1278324f1104
-timeCreated: 1477569987
+guid: 9163d27f19e8f3a419f70a270adcfaaa
+timeCreated: 1477855326
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Key-Pills-Door_0
-    21300002: Key-Pills-Door_1
-    21300004: Key-Pills-Door_2
-    21300006: Key-Pills-Door_3
+    21300000: Wond-FireBall-Explosion 1_0
+    21300002: Wond-FireBall-Explosion 1_1
+    21300004: Wond-FireBall-Explosion 1_2
+    21300006: Wond-FireBall-Explosion 1_3
+    21300008: Wond-FireBall-Explosion 1_4
+    21300010: Wond-FireBall-Explosion 1_5
+    21300012: Wond-FireBall-Explosion 1_6
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -57,52 +60,91 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Key-Pills-Door_0
+      name: Wond-FireBall-Explosion 1_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 94
-        width: 62
-        height: 32
+        y: 66
+        width: 64
+        height: 62
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Key-Pills-Door_1
-      rect:
-        serializedVersion: 2
-        x: 89
-        y: 116
-        width: 24
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Key-Pills-Door_2
-      rect:
-        serializedVersion: 2
-        x: 2
-        y: 19
-        width: 34
-        height: 70
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Key-Pills-Door_3
+      name: Wond-FireBall-Explosion 1_1
       rect:
         serializedVersion: 2
         x: 64
-        y: 83
-        width: 28
-        height: 23
+        y: 89
+        width: 25
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Wond-FireBall-Explosion 1_2
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 11
+        width: 16
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Wond-FireBall-Explosion 1_3
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 11
+        width: 14
+        height: 58
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Wond-FireBall-Explosion 1_4
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 55
+        width: 33
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Wond-FireBall-Explosion 1_5
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 11
+        width: 9
+        height: 58
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Wond-FireBall-Explosion 1_6
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 22
+        width: 20
+        height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

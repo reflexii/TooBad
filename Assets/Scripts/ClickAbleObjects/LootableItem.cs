@@ -56,7 +56,6 @@ public class LootableItem : ClickAbleObject
 
 	public override void PerformOnHoverAction(MouseHandler clickActions)
 	{
-        print("HOVEFR");
 		clickActions.onHoverActions.DisplayOnHoverInfo (item);
 	}
 

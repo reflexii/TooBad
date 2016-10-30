@@ -8,6 +8,7 @@ public class ObjectPool : MonoBehaviour
     public GameObject fireBallPrefab;
     public GameObject boomerangPrefab;
     public GameObject lootPrefab;
+    public Animator explosion;
 
     private List<Projectile> projectilePool;
     private List<LootableItem> lootPool;

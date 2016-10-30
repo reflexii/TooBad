@@ -13,7 +13,7 @@ public class Consumables {
 
     public class NormalRageDrug : RageDrug
     {
-        public NormalRageDrug() : base("Rage Pill",10, ItemClass.RageDrug)
+        public NormalRageDrug() : base("Rage Drug",10, ItemClass.RageDrug)
         {
 
         }

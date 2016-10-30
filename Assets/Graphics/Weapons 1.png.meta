@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: ec2695c5e3be8ba40b7f1278324f1104
-timeCreated: 1477569987
+guid: 60077528fcf63f545bdb2a3e102c3ad2
+timeCreated: 1477851439
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Key-Pills-Door_0
-    21300002: Key-Pills-Door_1
-    21300004: Key-Pills-Door_2
-    21300006: Key-Pills-Door_3
+    21300000: Weapons 1_0
+    21300002: Weapons 1_1
+    21300004: Weapons 1_2
+    21300006: Weapons 1_3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -57,54 +57,54 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Key-Pills-Door_0
+      name: Weapons 1_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 94
-        width: 62
-        height: 32
+        y: 66
+        width: 60
+        height: 62
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Key-Pills-Door_1
+      name: Weapons 1_1
       rect:
         serializedVersion: 2
-        x: 89
-        y: 116
-        width: 24
-        height: 10
+        x: 62
+        y: 74
+        width: 60
+        height: 52
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Key-Pills-Door_2
+      name: Weapons 1_2
       rect:
         serializedVersion: 2
-        x: 2
-        y: 19
-        width: 34
-        height: 70
+        x: 3
+        y: 4
+        width: 70
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Key-Pills-Door_3
+      name: Weapons 1_3
       rect:
         serializedVersion: 2
-        x: 64
-        y: 83
-        width: 28
-        height: 23
+        x: 75
+        y: 15
+        width: 33
+        height: 58
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
