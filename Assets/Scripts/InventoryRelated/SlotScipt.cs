@@ -40,32 +40,45 @@ public class SlotScipt : ClickAbleUI {
 			UpdateItemValues ();
 		}
 	}
-
-	public override void PerformClickAction(MouseHandler mouseHandler)
+    
+	public override void PerformClickAction(MouseHandler mouseHandler, int mouseButton)
 	{
 		OnClickActions onClick = mouseHandler.onClickActions;
-		if (item != null) 
-		{
-			if (!onClick.dragging) {
-				onClick.StartDragging (item, this);
-				RemoveItem ();
-			} else {
-				onClick.EndDragging (this);
-			}
-			mouseHandler.onHoverActions.dragging = onClick.dragging;
-		}
-		else
-		{
-			if (onClick.dragging) {
-				onClick.EndDragging (this);
-				mouseHandler.onHoverActions.dragging = false;
-			}
-		}
+
+        if (mouseButton == 0)
+        {
+            if (item != null)
+            {
+                if (!onClick.dragging)
+                {
+                    onClick.StartDragging(item, this);
+                    RemoveItem();
+                }
+                else
+                {
+                    onClick.EndDragging(this);
+                }
+                mouseHandler.onHoverActions.dragging = onClick.dragging;
+            }
+            else
+            {
+                if (onClick.dragging)
+                {
+                    onClick.EndDragging(this);
+                    mouseHandler.onHoverActions.dragging = false;
+                }
+            }
+        }
+
+        if (mouseButton == 1)
+        {
+            onClick.QuickEquip(this);
+        }
 	}
 
 	public override void PerformOnHoverAction(MouseHandler onHoverAction)
 	{
-		if (item == null)
+        if (item == null)
 			return;
 		onHoverAction.onHoverActions.DisplayOnHoverInfo (item);
 	}

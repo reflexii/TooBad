@@ -49,7 +49,7 @@ public class LootableItem : ClickAbleObject
 		GetComponent<SpriteRenderer>().sprite = item.itemIcon;
 	}
 
-	public override void PerformClickAction(MouseHandler clickActions)
+	public override void PerformClickAction(MouseHandler clickActions, int mouseButton)
 	{
 		clickActions.onClickActions.lootHandler.LootItem (this);
 	}

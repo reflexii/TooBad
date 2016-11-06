@@ -22,11 +22,17 @@ public class MouseHandler : MonoBehaviour {
     void Update()
 	{
 		if (Input.GetMouseButtonDown (0)) {
-			UIRaycastClick ();
-			MouseRaycastClick ();
+			UIRaycastClick (0);
+			MouseRaycastClick (0);
             Attack();
 		}
-	}
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            UIRaycastClick(1);
+            MouseRaycastClick(1);
+        }
+    }
 
 	void FixedUpdate () 
 	{
@@ -70,7 +76,7 @@ public class MouseHandler : MonoBehaviour {
 	}
 
 	//Used at update. Only when mousebutton has been pressed.
-	void MouseRaycastClick ()
+	void MouseRaycastClick (int button)
 	{
 		RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition),Vector2.zero);
 
@@ -80,7 +86,7 @@ public class MouseHandler : MonoBehaviour {
                 pointingClickAble = true;
                 ClickAbleObject tmpTarget = hit.transform.GetComponent<ClickAbleObject> ();
 				UndoOnHoverAction ();
-				tmpTarget.PerformClickAction (this);
+				tmpTarget.PerformClickAction (this,button);
 			}
 		}
         else
@@ -113,7 +119,7 @@ public class MouseHandler : MonoBehaviour {
 	}
 
 	//Used at Update, only when mousebutton has been pressed.
-	void UIRaycastClick()
+	void UIRaycastClick(int button)
 	{
 		cursor.position = Input.mousePosition;
 		EventSystem.current.RaycastAll(cursor, objectsHit);
@@ -123,7 +129,7 @@ public class MouseHandler : MonoBehaviour {
             {
                 pointingClickAbleUI = true;
                 ClickAbleUI tmpTarget = objectsHit[0].gameObject.GetComponent<ClickAbleUI>();
-                tmpTarget.PerformClickAction(this);
+                tmpTarget.PerformClickAction(this,button);
                 UndoOnHoverUIAction();
             }
             else

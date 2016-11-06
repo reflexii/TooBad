@@ -7,7 +7,7 @@ public class Switch : ClickAbleObject
     public string name = "No Name";
     public InteractiveObject interactiveObject;
 
-    public override void PerformClickAction(MouseHandler clickAction)
+    public override void PerformClickAction(MouseHandler clickAction, int mouseButton)
     {
         //Returns bool. You can perform action based on returned value. For example display info if interacting failed(Not having a key or something)
         interactiveObject.TakeAction();

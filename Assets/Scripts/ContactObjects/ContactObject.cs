@@ -10,7 +10,7 @@ public abstract class ContactObject : LootableItem
         TakeAction(col);
     }
 
-    public override void PerformClickAction(MouseHandler clickActions)
+    public override void PerformClickAction(MouseHandler clickAction, int mouseButton)
     {
     }
     

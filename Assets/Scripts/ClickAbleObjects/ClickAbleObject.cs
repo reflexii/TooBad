@@ -8,7 +8,7 @@ public abstract class ClickAbleObject: MonoBehaviour
 		transform.tag = "ClickAble";
 	}
 
-	public abstract void PerformClickAction (MouseHandler clickAction);
+	public abstract void PerformClickAction (MouseHandler clickAction,int mouseButton);
 	public abstract void PerformOnHoverAction (MouseHandler clickAction);
 	public abstract void UndoOnHoverAction (MouseHandler clickActions);
 }

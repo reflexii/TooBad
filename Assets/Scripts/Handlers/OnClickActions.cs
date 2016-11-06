@@ -62,6 +62,20 @@ public class OnClickActions : MonoBehaviour {
 		} else
 			print("Cannot equip "+draggedItem.itemType.ToString() + " to " + targetSlot.validItemType.ToString() +" slot!");
 	}
+
+    public void QuickEquip(SlotScipt slot)
+    {
+        if (slot.slotType == SlotScipt.SlotType.InventorySlot)
+        {
+            if (GameManager.Instance.inventory.QuickEquip(slot.GetItem()))
+                slot.RemoveItem();
+        }
+        else if (slot.slotType == SlotScipt.SlotType.ActionBarSlot)
+        {
+            if (GameManager.Instance.inventory.QuickDeEquip(slot.GetItem()))
+                slot.RemoveItem();
+        }
+    }
 		
 	void SwapItems(SlotScipt targetSlot)
 	{

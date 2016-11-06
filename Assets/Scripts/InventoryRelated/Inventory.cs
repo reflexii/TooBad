@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class Inventory : MonoBehaviour {
 	public GameObject slotPrefab;
-	public LootHandler lootHandler;
+    public ActionBar actionBar;
 
 	private List<SlotScipt> itemSlots = new List<SlotScipt>();
 	private float xOffset;
@@ -61,7 +61,32 @@ public class Inventory : MonoBehaviour {
 		bool spaceInInventory = true;
 		int i = 0;
 
-		foreach (SlotScipt slot in itemSlots) {
+        foreach (SlotScipt slot in actionBar.itemSlots)
+        {
+            if (slot.GetItem() == null)
+            {
+                if (!nullFound)
+                {
+                    firstNull = i;
+                    nullFound = true;
+                }
+            }
+            else if (slot.GetItem().itemName == item.itemName && item.itemType == Item.ItemType.Consumable
+                && slot.GetItem().itemAmount + item.itemAmount <= slot.maxStackSize)
+            {
+                slot.IncreaseAmount(item.itemAmount);
+                return spaceInInventory;
+            }
+            i++;
+        }
+        if (actionBar.itemSlots[firstNull].GetItem() == null)
+        {
+            actionBar.itemSlots[firstNull].SetItem(item);
+            return spaceInInventory;
+        }
+
+        i = 0;
+        foreach (SlotScipt slot in itemSlots) {
 			if (slot.GetItem () == null) 
 			{
 				if (!nullFound) {
@@ -84,6 +109,74 @@ public class Inventory : MonoBehaviour {
 
 		return spaceInInventory;
 	}
+
+    public bool QuickEquip(Item item)
+    {
+        int firstNull = 0;
+        bool nullFound = false;
+        int i = 0;
+
+        foreach (SlotScipt slot in actionBar.itemSlots)
+        {
+            if (slot.GetItem() == null)
+            {
+                if (!nullFound)
+                {
+                    firstNull = i;
+                    nullFound = true;
+                }
+            }
+            else if (slot.GetItem().itemName == item.itemName && item.itemType == Item.ItemType.Consumable
+                && slot.GetItem().itemAmount + item.itemAmount <= slot.maxStackSize)
+            {
+                slot.IncreaseAmount(item.itemAmount);
+                return true;
+            }
+            i++;
+        }
+
+        if (actionBar.itemSlots[firstNull].GetItem() == null)
+        {
+            actionBar.itemSlots[firstNull].SetItem(item);
+            return true;
+        }
+
+        return false;
+    }
+    public bool QuickDeEquip(Item item)
+    {
+        int firstNull = 0;
+        bool nullFound = false;
+        int i = 0;
+
+        foreach (SlotScipt slot in itemSlots)
+        {
+            if (slot.GetItem() == null)
+            {
+                if (!nullFound)
+                {
+                    firstNull = i;
+                    nullFound = true;
+                }
+            }
+            else if (slot.GetItem().itemName == item.itemName && item.itemType == Item.ItemType.Consumable
+                && slot.GetItem().itemAmount + item.itemAmount <= slot.maxStackSize)
+            {
+                slot.IncreaseAmount(item.itemAmount);
+                return true;
+            }
+            i++;
+        }
+
+        if (itemSlots[firstNull].GetItem() == null)
+        {
+            itemSlots[firstNull].SetItem(item);
+            return true;
+        }
+
+        return false;
+    }
+
 
     public bool ContainsKeyItemOfType(KeyItem.KeyItemType type)
     {
