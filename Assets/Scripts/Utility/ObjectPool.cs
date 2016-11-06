@@ -8,15 +8,17 @@ public class ObjectPool : MonoBehaviour
     public GameObject fireBallPrefab;
     public GameObject boomerangPrefab;
     public GameObject lootPrefab;
-    public Animator explosion;
+    public GameObject explosionPrefab;
 
     private List<Projectile> projectilePool;
     private List<LootableItem> lootPool;
+    private List<Explosion> explosionPool;
 
     public ObjectPool()
     {
         projectilePool = new List<Projectile>();
         lootPool = new List<LootableItem>();
+        explosionPool = new List<Explosion>();
     }
 
     //ADD change this method.
@@ -38,6 +40,28 @@ public class ObjectPool : MonoBehaviour
     public void FireProjectile(RangedWeapon weapon, Vector3 direction)
     {
         ActivateOrCreateProjectile(weapon, direction);
+    }
+
+    public void CreateExplosion(Vector3 position)
+    {
+        if (explosionPool.Count == 0)
+        {
+            GameObject go = (GameObject)Instantiate(explosionPrefab);
+            go.transform.position = position;
+        }
+        else
+        {
+            Explosion tmpExplosion = explosionPool[0];
+            tmpExplosion.transform.position = position;
+            tmpExplosion.gameObject.SetActive(true);
+            explosionPool.Remove(tmpExplosion);
+        }
+    }
+
+    public void AddBackToPool(Explosion explosion)
+    {
+        explosion.gameObject.SetActive(false);
+        explosionPool.Add(explosion);
     }
 
     void ActivateOrCreateProjectile(RangedWeapon weapon, Vector3 direction)

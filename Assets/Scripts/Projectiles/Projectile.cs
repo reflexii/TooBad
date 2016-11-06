@@ -61,6 +61,11 @@ public abstract class Projectile : MonoBehaviour {
 
     protected void DestroyObject()
     {
+        if (projectileType == RangedWeapon.ProjectileType.FireBall)
+        {
+            GameManager.Instance.objectPool.CreateExplosion(_transform.position);
+        }
+
         GameManager.Instance.objectPool.AddBackToPool(this);
         gameObject.SetActive(false);
     }
