@@ -32,11 +32,12 @@ public class LevelOneBoss : Enemy {
 
     private bool prepareUltimate;
     private bool readyForUltimate;
+    private int throwDir = 1;
     public bool phaseTwo;
 
     void Awake ()
     {
-        transform.tag = "Enemy";
+        SetPreferences();
 
         weaponOne = new Weapons.Boomerang();
         weaponTwo = new Weapons.Boomerang();
@@ -53,6 +54,16 @@ public class LevelOneBoss : Enemy {
         Vector3 spotToAttack = transform.position;
         spotToAttack.y -= (int)Random.Range(2, 10);
         spotToAttack.x -= (int)Random.Range(2, 10);
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+
+        if (shield == null)
+        {
+            phaseTwo = true;
+        }
     }
 
     public override void Move()
@@ -90,6 +101,29 @@ public class LevelOneBoss : Enemy {
         }
     }
 
+    protected override void UpdateAttackDirection()
+    {
+        if (!readyForUltimate)
+        {
+            if (throwDir % 2 != 0)
+            {
+                facingDir = FacingDir.Left;
+            }
+            else
+            {
+                facingDir = FacingDir.Right;
+            }
+            throwDir++;
+            _animator.SetBool(attackUltimate,false);
+            base.UpdateAttackDirection();
+        }
+        else
+        {
+            if(!_animator.GetBool(attackUltimate))
+                _animator.SetBool(attackUltimate,true);
+        }
+    }
+
     void AttackPattern()
     {
         if (targetThrow && phaseTwo)
@@ -105,7 +139,7 @@ public class LevelOneBoss : Enemy {
             weaponOne.attackSpeed = weaponOneAttackSpeed;
             RandomThrow();
         }
-        if (spinThrow)
+        if (spinThrow && phaseTwo)
         {
             if (timer >= timeUntilUltimate)
             {
@@ -116,13 +150,17 @@ public class LevelOneBoss : Enemy {
                 {
                     SpinThrow();
                 }
+                else
+                {
+                    attacking = false;
+                    _animator.SetBool("attacking", attacking);
+                }
             }
             else
             {
                 timer += Time.deltaTime;
             }
         }
-
     }
 
     void SpinThrow()

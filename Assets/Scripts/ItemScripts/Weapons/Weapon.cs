@@ -8,6 +8,7 @@ public abstract class Weapon : Item {
 	public int durability;
 	public int currentDurability;
     public float attackRange;
+    public bool onCooldown;
 
     protected float lastTimeAttacked;
 

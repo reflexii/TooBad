@@ -7,17 +7,26 @@ public class MeleeWeapon : Weapon {
     public float swingAngle;
     public float swingSpeed;
 
-    public MeleeWeapon(string itemName, float damage, int durability, float startingAngle, float swingAngle, float swingRange, float swingSpeed, ItemClass iconType) : base(itemName, damage, swingRange, durability, iconType)
+    public MeleeWeapon(string itemName, float damage, float attackSpeed, int durability, float startingAngle, float swingAngle, float swingRange, float swingSpeed, ItemClass iconType) : base(itemName, damage, swingRange, durability, iconType)
     {
         this.startingAngle = startingAngle * -1;
         this.swingRange = swingRange;
         this.swingAngle = swingAngle;
         this.swingSpeed = swingSpeed;
+        this.attackSpeed = attackSpeed;
     }
 
     public override void Attack(Character player, Vector3 dir)
     {
-        player.meleeAttackAction.transform.parent.gameObject.SetActive(true);
-        player.meleeAttackAction.StartAttack(this);
+
+        onCooldown = true;
+        if (Time.time - lastTimeAttacked >= attackSpeed || lastTimeAttacked == 0)
+        {
+            onCooldown = false;
+            base.Attack(player, dir);
+            player.meleeAttackAction.transform.parent.gameObject.SetActive(true);
+            player.meleeAttackAction.StartAttack(this);
+            lastTimeAttacked = Time.time;
+        }
     }
 }

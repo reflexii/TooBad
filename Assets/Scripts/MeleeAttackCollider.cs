@@ -39,14 +39,15 @@ public class MeleeAttackCollider : MonoBehaviour {
 
 	public void StartAttack(MeleeWeapon weapon)
 	{
-		if (!swing) {
+        if (!swing)
+        {
             this.swing = true;
             this.weapon = weapon;
             this.swingSpeed = weapon.swingSpeed;
             Character.FacingDir dir = weapon.master.facingDir;
 
             if (dir == Character.FacingDir.Up)
-			    _transform.eulerAngles = new Vector3 (0, 0, 0 - weapon.startingAngle);
+                _transform.eulerAngles = new Vector3(0, 0, 0 - weapon.startingAngle);
             else if (dir == Character.FacingDir.Right)
                 _transform.eulerAngles = new Vector3(0, 0, 90 - weapon.startingAngle);
             else if (dir == Character.FacingDir.Left)
@@ -55,8 +56,8 @@ public class MeleeAttackCollider : MonoBehaviour {
                 _transform.eulerAngles = new Vector3(0, 0, 180 - weapon.startingAngle);
 
             _transform.position = weapon.master.transform.position;
-			_transform.localScale = new Vector3 (weapon.swingRange, 1, 1);
-		}
+            _transform.localScale = new Vector3(weapon.swingRange, 1, 1);
+        }
 	}
 
 	public void OnTriggerEnter2D(Collider2D col)

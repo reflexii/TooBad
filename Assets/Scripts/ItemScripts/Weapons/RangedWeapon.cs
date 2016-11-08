@@ -16,8 +16,10 @@ public class RangedWeapon : Weapon
 
     public override void Attack(Character player, Vector3 dir)
     {
+        onCooldown = true;
         if (Time.time - lastTimeAttacked >= attackSpeed ||lastTimeAttacked == 0)
         {
+            onCooldown = false;
             GameManager.Instance.objectPool.FireProjectile(this, dir);
             lastTimeAttacked = Time.time;
 
