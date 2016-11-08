@@ -22,7 +22,7 @@ public class Player : Character
 
 	public override void Attack(Vector3 dir)
 	{
-		if(equippedWeapon != null) {
+		if(equippedWeapon != null && !equippedWeapon.onCooldown) {
             equippedWeapon.Attack(this, dir);
             playAnimation();
         }

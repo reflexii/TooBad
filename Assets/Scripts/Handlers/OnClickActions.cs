@@ -72,8 +72,15 @@ public class OnClickActions : MonoBehaviour {
         }
         else if (slot.slotType == SlotScipt.SlotType.ActionBarSlot)
         {
-            if (GameManager.Instance.inventory.QuickDeEquip(slot.GetItem()))
-                slot.RemoveItem();
+            if (GameManager.Instance.inventory.gameObject.activeSelf)
+            {
+                if (GameManager.Instance.inventory.QuickDeEquip(slot.GetItem()))
+                    slot.RemoveItem();
+            }
+            else
+            {
+                slot.EquipOrUseItem();
+            }
         }
     }
 		

@@ -195,6 +195,23 @@ public class Inventory : MonoBehaviour {
                 }
             }
         }
+
+        foreach (SlotScipt slot in actionBar.itemSlots)
+        {
+            if (slot.GetItem() != null)
+            {
+                if (slot.GetItem() is KeyItem)
+                {
+                    KeyItem keyItem = (KeyItem)slot.GetItem();
+
+                    if (keyItem.keyItemType == type)
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+
         return false;
     }
 }

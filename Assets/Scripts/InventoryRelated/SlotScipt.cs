@@ -32,12 +32,7 @@ public class SlotScipt : ClickAbleUI {
 			ScaleDown ();
 		}
 		if (Input.GetKeyUp (inputKey) && item != null) {
-			if (item.itemType == Item.ItemType.Weapon)
-				HighlightSlot ();
-
-			ScaleUp ();
-			item.TakeAction (this);
-			UpdateItemValues ();
+            EquipOrUseItem();
 		}
 	}
     
@@ -73,6 +68,7 @@ public class SlotScipt : ClickAbleUI {
         if (mouseButton == 1)
         {
             onClick.QuickEquip(this);
+            UndoOnHoverAction(mouseHandler);
         }
 	}
 
@@ -85,8 +81,6 @@ public class SlotScipt : ClickAbleUI {
 
 	public override void UndoOnHoverAction(MouseHandler onHoverAction)
 	{
-		if (item == null)
-			return;
 		onHoverAction.onHoverActions.HideOnHoverInfo ();
 	}
 		
@@ -115,6 +109,16 @@ public class SlotScipt : ClickAbleUI {
         else
             durabilityObject.gameObject.SetActive(false);
 	}
+
+    public void EquipOrUseItem()
+    {
+        if (item != null && item.itemType == Item.ItemType.Weapon)
+            HighlightSlot();
+
+        ScaleUp();
+        item.TakeAction(this);
+        UpdateItemValues();
+    }
 
 	public void RemoveItem()
 	{

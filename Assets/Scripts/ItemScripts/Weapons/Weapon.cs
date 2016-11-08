@@ -8,7 +8,18 @@ public abstract class Weapon : Item {
 	public int durability;
 	public int currentDurability;
     public float attackRange;
-    public bool onCooldown;
+    public bool onCooldown
+    {
+        set { }
+        get
+        {
+            if(Time.time - lastTimeAttacked >= attackSpeed ||lastTimeAttacked == 0)
+            {
+                return false;
+            }
+            return true;
+        }
+    }
 
     protected float lastTimeAttacked;
 

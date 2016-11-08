@@ -9,6 +9,7 @@ public class Enemy : Character {
     public int layerMask = 1 << 9;
     public float movementSpeed;
     public float spotDistance;
+    public EnemyType enemyType;
 
     protected float attackRange;
     protected Animator _animator;
@@ -23,9 +24,8 @@ public class Enemy : Character {
     void Awake()
     {
         SetPreferences();
-        equippedWeapon = new Weapons.Fist();
-        equippedWeapon.master = this;
-        attackRange = equippedWeapon.attackRange;
+        SetWeapon();
+
     }
 
 	protected virtual void Update ()
@@ -36,6 +36,25 @@ public class Enemy : Character {
     void DropLoot()
     {
         GameManager.Instance.objectPool.DropItem(transform.position);
+    }
+
+    void SetWeapon()
+    {
+        if (enemyType == EnemyType.FistFighter)
+        {
+            equippedWeapon = new Weapons.Fist();
+        }
+        else if (enemyType == EnemyType.Archer)
+        {
+            equippedWeapon = new Weapons.CrossBow();
+        }
+        else if (enemyType == EnemyType.Mage)
+        {
+            equippedWeapon = new Weapons.FireWand();
+        }
+
+        equippedWeapon.master = this;
+        attackRange = equippedWeapon.attackRange;
     }
 
     public void SetPreferences()
@@ -148,5 +167,12 @@ public class Enemy : Character {
                 Debug.Log("Wall in the way!");
             }
         } 
+    }
+
+    public enum EnemyType
+    {
+        Archer,
+        FistFighter,
+        Mage
     }
 }
