@@ -33,7 +33,7 @@ public class AssetManager : MonoBehaviour
         }
         else if (iconType == Weapon.ItemClass.Potion)
         {
-            toReturn = axeIcon;
+            toReturn = potionIcon;
         }
         else if (iconType == Weapon.ItemClass.NormalKey)
         {

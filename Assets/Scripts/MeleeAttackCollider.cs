@@ -70,6 +70,7 @@ public class MeleeAttackCollider : MonoBehaviour {
             if (col.gameObject.GetComponent<Character>() != null)
             {
                 col.GetComponent<Character>().TakeDamage(weapon.damage);
+                swing = false;
 
                 if(weapon.master.tag == "Player")
                     weapon.ReduceDurability();
