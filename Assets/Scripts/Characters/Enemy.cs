@@ -11,6 +11,9 @@ public class Enemy : Character {
     public float spotDistance;
     public EnemyType enemyType;
 
+    public bool chargeAttacks = true;
+    public float chargeTime = 1;
+
     protected float attackRange;
     protected Animator _animator;
 
@@ -20,6 +23,9 @@ public class Enemy : Character {
 
     protected bool attacking = false;
     protected bool moving = false;
+
+    private float currentCharge;
+    private bool charging;
 
     void Awake()
     {
@@ -128,14 +134,30 @@ public class Enemy : Character {
     {
         if (equippedWeapon != null)
         {
+            //If the enemy is required to charge attacks before launching it.
+            if (chargeAttacks)
+            {
+                if (currentCharge < chargeTime)
+                {
+                    charging = true;
+                    currentCharge += Time.deltaTime;
+                    return;
+                }
+                else
+                {
+                    currentCharge = 0;
+                    charging = false;
+                }
+            }
+
             facingDir = DirectionConverter.DirectionPlayerToPlayer(transform.position, player.position);
 
             if (_animator != null && !equippedWeapon.onCooldown)
             {
                 UpdateAttackDirection();
                 attacking = true;
+                equippedWeapon.Attack(this, dir);
             }
-            equippedWeapon.Attack(this, dir);
         }
     }
 
@@ -143,9 +165,9 @@ public class Enemy : Character {
         if (player.gameObject != null && gameObject != null) {
             Vector3 direction = player.transform.position - gameObject.transform.position;
             facingDir = DirectionConverter.DirectionPlayerToPlayer(transform.position, player.position);
-            if ((player.transform.position - gameObject.transform.position).magnitude < attackRange) {
+            if ((player.transform.position - gameObject.transform.position).magnitude < attackRange || charging) {
                 Attack(player.position);
-            } else {
+            } else if(!charging){
                 moving = true;
                 gameObject.transform.position += direction * movementSpeed * Time.deltaTime;
             }
