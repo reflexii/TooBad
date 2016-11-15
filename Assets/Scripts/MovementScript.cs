@@ -34,6 +34,9 @@ public class MovementScript : MonoBehaviour {
     public bool topBlocked = false;
     public bool bottomBlocked = false;
 
+    public SoundManager soundManager;
+    private bool playedFootStepSound = false;
+
 	// Use this for initialization
 	void Start () {
         animator = GetComponent<Animator>();
@@ -50,6 +53,11 @@ public class MovementScript : MonoBehaviour {
         checkWalls();
         checkEquippedWeapons();
         returnAnimations();
+
+        if (moving && !playedFootStepSound) {
+            soundManager.playFootSteps();
+            playedFootStepSound = true;
+        }
 
 	}
 
@@ -94,6 +102,7 @@ public class MovementScript : MonoBehaviour {
         animator.SetBool("Moving", moving);
         animator.SetBool("LongSword", longSwordEquipped);
         animator.SetBool("CrossBow", crossBowEquipped);
+
         animator.SetBool("SwingSword", swingSword);
         animator.SetBool("ShootCrossBow", shootCrossBow);
     }
@@ -123,12 +132,15 @@ public class MovementScript : MonoBehaviour {
 			gameObject.transform.position += Vector3.right * verticalSpeed * Time.deltaTime;
             moving = true;
         }
-        if (Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.W) ||
-            Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.S) ||
-            Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.A) ||
-            Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.D)) {
+
+        if (!Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.W) &&
+            !Input.GetKey(KeyCode.DownArrow) && !Input.GetKey(KeyCode.S) &&
+            !Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.A) &&
+            !Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.D)) {
 
             moving = false;
+            soundManager.stopFootStepSound();
+            playedFootStepSound = false;
         }
 	}
     

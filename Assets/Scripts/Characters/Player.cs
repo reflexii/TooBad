@@ -25,6 +25,7 @@ public class Player : Character
 		if(equippedWeapon != null && !equippedWeapon.onCooldown) {
             equippedWeapon.Attack(this, dir);
             playAnimation();
+            playSound();
         }
 			
 	}
@@ -52,5 +53,13 @@ public class Player : Character
             }
         }
         
+    }
+
+    public void playSound() {
+        if (equippedWeapon != null) {
+            if (equippedWeapon.itemName == "Long Sword") {
+                soundManager.playSwordSwingSound();
+            }
+        }
     }
 }

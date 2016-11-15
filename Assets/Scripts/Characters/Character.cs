@@ -10,6 +10,7 @@ public abstract class Character : MonoBehaviour
     public MeleeAttackCollider meleeAttackAction;
     public float maxHealth;
 	public float currentHealth;
+    public SoundManager soundManager;
 
     void Start()
     {
@@ -19,6 +20,7 @@ public abstract class Character : MonoBehaviour
 	public virtual void TakeDamage (float dmgAmount)
 	{
 		currentHealth -= dmgAmount;
+        soundManager.playHitSound();
 
 		if (currentHealth <= 0) 
 		{
