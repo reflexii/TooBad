@@ -18,6 +18,8 @@ public class Player : Character
     void Awake() {
         currentRageAmount = maxRageAmount;
         ms = GetComponent<MovementScript>();
+        ms.enabled = false;
+        GameManager.Instance.OnStartGame += OnStartGame;
     }
 
 	public override void Attack(Vector3 dir)
@@ -61,5 +63,10 @@ public class Player : Character
                 soundManager.playSwordSwingSound();
             }
         }
+    }
+
+    public void OnStartGame()
+    {
+        ms.enabled = true;
     }
 }

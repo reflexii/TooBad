@@ -16,6 +16,7 @@ public class CameraController : MonoBehaviour {
 
 	void Start () {
 		speed = GameObject.Find ("Player").GetComponent<MovementScript> ().verticalSpeed;
+        GameManager.Instance.OnStartGame += OnStartGame;
 	}
 
 	void Update () {
@@ -35,6 +36,10 @@ public class CameraController : MonoBehaviour {
 		} else if (!marioCamera && smoothing) {
 			transform.position = Vector3.Lerp (transform.position, new Vector3 (player.transform.position.x, player.transform.position.y, -10f), smoothingSpeed * Time.deltaTime);
 		}
-
 	}
+
+    public void OnStartGame()
+    {
+        enabled = true;
+    }
 }
