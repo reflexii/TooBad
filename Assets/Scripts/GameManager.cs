@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public Inventory inventory;
     public AssetManager assetManager;
     public StateManager stateManager;
+    public SoundManager soundManager;
 
     public delegate void GameActivityState();
     public event GameActivityState OnStartGame;

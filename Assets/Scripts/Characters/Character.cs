@@ -10,7 +10,7 @@ public abstract class Character : MonoBehaviour
     public MeleeAttackCollider meleeAttackAction;
     public float maxHealth;
 	public float currentHealth;
-    public SoundManager soundManager;
+    public GameObject bloodPrefab;
 
     void Start()
     {
@@ -20,7 +20,8 @@ public abstract class Character : MonoBehaviour
 	public virtual void TakeDamage (float dmgAmount)
 	{
 		currentHealth -= dmgAmount;
-        soundManager.playHitSound();
+        GameManager.Instance.soundManager.playHitSound();
+        Instantiate(bloodPrefab, transform.position, Quaternion.identity);
 
 		if (currentHealth <= 0) 
 		{

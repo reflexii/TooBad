@@ -7,6 +7,7 @@ public class SoundManager : MonoBehaviour {
     private float maximumPitch = 1.05f;
     public AudioSource effectSource;
     public AudioSource footstepSource;
+    public AudioSource hitSource;
     private float randomizedPitch = 1.0f;
 
     public AudioClip footstepSound;
@@ -24,24 +25,24 @@ public class SoundManager : MonoBehaviour {
     public void playHitSound() {
         int random = Random.Range(0, 2);
         if (random == 0) {
-            effectSource.clip = hitSound;
+            hitSource.clip = hitSound;
         } else {
-            effectSource.clip = hitSound2;
+            hitSource.clip = hitSound2;
         }
 
-        randomizePitch();
-        effectSource.Play();
+        randomizePitch(hitSource);
+        hitSource.Play();
     }
 
     public void playSwordSwingSound() {
         effectSource.clip = swordswingSound;
-        randomizePitch();
+        randomizePitch(effectSource);
         effectSource.Play();
     }
 
-    public void randomizePitch() {
+    public void randomizePitch(AudioSource source) {
         randomizedPitch = Random.Range(minimumPitch, maximumPitch);
-        effectSource.pitch = randomizedPitch;
+        source.pitch = randomizedPitch;
     }
 
     public void stopFootStepSound() {

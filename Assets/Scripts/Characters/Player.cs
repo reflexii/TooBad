@@ -60,7 +60,7 @@ public class Player : Character
     public void playSound() {
         if (equippedWeapon != null) {
             if (equippedWeapon.itemName == "Long Sword") {
-                soundManager.playSwordSwingSound();
+                GameManager.Instance.soundManager.playSwordSwingSound();
             }
         }
     }

@@ -34,7 +34,6 @@ public class MovementScript : MonoBehaviour {
     public bool topBlocked = false;
     public bool bottomBlocked = false;
 
-    public SoundManager soundManager;
     private bool playedFootStepSound = false;
 
 	// Use this for initialization
@@ -55,7 +54,7 @@ public class MovementScript : MonoBehaviour {
         returnAnimations();
 
         if (moving && !playedFootStepSound) {
-            soundManager.playFootSteps();
+            GameManager.Instance.soundManager.playFootSteps();
             playedFootStepSound = true;
         }
 
@@ -139,7 +138,7 @@ public class MovementScript : MonoBehaviour {
             !Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.D)) {
 
             moving = false;
-            soundManager.stopFootStepSound();
+            GameManager.Instance.soundManager.stopFootStepSound();
             playedFootStepSound = false;
         }
 	}
