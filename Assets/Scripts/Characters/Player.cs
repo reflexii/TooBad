@@ -67,6 +67,7 @@ public class Player : Character
 
     public void OnStartGame()
     {
-        ms.enabled = true;
+        if(ms != null)
+            ms.enabled = true;
     }
 }

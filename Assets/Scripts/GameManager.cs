@@ -3,11 +3,15 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
+    public bool dontDestroy;
     public ObjectPool objectPool;
     public Inventory inventory;
     public AssetManager assetManager;
     public StateManager stateManager;
     public SoundManager soundManager;
+    public DialogManager dialogManager;
+
+    public GameObject player;
 
     public delegate void GameActivityState();
     public event GameActivityState OnStartGame;
@@ -29,6 +33,8 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         stateManager = new StateManager();
+        if (!dontDestroy)
+            return;
         if (_instance == null)
         {
             DontDestroyOnLoad(gameObject);
