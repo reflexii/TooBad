@@ -7,6 +7,7 @@ public class ActionBar : MonoBehaviour {
 
 
     public GameObject slotPrefab;
+    public SlotHandler slotHandler;
     public KeyCode slotKey1;
     public KeyCode slotKey2;
     public KeyCode slotKey3;

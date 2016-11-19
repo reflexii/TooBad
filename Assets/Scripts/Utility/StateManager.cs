@@ -3,16 +3,18 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 
-public class StateManager
+public class StateManager : Singleton<StateManager>
 {
     public List<State> scenes = new List<State>();
     private State activeState;
+    public State previousState;
 
-    public StateManager()
+    public void Init()
     {
         scenes.Add(new MenuState(State.SceneID.MainMenu, 0));
         scenes.Add(new GameState(State.SceneID.LevelOne, 1));
         scenes.Add(new GameState(State.SceneID.LevelTwo, 2));
+        scenes.Add(new ObejctLoadState(State.SceneID.ObjectLoad, 3));
     }
 
     public void SwitchScene(State.SceneID sceneId)
@@ -24,5 +26,21 @@ public class StateManager
                 state.LoadScene();
             }
         }
+    }
+
+    public State.SceneID CurrentState(int sceneIndex)
+    {
+        foreach (State s in scenes)
+        {
+            if (s.sceneIndex == sceneIndex)
+                return s.sceneId;
+        }
+
+        return State.SceneID.MainMenu;
+    }
+
+    public void SwitchBack()
+    {
+        SwitchScene(previousState.sceneId);
     }
 }

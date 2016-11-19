@@ -171,13 +171,13 @@ public class SlotScipt : ClickAbleUI {
 	void HighlightSlot()
 	{
 		//ADD something to show which weapons has been equipped.
-		SlotHandler.Instance.HighlightSlot(gameObject, size);
+		GameManager.Instance.inventory.actionBar.slotHandler.HighlightSlot(gameObject, size);
 
 	}
 
 	void CancelHighlight()
 	{
-		SlotHandler.Instance.CancelHighlight (gameObject);
+        GameManager.Instance.inventory.actionBar.slotHandler.CancelHighlight (gameObject);
 	}
 
 	void ScaleDown()

@@ -10,9 +10,9 @@ public class LootableItem : ClickAbleObject
 	protected Item item;
 	private float timer;
 
-    public override void Awake()
+    public override void Start()
     {
-        base.Awake();
+        base.Start();
 
         if (keyItemType != KeyItem.KeyItemType.None)
         {

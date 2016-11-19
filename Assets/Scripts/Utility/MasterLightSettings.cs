@@ -10,6 +10,7 @@ public class MasterLightSettings : MonoBehaviour {
 
 	void Start ()
     {
+        candleLight = GameObject.Find("CandleLight").GetComponent<Light>();
         if (tunrLightsOffOnPlay)
         {
             candleLight.enabled = true;

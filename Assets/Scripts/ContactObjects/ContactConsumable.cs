@@ -6,9 +6,9 @@ public class ContactConsumable : ContactObject {
 
     public Item.ItemClass consumableType;
 
-     void Awake()
+     void Start()
     {
-        base.Awake();
+        base.Start();
 
         if (consumableType == Item.ItemClass.RageDrug)
         {

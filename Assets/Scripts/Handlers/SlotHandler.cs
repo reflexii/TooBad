@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class SlotHandler : Singleton<SlotHandler> {
+public class SlotHandler : MonoBehaviour {
 	public GameObject highlight;
 
 	private GameObject currentlyActiveSlot;

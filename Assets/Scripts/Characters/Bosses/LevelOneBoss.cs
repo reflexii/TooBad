@@ -35,7 +35,7 @@ public class LevelOneBoss : Enemy {
     private int throwDir = 1;
     public bool phaseTwo;
 
-    void Awake ()
+    void Start ()
     {
         SetPreferences();
 

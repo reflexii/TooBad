@@ -27,11 +27,10 @@ public class Enemy : Character {
     private float currentCharge;
     private bool charging;
 
-    void Awake()
+    void Start()
     {
         SetPreferences();
         SetWeapon();
-
     }
 
 	protected virtual void Update ()
@@ -67,6 +66,7 @@ public class Enemy : Character {
     {
         transform.tag = "Enemy";
         _animator = GetComponent<Animator>();
+        player = GameManager.Instance.player.transform;
     }
 
     public override void OnDeath()

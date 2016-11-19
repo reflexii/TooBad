@@ -7,7 +7,6 @@ public class GameManager : MonoBehaviour
     public ObjectPool objectPool;
     public Inventory inventory;
     public AssetManager assetManager;
-    public StateManager stateManager;
     public SoundManager soundManager;
     public DialogManager dialogManager;
 
@@ -15,6 +14,8 @@ public class GameManager : MonoBehaviour
 
     public delegate void GameActivityState();
     public event GameActivityState OnStartGame;
+
+    public event GameActivityState OnLevelLoad;
 
     private static GameManager _instance;
 
@@ -32,7 +33,6 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        stateManager = new StateManager();
         if (!dontDestroy)
             return;
         if (_instance == null)
@@ -49,5 +49,12 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         OnStartGame();
+    }
+
+    public void ActivateIngameObjects()
+    {
+        OnStartGame();
+        if(OnLevelLoad != null)
+            OnLevelLoad();
     }
 }

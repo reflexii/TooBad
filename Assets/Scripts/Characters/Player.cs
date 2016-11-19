@@ -18,8 +18,8 @@ public class Player : Character
     void Awake() {
         currentRageAmount = maxRageAmount;
         ms = GetComponent<MovementScript>();
-        ms.enabled = false;
         GameManager.Instance.OnStartGame += OnStartGame;
+        ms.enabled = false;
     }
 
 	public override void Attack(Vector3 dir)
