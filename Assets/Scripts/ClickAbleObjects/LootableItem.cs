@@ -6,6 +6,7 @@ public class LootableItem : ClickAbleObject
 {
 	public float lifeTime = 30;
     public KeyItem.KeyItemType keyItemType;
+    public Item.ItemClass predefItem;
 
 	protected Item item;
 	private float timer;
@@ -17,6 +18,11 @@ public class LootableItem : ClickAbleObject
         if (keyItemType != KeyItem.KeyItemType.None)
         {
             CreateItem(keyItemType);
+        }
+
+        if (predefItem != Item.ItemClass.None)
+        {
+            CreateItem(predefItem);
         }
     }
 
@@ -71,4 +77,13 @@ public class LootableItem : ClickAbleObject
             SetItem(new KeyItems.NormalKey());
         }
     }
+
+    void CreateItem(Item.ItemClass type)
+    {
+        if (type == Item.ItemClass.Mushroom)
+        {
+            SetItem(new Consumables.Mushroom());
+        }
+    }
+
 }

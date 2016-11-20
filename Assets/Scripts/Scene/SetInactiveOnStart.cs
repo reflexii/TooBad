@@ -12,7 +12,8 @@ public class SetInactiveOnStart : MonoBehaviour {
 
     void OnDestroy()
     {
-        GameManager.Instance.OnLevelLoad -= Activate;
+        if(GameManager.Instance != null)
+            GameManager.Instance.OnLevelLoad -= Activate;
     }
 
     void Activate()

@@ -10,7 +10,8 @@ public class CameraManager : MonoBehaviour
 
     void OnDestroy()
     {
-        GameManager.Instance.OnLevelLoad -= StartGame;
+        if(GameManager.Instance != null)
+            GameManager.Instance.OnLevelLoad -= StartGame;
     }
 
     public void StartGame()

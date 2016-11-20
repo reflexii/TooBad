@@ -5,6 +5,7 @@ public class Item {
 
 	public string itemName;
 	public ItemType itemType;
+    public ItemClass itemClass;
 	public int itemAmount;
 	//Placeholder for sprite.
 	public Sprite itemIcon;
@@ -15,6 +16,7 @@ public class Item {
 	{
 		this.itemName = itemName;
 		this.itemType = itemType;
+        this.itemClass = iconType;
 		this.itemIcon = GameManager.Instance.assetManager.GetIcon(iconType);
 		itemAmount = 1;
 	}
@@ -44,6 +46,7 @@ public class Item {
 
     public enum ItemClass
     {
+        None,
         Potion,
         Sword,
         Axe,
@@ -51,6 +54,7 @@ public class Item {
         NormalKey,
         Wand,
         Mace,
-        RageDrug
+        RageDrug,
+        Mushroom
     }
 }

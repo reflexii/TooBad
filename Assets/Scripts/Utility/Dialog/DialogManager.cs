@@ -8,7 +8,7 @@ public class DialogManager : MonoBehaviour
     public DialogBox dialogBox;
     private Dictionary<string, string> texts = new Dictionary<string, string>();
 
-    void Start()
+    void Awake()
     {
         CreateDictionary();
     }
@@ -27,7 +27,10 @@ public class DialogManager : MonoBehaviour
 
     public void DisplayDialog(TextKey textKey)
     {
-        string textToDisplay = texts[textKey.ToString()];
+        string textToDisplay = "NULL";
+
+        if (texts[textKey.ToString()] != null)
+           textToDisplay = texts[textKey.ToString()];
 
         dialogBox.gameObject.SetActive(true);
         dialogBox.SetDialog(textToDisplay);
@@ -58,7 +61,9 @@ public class DialogManager : MonoBehaviour
 
     public enum TextKey
     {
+        None,
         Tutorial1,
-        Tutorial2
+        Tutorial2,
+        Tutorial3
     }
 }

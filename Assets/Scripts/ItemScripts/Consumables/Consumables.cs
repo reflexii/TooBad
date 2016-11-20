@@ -18,4 +18,12 @@ public class Consumables {
 
         }
     }
+
+    public class Mushroom : RageDrug
+    {
+        public Mushroom() : base("Mushroom", 10, ItemClass.Mushroom)
+        {
+
+        }
+    }
 }

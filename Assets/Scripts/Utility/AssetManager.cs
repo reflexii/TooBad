@@ -10,6 +10,7 @@ public class AssetManager : MonoBehaviour
     public Sprite maceIcon;
     public Sprite keyIcon;
     public Sprite rageDrugIcon;
+    public Sprite mushroomIcon;
 
     public Sprite GetIcon(Weapon.ItemClass iconType)
     {
@@ -43,6 +44,10 @@ public class AssetManager : MonoBehaviour
         else if (iconType == Weapon.ItemClass.RageDrug)
         {
             toReturn = rageDrugIcon;
+        }
+        else if (iconType == Item.ItemClass.Mushroom)
+        {
+            toReturn = mushroomIcon;
         }
 
 

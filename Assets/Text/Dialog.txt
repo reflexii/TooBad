@@ -1,2 +1,3 @@
 Tutorial1=That mushroom sure looks delicious...
-Tutorial2=Press button 1 to consume the mushroom.
+Tutorial2=Click it with left mousebutton.
+Tutorial3=Press button 1 to consume the mushroom.
