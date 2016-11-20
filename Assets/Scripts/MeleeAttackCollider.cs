@@ -74,6 +74,8 @@ public class MeleeAttackCollider : MonoBehaviour {
 
                 if(weapon.master.tag == "Player")
                     weapon.ReduceDurability();
+
+                DeActive();
             }
         }
     }

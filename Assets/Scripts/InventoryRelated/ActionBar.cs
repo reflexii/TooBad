@@ -42,6 +42,10 @@ public class ActionBar : MonoBehaviour {
         }
 
         CreateSlots(inventoryRt.rect.width, inventoryRt.rect.height, slotRt.rect.width, slotRt.rect.height);
+
+        GameManager.Instance.OnStartGame += OnStart;
+        gameObject.SetActive(false);
+
     }
 
     void CreateSlots(float invWidth, float invHeight, float slotWidth, float slotHeight)
@@ -81,8 +85,9 @@ public class ActionBar : MonoBehaviour {
         itemSlots[5].inputKey = slotKey6;
     }
 
-    // Update is called once per frame
-    void Update () {
-	
-	}
+    void OnStart()
+    {
+        if(this != null)
+            gameObject.SetActive(true);
+    }
 }

@@ -67,6 +67,7 @@ public class Enemy : Character {
         transform.tag = "Enemy";
         _animator = GetComponent<Animator>();
         player = GameManager.Instance.player.transform;
+        currentHealth = maxHealth;
     }
 
     public override void OnDeath()
