@@ -1,3 +1,4 @@
 Tutorial1=That mushroom sure looks delicious...
 Tutorial2=Click it with left mousebutton.
 Tutorial3=Press button 1 to consume the mushroom.
+Dialog1=Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam semper lacinia rutrum. Integer viverra dictum lorem, vitae semper ante porttitor sit amet. Aliquam vitae dignissim velit. Phasellus elit neque

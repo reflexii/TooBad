@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public AssetManager assetManager;
     public SoundManager soundManager;
     public DialogManager dialogManager;
+    public EventManager eventManager;
 
     public GameObject player;
 

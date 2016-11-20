@@ -6,6 +6,8 @@ public class DialogManager : MonoBehaviour
 {
     public TextAsset textFile;
     public DialogBox dialogBox;
+    public ScreenDialog screenDialog;
+
     private Dictionary<string, string> texts = new Dictionary<string, string>();
 
     void Awake()
@@ -36,6 +38,14 @@ public class DialogManager : MonoBehaviour
         dialogBox.SetDialog(textToDisplay);
     }
 
+    public void DisplayScreenDialog(TextKey textKey)
+    {
+        string textToDisplay = GetText(textKey.ToString());
+        screenDialog.gameObject.SetActive(true);
+        screenDialog.SetDialog(textToDisplay);
+
+    }
+
     //If you want to print plain text. Use of GetText() is recommended before calling this method to keep up the localization.
     public void DisplayDialog(string text)
     {
@@ -64,6 +74,7 @@ public class DialogManager : MonoBehaviour
         None,
         Tutorial1,
         Tutorial2,
-        Tutorial3
+        Tutorial3,
+        Dialog1
     }
 }

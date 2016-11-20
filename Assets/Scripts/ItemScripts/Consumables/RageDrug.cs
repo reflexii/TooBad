@@ -19,5 +19,10 @@ public class RageDrug : Consumable {
         {
             tmpMaster.currentRageAmount = tmpMaster.maxRageAmount;
         }
+
+        if (itemClass == ItemClass.Mushroom)
+        {
+            GameManager.Instance.eventManager.StartEvent(EventManager.Event.Prologue, DialogManager.TextKey.Dialog1);
+        }
     }
 }

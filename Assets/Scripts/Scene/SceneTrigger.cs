@@ -7,7 +7,8 @@ public class SceneTrigger : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        StateManager.Instance.SwitchScene(sceneToActivate);
+        //StateManager.Instance.SwitchScene(sceneToActivate);
+        GameManager.Instance.eventManager.StartEvent(EventManager.Event.Prologue,DialogManager.TextKey.Dialog1);
         Destroy(gameObject);
     }
 }
