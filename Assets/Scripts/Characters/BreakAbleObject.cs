@@ -4,7 +4,7 @@ using System.Collections;
 public class BreakAbleObject : Character
 {
     private Animator _animator;
-    private float timeTillDeath = 1.1f;
+    private float timeTillDeath = 1f;
     private float deathTime;
     void Awake()
     {
@@ -29,6 +29,7 @@ public class BreakAbleObject : Character
         if (_animator != null)
         {
             _animator.SetTrigger("Explode");
+            _animator = null;
         }
     }
 }

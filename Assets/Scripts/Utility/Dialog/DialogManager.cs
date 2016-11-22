@@ -34,8 +34,11 @@ public class DialogManager : MonoBehaviour
         if (texts[textKey.ToString()] != null)
            textToDisplay = texts[textKey.ToString()];
 
-        dialogBox.gameObject.SetActive(true);
-        dialogBox.SetDialog(textToDisplay);
+        if (dialogBox != null)
+        {
+            dialogBox.gameObject.SetActive(true);
+            dialogBox.SetDialog(textToDisplay);
+        }
     }
 
     public void DisplayScreenDialog(TextKey textKey)

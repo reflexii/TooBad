@@ -62,7 +62,7 @@ public class MovementScript : MonoBehaviour {
 
     void checkEquippedWeapons() {
         if (player.equippedWeapon != null) {
-            if (player.equippedWeapon.itemName == "Long Sword") {
+            if (player.equippedWeapon.itemClass == Item.ItemClass.Sword) {
                 longSwordEquipped = true;
                 crossBowEquipped = false;
             } else if (player.equippedWeapon.itemName == "CrossBow") {

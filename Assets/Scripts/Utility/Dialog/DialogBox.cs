@@ -18,8 +18,11 @@ public class DialogBox : MonoBehaviour {
 
     public void SetDialog(string text)
     {
-        transform.position = GameManager.Instance.player.transform.position + new Vector3(-1.5f, 2, 0);
-        dialogText.text = text;
+        if (GameManager.Instance != null)
+        {
+            transform.position = GameManager.Instance.player.transform.position + new Vector3(-1.5f, 2, 0);
+            dialogText.text = text;
+        }
     }
 
     void OnStartGame()

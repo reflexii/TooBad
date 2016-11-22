@@ -29,7 +29,7 @@ public class Weapons
 
     public class CrossBow : RangedWeapon
     {
-        public CrossBow() : base("CrossBow",5,5,1,10,7,ProjectileType.Arrow, ItemClass.Crossbow)
+        public CrossBow() : base("CrossBow",10,5,1,10,7,ProjectileType.Arrow, ItemClass.Crossbow)
         {
 
         }

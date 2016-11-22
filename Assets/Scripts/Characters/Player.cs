@@ -48,7 +48,7 @@ public class Player : Character
 
     public void playAnimation() {
         if (equippedWeapon != null) {
-            if (equippedWeapon.itemName == "Long Sword") {
+            if (equippedWeapon.itemClass == Item.ItemClass.Sword) {
                 ms.swingSword = true;
             } else if (equippedWeapon.itemName == "CrossBow") {
                 ms.shootCrossBow = true;
@@ -59,7 +59,7 @@ public class Player : Character
 
     public void playSound() {
         if (equippedWeapon != null) {
-            if (equippedWeapon.itemName == "Long Sword") {
+            if (equippedWeapon.itemClass == Item.ItemClass.Sword) {
                 GameManager.Instance.soundManager.playSwordSwingSound();
             }
         }
