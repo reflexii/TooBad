@@ -3,63 +3,66 @@ using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
-public class Inventory : MonoBehaviour {
-	public GameObject slotPrefab;
+public class Inventory : MonoBehaviour
+{
+    public GameObject slotPrefab;
     public ActionBar actionBar;
 
-	private List<SlotScipt> itemSlots = new List<SlotScipt>();
-	private float xOffset;
-	private float yOffset;
-	private int slotRows;
-	private int slotCols;
+    private List<SlotScipt> itemSlots = new List<SlotScipt>();
+    private float xOffset;
+    private float yOffset;
+    private int slotRows;
+    private int slotCols;
 
 
-	void Awake () 
-	{
-		RectTransform inventoryRt = gameObject.GetComponent<Image> ().GetComponent<RectTransform> ();
-		RectTransform slotRt = slotPrefab.GetComponent<Image> ().GetComponent<RectTransform> ();
+    void Awake()
+    {
+        RectTransform inventoryRt = gameObject.GetComponent<Image>().GetComponent<RectTransform>();
+        RectTransform slotRt = slotPrefab.GetComponent<Image>().GetComponent<RectTransform>();
 
-		//Calculates how many rows and cols of slots can fit, based on the size of the inventory "image".
-		slotRows = (int)(inventoryRt.rect.width / slotRt.rect.width) - 1;
-		slotCols = (int)(inventoryRt.rect.height / slotRt.rect.height) - 1;
-		//Calculates balanced offsets for the slots.
-		xOffset = (inventoryRt.rect.width - (slotRt.rect.width * slotRows)) / (slotRows +1);
-		yOffset = (inventoryRt.rect.height - (slotRt.rect.height * slotCols)) / (slotCols+1);
+        //Calculates how many rows and cols of slots can fit, based on the size of the inventory "image".
+        slotRows = (int)(inventoryRt.rect.width / slotRt.rect.width) - 1;
+        slotCols = (int)(inventoryRt.rect.height / slotRt.rect.height) - 1;
+        //Calculates balanced offsets for the slots.
+        xOffset = (inventoryRt.rect.width - (slotRt.rect.width * slotRows)) / (slotRows + 1);
+        yOffset = (inventoryRt.rect.height - (slotRt.rect.height * slotCols)) / (slotCols + 1);
 
-		CreateSlots (inventoryRt.rect.width ,inventoryRt.rect.height ,slotRt.rect.width,slotRt.rect.height);
-		gameObject.SetActive (false);
-	}
-		
-	void CreateSlots (float invWidth, float invHeight,float slotWidth, float slotHeight)
-	{
-		Vector3 pos = new Vector3(invWidth * -1  + slotWidth, invHeight - slotHeight,0);
-		Vector3 origPos = pos;
-		pos.y = pos.y  - yOffset;
-		pos.x = pos.x  + xOffset;
+        CreateSlots(inventoryRt.rect.width, inventoryRt.rect.height, slotRt.rect.width, slotRt.rect.height);
+        gameObject.SetActive(false);
+    }
 
-		for (int i = 0 ; i < slotCols; i++) {
-			for (int k = 0; k < slotRows; k++) {
-				if (k != 0)
-					pos.x = pos.x + slotWidth + xOffset;
-				GameObject o = (GameObject) Instantiate (slotPrefab, pos, Quaternion.identity);
-				o.transform.SetParent (gameObject.transform, false);
-				SlotScipt s = o.GetComponent<SlotScipt> ();
-				s.slotNumber = i + k;
-				itemSlots.Add(s);
-			}
+    void CreateSlots(float invWidth, float invHeight, float slotWidth, float slotHeight)
+    {
+        Vector3 pos = new Vector3(invWidth * -1 + slotWidth, invHeight - slotHeight, 0);
+        Vector3 origPos = pos;
+        pos.y = pos.y - yOffset;
+        pos.x = pos.x + xOffset;
 
-			pos.y = pos.y - slotHeight - yOffset;
-			pos.x = origPos.x + xOffset;
-		}
-	}
+        for (int i = 0; i < slotCols; i++)
+        {
+            for (int k = 0; k < slotRows; k++)
+            {
+                if (k != 0)
+                    pos.x = pos.x + slotWidth + xOffset;
+                GameObject o = (GameObject)Instantiate(slotPrefab, pos, Quaternion.identity);
+                o.transform.SetParent(gameObject.transform, false);
+                SlotScipt s = o.GetComponent<SlotScipt>();
+                s.slotNumber = i + k;
+                itemSlots.Add(s);
+            }
 
-	//Adds item to inventory.
-	public bool AddItem(Item item)
-	{
-		int firstNull = 0;
-		bool nullFound = false;
-		bool spaceInInventory = true;
-		int i = 0;
+            pos.y = pos.y - slotHeight - yOffset;
+            pos.x = origPos.x + xOffset;
+        }
+    }
+
+    //Adds item to inventory.
+    public bool AddItem(Item item)
+    {
+        int firstNull = 0;
+        bool nullFound = false;
+        bool spaceInInventory = true;
+        int i = 0;
 
         foreach (SlotScipt slot in actionBar.itemSlots)
         {
@@ -103,9 +106,8 @@ public class Inventory : MonoBehaviour {
 
                     actionBar.consumableSlot.IncreaseAmount(1);
                 }
-
-                return true;
             }
+            return true;
             /*
             if (slot.GetItem() == null)
             {
@@ -152,8 +154,8 @@ public class Inventory : MonoBehaviour {
 			spaceInInventory = false;*/
         }
         spaceInInventory = false;
-		return spaceInInventory;
-	}
+        return spaceInInventory;
+    }
 
     public bool QuickEquip(Item item)
     {
@@ -225,6 +227,22 @@ public class Inventory : MonoBehaviour {
 
     public bool ContainsKeyItemOfType(KeyItem.KeyItemType type)
     {
+
+        if (actionBar.keyItemSlot.GetItem() != null)
+        {
+            if (actionBar.keyItemSlot.GetItem() is KeyItem)
+            {
+                KeyItem keyItem = (KeyItem)actionBar.keyItemSlot.GetItem();
+
+                if (keyItem.keyItemType == type)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+
+        /*
         foreach (SlotScipt slot in itemSlots)
         {
             if (slot.GetItem() != null)
@@ -258,5 +276,6 @@ public class Inventory : MonoBehaviour {
         }
 
         return false;
+    }*/
     }
 }

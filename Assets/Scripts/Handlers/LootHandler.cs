@@ -13,18 +13,19 @@ public class LootHandler : MonoBehaviour
 		//REMOVE THESE!
 		if (Input.GetKeyDown (KeyCode.Alpha0))
 			LootItem (new Weapons.LongSword ());
-		if (Input.GetKeyDown (KeyCode.Alpha8))
+		if (Input.GetKeyDown (KeyCode.Alpha6))
 			LootItem (new Consumables.SmallPotion ());
-        if (Input.GetKeyDown(KeyCode.Alpha7))
+        if (Input.GetKeyDown(KeyCode.Alpha9))
             LootItem(new Weapons.CrossBow());
-        if (Input.GetKeyDown(KeyCode.Alpha6))
-            LootItem(new Weapons.FireWand());
-        if (Input.GetKeyDown(KeyCode.Alpha5))
-            LootItem(new Weapons.Boomerang());
-        if (Input.GetKeyDown (KeyCode.I))
-			inventory.gameObject.SetActive (!inventory.gameObject.activeSelf);
+        if (Input.GetKeyDown(KeyCode.Alpha8))
+            LootItem(new Weapons.FireWand());;
+        if (Input.GetKeyDown(KeyCode.Alpha7))
+            LootItem(new Weapons.Mace()); ;
 
-		if (Input.GetKeyDown (KeyCode.KeypadPlus)) {
+        /*if (Input.GetKeyDown (KeyCode.I))
+			inventory.gameObject.SetActive (!inventory.gameObject.activeSelf);*/
+
+        if (Input.GetKeyDown (KeyCode.KeypadPlus)) {
 			GameObject o = (GameObject)Instantiate (lootPrefab);
 			o.GetComponent<LootableItem> ().SetItem (new Weapons.ShortSword ());
 		}

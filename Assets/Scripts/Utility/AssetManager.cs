@@ -54,7 +54,7 @@ public class AssetManager : MonoBehaviour
 
         if (toReturn == null)
         {
-            Debug.Log("AssetManager:" + iconType.ToString() + " NOT FOUND");
+            //Debug.Log("AssetManager:" + iconType.ToString() + " NOT FOUND");
             toReturn = maceIcon;
         }
 
