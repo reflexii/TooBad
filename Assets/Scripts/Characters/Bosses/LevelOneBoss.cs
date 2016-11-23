@@ -66,6 +66,12 @@ public class LevelOneBoss : Enemy {
         }
     }
 
+    public override void OnDeath() {
+        DropLoot();
+        GameManager.Instance.soundManager.playBossDeathSound();
+        Destroy(gameObject);
+    }
+
     public override void Move()
     {
         AttackPattern();

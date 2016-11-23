@@ -8,18 +8,47 @@ public class SoundManager : MonoBehaviour {
     public AudioSource effectSource;
     public AudioSource footstepSource;
     public AudioSource hitSource;
+    public AudioSource enemyDeathSource;
+    public AudioSource playerDeathSource;
+    public AudioSource bossSoundsSource;
     private float randomizedPitch = 1.0f;
 
     public AudioClip footstepSound;
     public AudioClip swordswingSound;
     public AudioClip hitSound;
     public AudioClip hitSound2;
+    public AudioClip enemyDeath;
+    public AudioClip playerDeath;
+    public AudioClip bossDeath;
+    public AudioClip bossTableBreak;
 
 	
     public void playFootSteps() {
         footstepSource.clip = footstepSound;
         footstepSource.loop = true;
         footstepSource.Play();
+    }
+
+    public void playEnemyDeathSound() {
+        enemyDeathSource.clip = enemyDeath;
+        randomizePitch(enemyDeathSource);
+        enemyDeathSource.Play();
+    }
+
+    public void playPlayerDeathSound() {
+        playerDeathSource.clip = playerDeath;
+        randomizePitch(playerDeathSource);
+        playerDeathSource.Play();
+    }
+
+    public void playTableBreakSound() {
+        bossSoundsSource.clip = bossTableBreak;
+        bossSoundsSource.Play();
+    }
+
+    public void playBossDeathSound() {
+        bossSoundsSource.clip = bossDeath;
+        bossSoundsSource.Play();
     }
 
     public void playHitSound() {

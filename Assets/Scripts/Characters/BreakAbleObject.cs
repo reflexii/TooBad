@@ -31,5 +31,6 @@ public class BreakAbleObject : Character
             _animator.SetTrigger("Explode");
             _animator = null;
         }
+        GameManager.Instance.soundManager.playTableBreakSound();
     }
 }

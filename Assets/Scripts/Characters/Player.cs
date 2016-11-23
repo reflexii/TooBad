@@ -32,6 +32,12 @@ public class Player : Character
 			
 	}
 
+    public override void OnDeath() {
+        GameManager.Instance.soundManager.playPlayerDeathSound();
+
+        //TODO: player dying visuals
+    }
+
     void Update() {
         updateHealthBar();
         drainRage();

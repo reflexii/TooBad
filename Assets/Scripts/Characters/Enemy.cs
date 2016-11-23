@@ -38,7 +38,7 @@ public class Enemy : Character {
         Move();
     }
 
-    void DropLoot()
+    public void DropLoot()
     {
         GameManager.Instance.objectPool.DropItem(transform.position);
     }
@@ -73,6 +73,7 @@ public class Enemy : Character {
     public override void OnDeath()
     {
         DropLoot();
+        GameManager.Instance.soundManager.playEnemyDeathSound();
         Destroy(gameObject);
     }
 
