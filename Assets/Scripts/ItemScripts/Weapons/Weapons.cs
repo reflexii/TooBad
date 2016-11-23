@@ -5,7 +5,7 @@ public class Weapons
 {
 	public class ShortSword : MeleeWeapon
 	{
-		public ShortSword() : base ("Short Sword",5,0,5,40,90,1,500,ItemClass.Sword)
+		public ShortSword() : base ("Short Sword",5,0.2f,5,40,90,1,500,ItemClass.Sword)
 		{
 			
 		}
@@ -13,7 +13,7 @@ public class Weapons
 
 	public class LongSword : MeleeWeapon
     {
-		public LongSword() : base ("Long Sword",10,0,5,40,90,1.2f,300, ItemClass.Sword)
+		public LongSword() : base ("Long Sword",10,0.5f,5,40,90,1.2f,300, ItemClass.Sword)
 		{
 
 		}
@@ -29,7 +29,7 @@ public class Weapons
 
     public class CrossBow : RangedWeapon
     {
-        public CrossBow() : base("CrossBow",10,5,1,10,7,ProjectileType.Arrow, ItemClass.Crossbow)
+        public CrossBow() : base("CrossBow",10,5,1,10,9,ProjectileType.Arrow, ItemClass.Crossbow)
         {
 
         }
