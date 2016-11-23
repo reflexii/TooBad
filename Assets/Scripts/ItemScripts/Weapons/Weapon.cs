@@ -46,11 +46,13 @@ public abstract class Weapon : Item {
 
     public void ReduceDurability()
     {
-        currentDurability -= 1;
+        if (durability != 0)
+            currentDurability -= 1;
+
         slot.UpdateItemDurability();
         if (currentDurability <= 0)
         {
-            slot.RemoveItem();
+            //slot.RemoveItem();
         }
     }
 }

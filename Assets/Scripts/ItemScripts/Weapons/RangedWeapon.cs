@@ -19,6 +19,9 @@ public class RangedWeapon : Weapon
         onCooldown = true;
         if (Time.time - lastTimeAttacked >= attackSpeed ||lastTimeAttacked == 0)
         {
+            if (currentDurability <= 0 && durability != 0)
+                return;
+
             onCooldown = false;
             GameManager.Instance.objectPool.FireProjectile(this, dir);
             lastTimeAttacked = Time.time;

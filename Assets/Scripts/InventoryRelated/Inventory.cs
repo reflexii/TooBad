@@ -63,6 +63,50 @@ public class Inventory : MonoBehaviour {
 
         foreach (SlotScipt slot in actionBar.itemSlots)
         {
+            if (item.itemClass == slot.validItemType)
+            {
+                if (slot.GetItem() == null)
+                {
+                    slot.SetItem(item);
+                    return true;
+                }
+                else
+                {
+                    Weapon w = slot.GetItem() as Weapon;
+                    if (w.currentDurability < w.durability)
+                    {
+                        w.currentDurability++;
+                        slot.UpdateItemDurability();
+                    }
+                    return true;
+                }
+            }
+        }
+
+        if (item.itemClass == Item.ItemClass.NormalKey)
+        {
+            actionBar.keyItemSlot.SetItem(item);
+            return true;
+        }
+
+        if (item.itemType == Item.ItemType.Consumable)
+        {
+            if (actionBar.consumableSlot.GetItem() == null)
+            {
+                actionBar.consumableSlot.SetItem(item);
+            }
+            else
+            {
+                Item _item = actionBar.consumableSlot.GetItem();
+                if (_item.itemAmount < actionBar.consumableSlot.maxStackSize)
+                {
+
+                    actionBar.consumableSlot.IncreaseAmount(1);
+                }
+
+                return true;
+            }
+            /*
             if (slot.GetItem() == null)
             {
                 if (!nullFound)
@@ -105,8 +149,9 @@ public class Inventory : MonoBehaviour {
 		if (itemSlots [firstNull].GetItem () == null)
 			itemSlots [firstNull].SetItem (item);
 		else
-			spaceInInventory = false;
-
+			spaceInInventory = false;*/
+        }
+        spaceInInventory = false;
 		return spaceInInventory;
 	}
 

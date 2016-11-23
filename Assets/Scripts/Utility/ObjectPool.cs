@@ -24,16 +24,22 @@ public class ObjectPool : MonoBehaviour
     //ADD change this method.
     public void DropItem(Vector3 pos)
     {
+        int random = Random.Range(0, 3);
+
+        if (random != 1)
+            return;
+
         GameObject o = (GameObject)Instantiate(lootPrefab);
         pos.z = -0.1f;
         o.transform.position = pos;
-        int random = Random.Range(0, 3);
 
-        if (random == 0)
-            o.GetComponent<LootableItem>().SetItem(new Weapons.ShortSword());
-        else if (random == 1)
-            o.GetComponent<LootableItem>().SetItem(new Weapons.LongSword());
-        else if (random == 2)
+        random = Random.Range(0, 100);
+
+        if (random >= 1 && random <= 10)
+            o.GetComponent<LootableItem>().SetItem(new Weapons.FireWand());
+        else if (random >= 11 && random <= 50)
+            o.GetComponent<LootableItem>().SetItem(new Weapons.Mace());
+        else if (random >= 51)
             o.GetComponent<LootableItem>().SetItem(new Weapons.CrossBow());
     }
 

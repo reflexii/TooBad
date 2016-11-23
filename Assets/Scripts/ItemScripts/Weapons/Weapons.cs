@@ -1,27 +1,35 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Weapons 
+public class Weapons
 {
-	public class ShortSword : MeleeWeapon
-	{
-		public ShortSword() : base ("Short Sword",5,0.2f,5,40,90,1,500,ItemClass.Sword)
-		{
-			
-		}
-	}
-
-	public class LongSword : MeleeWeapon
+    public class ShortSword : MeleeWeapon
     {
-		public LongSword() : base ("Long Sword",10,0.5f,5,40,90,1.2f,300, ItemClass.Sword)
-		{
+        public ShortSword() : base("Short Sword", 5, 0.2f, 10, 40, 90, 1, 500, ItemClass.Sword)
+        {
 
-		}
-	}
+        }
+    }
+
+    public class LongSword : MeleeWeapon
+    {
+        public LongSword() : base("Long Sword", 5f, 0.5f, 0, 40, 90, 1.2f, 300, ItemClass.Sword)
+        {
+
+        }
+    }
+
+    public class Mace : MeleeWeapon
+    {
+        public Mace() : base("Mace", 10f, 0.5f, 10, 40, 90, 1.2f, 300, ItemClass.Mace)
+        {
+
+        }
+    }
 
     public class Fist : MeleeWeapon
     {
-        public Fist() : base("Fist", 5, 1, 5,40, 90, 1, 300, ItemClass.Sword)
+        public Fist() : base("Fist", 5, 1, 5, 40, 90, 1, 300, ItemClass.Sword)
         {
 
         }
@@ -29,7 +37,7 @@ public class Weapons
 
     public class CrossBow : RangedWeapon
     {
-        public CrossBow() : base("CrossBow",10,5,1,10,9,ProjectileType.Arrow, ItemClass.Crossbow)
+        public CrossBow() : base("CrossBow", 10, 5, 1, 10, 9, ProjectileType.Arrow, ItemClass.Crossbow)
         {
 
         }
@@ -37,7 +45,7 @@ public class Weapons
 
     public class AutomaticCrossBow : RangedWeapon
     {
-        public AutomaticCrossBow() : base("Automatic Crossbow", 5, 5,0.08f, 10,100, ProjectileType.Arrow, ItemClass.Crossbow)
+        public AutomaticCrossBow() : base("Automatic Crossbow", 5, 5, 0.08f, 10, 100, ProjectileType.Arrow, ItemClass.Crossbow)
         {
 
         }
@@ -45,7 +53,7 @@ public class Weapons
 
     public class FireWand : RangedWeapon
     {
-        public FireWand() : base("Fire Wand", 5, 5, 1, 7, 12, ProjectileType.FireBall, ItemClass.Sword)
+        public FireWand() : base("Fire Wand", 20, 5, 1, 7, 12, ProjectileType.FireBall, ItemClass.Wand)
         {
 
         }

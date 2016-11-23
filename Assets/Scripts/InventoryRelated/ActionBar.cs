@@ -8,6 +8,8 @@ public class ActionBar : MonoBehaviour {
 
     public GameObject slotPrefab;
     public SlotHandler slotHandler;
+    public SlotScipt keyItemSlot;
+    public SlotScipt consumableSlot;
     public KeyCode slotKey1;
     public KeyCode slotKey2;
     public KeyCode slotKey3;
@@ -81,6 +83,16 @@ public class ActionBar : MonoBehaviour {
         itemSlots[1].inputKey = slotKey2;
         itemSlots[2].inputKey = slotKey3;
         itemSlots[3].inputKey = slotKey4;
+
+        if (itemSlots.Count <= 4)
+        {
+            itemSlots[0].validItemType = Item.ItemClass.Sword;
+            itemSlots[1].validItemType = Item.ItemClass.Mace;
+            itemSlots[2].validItemType = Item.ItemClass.Crossbow;
+            itemSlots[3].validItemType = Item.ItemClass.Wand;
+            return;
+        }
+
         itemSlots[4].inputKey = slotKey5;
         itemSlots[5].inputKey = slotKey6;
     }

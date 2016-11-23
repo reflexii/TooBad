@@ -7,7 +7,7 @@ public class SlotScipt : ClickAbleUI {
 	public Image durabilityObject;
 	public Text itemAmount;
 	public int slotNumber;
-	public Item.ItemType validItemType;
+	public Item.ItemClass validItemType;
 	public SlotType slotType;
 	public KeyCode inputKey;
 	public int maxStackSize = 5;
@@ -32,12 +32,24 @@ public class SlotScipt : ClickAbleUI {
 			ScaleDown ();
 		}
 		if (Input.GetKeyUp (inputKey) && item != null) {
+
+            if (item is Weapon)
+            {
+                Weapon w = item as Weapon;
+                if (w.currentDurability <= 0 && w.durability != 0)
+                {
+                    return;
+                }
+            }
+
             EquipOrUseItem();
 		}
 	}
     
 	public override void PerformClickAction(MouseHandler mouseHandler, int mouseButton)
 	{
+        return;
+
 		OnClickActions onClick = mouseHandler.onClickActions;
 
         if (mouseButton == 0)
@@ -152,7 +164,9 @@ public class SlotScipt : ClickAbleUI {
         if (durabilityBar != null && item != null)
         {
             Weapon weapon = item as Weapon;
-            durabilityBar.transform.localScale = new Vector3((float)weapon.currentDurability / (float)weapon.durability, 1, 1);
+
+            if(weapon.durability != 0)
+                durabilityBar.transform.localScale = new Vector3((float)weapon.currentDurability / (float)weapon.durability, 1, 1);
         }
     }
 		

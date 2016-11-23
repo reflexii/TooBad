@@ -22,6 +22,9 @@ public class MeleeWeapon : Weapon {
         onCooldown = true;
         if (Time.time - lastTimeAttacked >= attackSpeed || lastTimeAttacked == 0)
         {
+            if (currentDurability <= 0 && durability != 0)
+                return;
+
             onCooldown = false;
             base.Attack(player, dir);
             player.meleeAttackAction.transform.parent.gameObject.SetActive(true);

@@ -21,6 +21,7 @@ public class OnClickActions : MonoBehaviour {
 		
 	public void StartDragging(Item item, SlotScipt originalSlot)
 	{
+        /*
 		itemsOriginalSlot = originalSlot;
 		draggedItem = item;
 		dragging = true;
@@ -28,11 +29,12 @@ public class OnClickActions : MonoBehaviour {
 		draggedIcon.gameObject.SetActive (true);
 		draggedIcon.transform.position = Camera.main.ScreenToWorldPoint (Input.mousePosition) + new Vector3 (0.3f, 0.2f, 1f);
 		draggedIcon.sprite = draggedItem.itemIcon;
-
+        */
 	}
 
 	public void EndDragging(SlotScipt targetSlot)
 	{
+        /*
 		//checks if itemtype matches with slot type.
 		//for example: you can only equip sword to melee wep slot etc.
 		//to 'item' slot you can put any type of item.
@@ -61,7 +63,8 @@ public class OnClickActions : MonoBehaviour {
 
 		} else
 			print("Cannot equip "+draggedItem.itemType.ToString() + " to " + targetSlot.validItemType.ToString() +" slot!");
-	}
+	*/
+    }
 
     public void QuickEquip(SlotScipt slot)
     {
