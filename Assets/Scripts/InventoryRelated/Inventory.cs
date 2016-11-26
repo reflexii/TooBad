@@ -76,6 +76,8 @@ public class Inventory : MonoBehaviour
                 else
                 {
                     Weapon w = slot.GetItem() as Weapon;
+                    string popUp = "+1 " + item.itemName;
+                    GameManager.Instance.objectPool.CreatePopUpText(GameManager.Instance.player.gameObject.transform.position, popUp);
                     if (w.currentDurability < w.durability)
                     {
                         w.currentDurability++;

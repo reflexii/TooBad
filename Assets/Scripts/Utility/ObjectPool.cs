@@ -9,22 +9,26 @@ public class ObjectPool : MonoBehaviour
     public GameObject boomerangPrefab;
     public GameObject lootPrefab;
     public GameObject explosionPrefab;
+    public GameObject popUpTextPrefab;
+    public Canvas canvas;
 
     private List<Projectile> projectilePool;
     private List<LootableItem> lootPool;
     private List<Explosion> explosionPool;
+    private List<PopUpText> popupTextPool;
 
     public ObjectPool()
     {
         projectilePool = new List<Projectile>();
         lootPool = new List<LootableItem>();
         explosionPool = new List<Explosion>();
+        popupTextPool = new List<PopUpText>();
     }
 
     //ADD change this method.
     public void DropItem(Vector3 pos)
     {
-        int random = Random.Range(0, 3);
+        int random = Random.Range(1, 1);
 
         if (random != 1)
             return;
@@ -62,12 +66,6 @@ public class ObjectPool : MonoBehaviour
             tmpExplosion.gameObject.SetActive(true);
             explosionPool.Remove(tmpExplosion);
         }
-    }
-
-    public void AddBackToPool(Explosion explosion)
-    {
-        explosion.gameObject.SetActive(false);
-        explosionPool.Add(explosion);
     }
 
     void ActivateOrCreateProjectile(RangedWeapon weapon, Vector3 direction)
@@ -119,8 +117,37 @@ public class ObjectPool : MonoBehaviour
         projectile.SetPreferences(weapon, dir);
     }
 
+    public void CreatePopUpText(Vector3 position, string text)
+    {
+        if (popupTextPool.Count == 0)
+        {
+            GameObject go = (GameObject)Instantiate(popUpTextPrefab);
+            go.transform.SetParent(canvas.transform, false);
+            go.GetComponent<PopUpText>().SetPreferences(position, text);
+        }
+        else
+        {
+            PopUpText tmpPopUp = popupTextPool[0];
+            tmpPopUp.SetPreferences(position, text);
+            tmpPopUp.gameObject.SetActive(true);
+            popupTextPool.Remove(tmpPopUp);
+        }
+    }
+
     public void AddBackToPool(Projectile projectile)
     {
         projectilePool.Add(projectile);
+    }
+
+    public void AddBackToPool(Explosion explosion)
+    {
+        explosion.gameObject.SetActive(false);
+        explosionPool.Add(explosion);
+    }
+
+    public void AddBackToPool(PopUpText popUpText)
+    {
+        popUpText.gameObject.SetActive(false);
+        popupTextPool.Add(popUpText);
     }
 }
