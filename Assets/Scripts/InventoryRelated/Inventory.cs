@@ -227,7 +227,7 @@ public class Inventory : MonoBehaviour
     }
 
 
-    public bool ContainsKeyItemOfType(KeyItem.KeyItemType type)
+    public KeyItem ContainsKeyItemOfType(KeyItem.KeyItemType type)
     {
 
         if (actionBar.keyItemSlot.GetItem() != null)
@@ -238,11 +238,12 @@ public class Inventory : MonoBehaviour
 
                 if (keyItem.keyItemType == type)
                 {
-                    return true;
+                    return keyItem;
                 }
             }
         }
-        return false;
+
+        return null;
 
         /*
         foreach (SlotScipt slot in itemSlots)

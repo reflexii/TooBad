@@ -9,14 +9,17 @@ public class Door : InteractiveObject
 
     public override bool TakeAction()
     {
+        List<KeyItem> keyItems = new List<KeyItem>();
+
         if (reqKeys.Count != 0)
         {
             int count = 0;
 
             foreach (KeyItem.KeyItemType keyType in reqKeys)
             {
-                if (GameManager.Instance.inventory.ContainsKeyItemOfType(keyType))
+                if (GameManager.Instance.inventory.ContainsKeyItemOfType(keyType) != null)
                 {
+                    keyItems.Add(GameManager.Instance.inventory.ContainsKeyItemOfType(keyType));
                     count++;
                 }
             }
@@ -28,6 +31,12 @@ public class Door : InteractiveObject
         }
 
         gameObject.SetActive(!gameObject.activeSelf);
+
+        foreach (KeyItem k in keyItems)
+        {
+            //TODO: Change this if more keyItemsSlots are added.
+            GameManager.Instance.inventory.actionBar.keyItemSlot.RemoveItem();
+        }
 
         return true;
     }

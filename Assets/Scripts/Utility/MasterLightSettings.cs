@@ -23,4 +23,17 @@ public class MasterLightSettings : MonoBehaviour {
         }
 	}
 
+    public void TurnLightsOnOrOff(bool turnOn)
+    {
+        if (turnOn)
+        {
+            candleLight.enabled = false;
+            directionalLight.enabled = true;
+        }
+        else if(!turnOn)
+        {
+            candleLight.enabled = true;
+            directionalLight.enabled = false;
+        }
+    }
 }
