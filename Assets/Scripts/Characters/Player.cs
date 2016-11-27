@@ -11,6 +11,8 @@ public class Player : Character
     public float rageDegenPerSecond;
     [HideInInspector]
     public float currentRageAmount;
+    public BoxCollider2D box2d;
+    public BoxCollider2D secondbox2d;
 
 
     private MovementScript ms;
@@ -32,8 +34,15 @@ public class Player : Character
 			
 	}
 
+    public override void TakeDamage(float dmgAmount) {
+        base.TakeDamage(dmgAmount);
+        GameManager.Instance.soundManager.playPlayerDamagedSound();
+    }
+
     public override void OnDeath() {
         GameManager.Instance.soundManager.playPlayerDeathSound();
+        box2d.enabled = false;
+        secondbox2d.enabled = false;
 
         //TODO: player dying visuals
     }
@@ -56,7 +65,7 @@ public class Player : Character
         if (equippedWeapon != null) {
             if (equippedWeapon.itemClass == Item.ItemClass.Sword) {
                 ms.swingSword = true;
-            } else if (equippedWeapon.itemName == "CrossBow") {
+            } else if (equippedWeapon.itemClass == Item.ItemClass.Crossbow) {
                 ms.shootCrossBow = true;
             }
         }
@@ -67,6 +76,8 @@ public class Player : Character
         if (equippedWeapon != null) {
             if (equippedWeapon.itemClass == Item.ItemClass.Sword) {
                 GameManager.Instance.soundManager.playSwordSwingSound();
+            } else if (equippedWeapon.itemClass == Item.ItemClass.Crossbow) {
+                GameManager.Instance.soundManager.playCrossbowSound();
             }
         }
     }

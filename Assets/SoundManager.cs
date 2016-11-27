@@ -3,14 +3,13 @@ using System.Collections;
 
 public class SoundManager : MonoBehaviour {
 
-    private float minimumPitch = 0.95f;
-    private float maximumPitch = 1.05f;
     public AudioSource effectSource;
     public AudioSource footstepSource;
     public AudioSource hitSource;
     public AudioSource enemyDeathSource;
     public AudioSource playerDeathSource;
     public AudioSource bossSoundsSource;
+    public AudioSource playerDamageSource;
     private float randomizedPitch = 1.0f;
 
     public AudioClip footstepSound;
@@ -21,6 +20,8 @@ public class SoundManager : MonoBehaviour {
     public AudioClip playerDeath;
     public AudioClip bossDeath;
     public AudioClip bossTableBreak;
+    public AudioClip playerDamaged;
+    public AudioClip crossbowSound;
 
 	
     public void playFootSteps() {
@@ -31,14 +32,20 @@ public class SoundManager : MonoBehaviour {
 
     public void playEnemyDeathSound() {
         enemyDeathSource.clip = enemyDeath;
-        randomizePitch(enemyDeathSource);
+        randomizePitch(enemyDeathSource, 0.1f);
         enemyDeathSource.Play();
     }
 
     public void playPlayerDeathSound() {
         playerDeathSource.clip = playerDeath;
-        randomizePitch(playerDeathSource);
+        randomizePitch(playerDeathSource, 0.1f);
         playerDeathSource.Play();
+    }
+    
+    public void playPlayerDamagedSound() {
+        playerDamageSource.clip = playerDamaged;
+        randomizePitch(playerDamageSource, 0.2f);
+        playerDamageSource.Play();
     }
 
     public void playTableBreakSound() {
@@ -59,18 +66,24 @@ public class SoundManager : MonoBehaviour {
             hitSource.clip = hitSound2;
         }
 
-        randomizePitch(hitSource);
+        randomizePitch(hitSource, 0.1f);
         hitSource.Play();
     }
 
     public void playSwordSwingSound() {
         effectSource.clip = swordswingSound;
-        randomizePitch(effectSource);
+        randomizePitch(effectSource, 0.1f);
         effectSource.Play();
     }
 
-    public void randomizePitch(AudioSource source) {
-        randomizedPitch = Random.Range(minimumPitch, maximumPitch);
+    public void playCrossbowSound() {
+        effectSource.clip = crossbowSound;
+        randomizePitch(effectSource, 0.1f);
+        effectSource.Play();
+    }
+
+    public void randomizePitch(AudioSource source, float gap) {
+        randomizedPitch = Random.Range(1 - (gap/2), 1 + (gap/2));
         source.pitch = randomizedPitch;
     }
 
