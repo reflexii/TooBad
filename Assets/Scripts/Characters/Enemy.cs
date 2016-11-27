@@ -9,6 +9,7 @@ public class Enemy : Character {
     public int layerMask = 1 << 9;
     public float movementSpeed;
     public float spotDistance;
+    public float damage;
     public EnemyType enemyType;
 
     public bool chargeAttacks = true;
@@ -60,6 +61,11 @@ public class Enemy : Character {
 
         equippedWeapon.master = this;
         attackRange = equippedWeapon.attackRange;
+
+        if (damage != 0)
+        {
+            equippedWeapon.damage = damage;
+        }
     }
 
     public void SetPreferences()
@@ -188,7 +194,7 @@ public class Enemy : Character {
             if (!Physics2D.Raycast(transform.position, player.transform.position - transform.position, magnitude, layerMask)) {
                 aggroPlayer();
             } else {
-                Debug.Log("Wall in the way!");
+                //Debug.Log("Wall in the way!");
             }
         } 
     }

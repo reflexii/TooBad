@@ -28,7 +28,7 @@ public class ObjectPool : MonoBehaviour
     //ADD change this method.
     public void DropItem(Vector3 pos)
     {
-        int random = Random.Range(1, 1);
+        int random = Random.Range(1, 3);
 
         if (random != 1)
             return;

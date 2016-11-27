@@ -1,8 +1,9 @@
 Tutorial1=That mushroom sure looks delicious...
 Tutorial2=Click it with left mousebutton.
-Tutorial3=Press button 1 to consume the mushroom.
+Tutorial3=Press button Q to consume the mushroom.
 Tutorial4=That sword looks useful...
 Tutorial5=Loot it by clicking it with left mousebutton.
 Tutorial6=Equip the weapon by pressing the slot key (1 in this case)
-Tutorial7=This weapon sure looks sturdy. However some weapons have limited amount of durability which will be consumed on use. You can regain the durability by looting weapons of the same type.
+Tutorial7=This weapon sure looks sturdy. However some weapons have limited amount of durability which will be consumed on use. You can regain the durability by looting weapons of the same type. Attack by clicking right mousebutton. Maybe I could destroy that desk...
+Tutorial8=Looks like that desk is blocking my way...(Click left mousebutton to attack)
 Dialog1=Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam semper lacinia rutrum. Integer viverra dictum lorem, vitae semper ante porttitor sit amet. Aliquam vitae dignissim velit. Phasellus elit neque

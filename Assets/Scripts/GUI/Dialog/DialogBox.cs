@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class DialogBox : MonoBehaviour {
     public Text dialogText;
+    public GameObject keyToContinue;
 	
     void Start()
     {

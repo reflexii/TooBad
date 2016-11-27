@@ -105,7 +105,7 @@ public class SlotScipt : ClickAbleUI {
 			item = itemToAdd;
 			itemIcon.gameObject.SetActive (true);
 			itemIcon.sprite = itemToAdd.itemIcon;
-		} 
+        } 
 
 		if (item.itemType == Item.ItemType.Consumable) {
 			itemAmount.gameObject.SetActive (true);
@@ -155,9 +155,7 @@ public class SlotScipt : ClickAbleUI {
 
 		item = null;
 		itemIcon.gameObject.SetActive (false);
-
-
-	}
+    }
 
 	public void IncreaseAmount(int amount)
 	{

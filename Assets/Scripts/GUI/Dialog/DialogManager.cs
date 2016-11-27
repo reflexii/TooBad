@@ -21,6 +21,7 @@ public class DialogManager : MonoBehaviour
     void Start()
     {
         dialogsOnHold.Clear();
+        dialogBox.keyToContinue.SetActive(false);
     }
 
     void CreateDictionary()
@@ -97,9 +98,11 @@ public class DialogManager : MonoBehaviour
         {
             DisplayDialog(dialogsOnHold[0]);
             dialogsOnHold.RemoveAt(0);
+            dialogBox.keyToContinue.SetActive(true);
         }
         else
         {
+            dialogBox.keyToContinue.SetActive(false);
             dialogBox.gameObject.SetActive(false);
         }
     }
@@ -137,6 +140,7 @@ public class DialogManager : MonoBehaviour
         Tutorial5,
         Tutorial6,
         Tutorial7,
+        Tutorial8,
         Dialog1
     }
 }
