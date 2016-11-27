@@ -7,7 +7,7 @@ public class EventManager : MonoBehaviour {
     public Image blackImage;
 
     private bool blinking;
-    private float blinkingTime = 5;
+    private float blinkingTime = 3;
     private float timer;
     private bool displayDialog;
     private DialogManager.TextKey textKey;

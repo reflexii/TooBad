@@ -4,31 +4,49 @@ using UnityEngine.UI;
 
 public class PopUpText : MonoBehaviour
 {
+    public Text textComp;
     public float yOffset = 1f;
-    private Transform _transform;
-    private Text _text;
+    public string positiveColorHex;
+    public string negativeColorHex;
 
-	void Start ()
-    {
-	}
+    private Transform _transform;
 
 	void Update ()
     {
-        if (GetComponentInChildren<Text>().color.a == 0)
+        if (textComp.color.a == 0)
         {
             DeActivate();
         }
 	}
 
-    public void SetPreferences(Vector3 position, string text)
+    public void SetPreferences(Vector3 position, string text, TextType negOrPos)
     {
         position.y += yOffset;
         transform.position = position;
-        GetComponentInChildren<Text>().text = text;
+        Color tmpColor = Color.blue;
+
+        if (negOrPos == TextType.Positive)
+        {
+            ColorUtility.TryParseHtmlString("#"+positiveColorHex, out tmpColor);
+
+        }
+        else if (negOrPos == TextType.Negative)
+        {
+            ColorUtility.TryParseHtmlString("#"+negativeColorHex, out tmpColor);
+        }
+
+        textComp.color = tmpColor;
+        textComp.text = text;
     }
 
     void DeActivate()
     {
         GameManager.Instance.objectPool.AddBackToPool(this);
+    }
+
+    public enum TextType
+    {
+        Negative,
+        Positive
     }
 }

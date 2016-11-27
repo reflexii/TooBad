@@ -117,18 +117,18 @@ public class ObjectPool : MonoBehaviour
         projectile.SetPreferences(weapon, dir);
     }
 
-    public void CreatePopUpText(Vector3 position, string text)
+    public void CreatePopUpText(Vector3 position, string text, PopUpText.TextType negOrPos)
     {
         if (popupTextPool.Count == 0)
         {
             GameObject go = (GameObject)Instantiate(popUpTextPrefab);
             go.transform.SetParent(canvas.transform, false);
-            go.GetComponent<PopUpText>().SetPreferences(position, text);
+            go.GetComponent<PopUpText>().SetPreferences(position, text, negOrPos);
         }
         else
         {
             PopUpText tmpPopUp = popupTextPool[0];
-            tmpPopUp.SetPreferences(position, text);
+            tmpPopUp.SetPreferences(position, text, negOrPos);
             tmpPopUp.gameObject.SetActive(true);
             popupTextPool.Remove(tmpPopUp);
         }
