@@ -19,9 +19,9 @@ public class Weapons
         }
     }
 
-    public class Mace : MeleeWeapon
+    public class Axe : MeleeWeapon
     {
-        public Mace() : base("Mace", 10f, 0.5f, 10, 40, 90, 1.2f, 300, ItemClass.Mace)
+        public Axe() : base("Axe", 10f, 0.5f, 10, 40, 90, 1.2f, 300, ItemClass.Axe)
         {
 
         }

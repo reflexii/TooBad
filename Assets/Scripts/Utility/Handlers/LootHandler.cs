@@ -20,7 +20,9 @@ public class LootHandler : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha8))
             LootItem(new Weapons.FireWand());;
         if (Input.GetKeyDown(KeyCode.Alpha7))
-            LootItem(new Weapons.Mace()); ;
+            LootItem(new Weapons.Axe()); ;
+        if (Input.GetKeyDown(KeyCode.E))
+            GameManager.Instance.dialogManager.NextDialog() ;
 
         /*if (Input.GetKeyDown (KeyCode.I))
 			inventory.gameObject.SetActive (!inventory.gameObject.activeSelf);*/

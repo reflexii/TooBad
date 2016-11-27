@@ -53,7 +53,6 @@ public class Item {
         Crossbow,
         NormalKey,
         Wand,
-        Mace,
         RageDrug,
         Mushroom
     }

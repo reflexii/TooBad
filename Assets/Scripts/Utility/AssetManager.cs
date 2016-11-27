@@ -3,11 +3,10 @@ using System.Collections;
 
 public class AssetManager : MonoBehaviour
 {
-    public Sprite axeIcon;
     public Sprite swordIcon;
     public Sprite crossbowIcon;
     public Sprite potionIcon;
-    public Sprite maceIcon;
+    public Sprite axeIcon;
     public Sprite keyIcon;
     public Sprite rageDrugIcon;
     public Sprite mushroomIcon;
@@ -28,9 +27,9 @@ public class AssetManager : MonoBehaviour
         {
             toReturn = crossbowIcon;
         }
-        else if (iconType == Weapon.ItemClass.Mace)
+        else if (iconType == Weapon.ItemClass.Axe)
         {
-            toReturn = maceIcon;
+            toReturn = axeIcon;
         }
         else if (iconType == Weapon.ItemClass.Potion)
         {
@@ -55,7 +54,7 @@ public class AssetManager : MonoBehaviour
         if (toReturn == null)
         {
             //Debug.Log("AssetManager:" + iconType.ToString() + " NOT FOUND");
-            toReturn = maceIcon;
+            toReturn = axeIcon;
         }
 
         return toReturn;

@@ -51,7 +51,7 @@ public abstract class Weapon : Item {
         else
             return;
 
-        slot.UpdateItemDurability();
+        slot.UpdateItemDurability(this);
         GameManager.Instance.objectPool.CreatePopUpText(GameManager.Instance.player.transform.position, "-1 " + itemName, PopUpText.TextType.Negative);
 
         if (currentDurability <= 0)

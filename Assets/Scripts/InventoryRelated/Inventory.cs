@@ -81,7 +81,7 @@ public class Inventory : MonoBehaviour
                     if (w.currentDurability < w.durability)
                     {
                         w.currentDurability++;
-                        slot.UpdateItemDurability();
+                        slot.UpdateItemDurability(w);
                     }
                     return true;
                 }

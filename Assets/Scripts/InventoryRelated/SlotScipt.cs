@@ -48,6 +48,7 @@ public class SlotScipt : ClickAbleUI {
     
 	public override void PerformClickAction(MouseHandler mouseHandler, int mouseButton)
 	{
+        //TODO: delete this if slots become clickAble again.
         return;
 
 		OnClickActions onClick = mouseHandler.onClickActions;
@@ -115,8 +116,13 @@ public class SlotScipt : ClickAbleUI {
 
         if (item.itemType == Item.ItemType.Weapon)
         {
-            durabilityObject.gameObject.SetActive(true);
-            UpdateItemDurability();
+            Weapon weapon = item as Weapon;
+
+            if (weapon.durability != 0)
+            {
+                durabilityObject.gameObject.SetActive(true);
+                UpdateItemDurability(weapon);
+            }
         }
         else
             durabilityObject.gameObject.SetActive(false);
@@ -159,13 +165,11 @@ public class SlotScipt : ClickAbleUI {
 		itemAmount.text = item.itemAmount.ToString ();
 	}
 
-    public void UpdateItemDurability()
+    public void UpdateItemDurability(Weapon weapon)
     {
         if (durabilityBar != null && item != null)
         {
-            Weapon weapon = item as Weapon;
-
-            if(weapon.durability != 0)
+            if (weapon.durability != 0)
                 durabilityBar.transform.localScale = new Vector3((float)weapon.currentDurability / (float)weapon.durability, 1, 1);
         }
     }

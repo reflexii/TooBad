@@ -42,7 +42,7 @@ public class ObjectPool : MonoBehaviour
         if (random >= 0 && random <= 10)
             o.GetComponent<LootableItem>().SetItem(new Weapons.FireWand());
         else if (random >= 11 && random <= 50)
-            o.GetComponent<LootableItem>().SetItem(new Weapons.Mace());
+            o.GetComponent<LootableItem>().SetItem(new Weapons.Axe());
         else if (random >= 51)
             o.GetComponent<LootableItem>().SetItem(new Weapons.CrossBow());
     }

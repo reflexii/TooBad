@@ -84,6 +84,24 @@ public class LootableItem : ClickAbleObject
         {
             SetItem(new Consumables.Mushroom());
         }
+
+        else if (type == Item.ItemClass.Sword)
+        {
+            SetItem(new Weapons.LongSword());
+        }
+        else if (type == Item.ItemClass.Axe)
+        {
+            SetItem(new Weapons.Axe());
+        }
+        else if (type == Item.ItemClass.Crossbow)
+        {
+            SetItem(new Weapons.CrossBow());
+
+        }
+        else if (type == Item.ItemClass.Wand)
+        {
+            SetItem(new Weapons.FireWand());
+        }
     }
 
 }

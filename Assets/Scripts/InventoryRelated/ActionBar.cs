@@ -87,7 +87,7 @@ public class ActionBar : MonoBehaviour {
         if (itemSlots.Count <= 4)
         {
             itemSlots[0].validItemType = Item.ItemClass.Sword;
-            itemSlots[1].validItemType = Item.ItemClass.Mace;
+            itemSlots[1].validItemType = Item.ItemClass.Axe;
             itemSlots[2].validItemType = Item.ItemClass.Crossbow;
             itemSlots[3].validItemType = Item.ItemClass.Wand;
             return;
