@@ -36,7 +36,9 @@ public abstract class Projectile : MonoBehaviour {
 
     public virtual void SetPreferences(RangedWeapon weapon, Vector3 targetPos)
     {
-        _transform.position = weapon.master.transform.position;
+        Vector3 tmpPos = weapon.master.transform.position;
+        tmpPos.z = 0;
+        _transform.position = tmpPos;
         startingPos = _transform.position;
         this.targetPos = targetPos;
         SetRotation(targetPos);
