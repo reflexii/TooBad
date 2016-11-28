@@ -15,8 +15,13 @@ public class MovementScript : MonoBehaviour {
 
     public bool longSwordEquipped = false;
     public bool crossBowEquipped = false;
+    public bool axeEquipped = false;
+    public bool wandEquipped = false;
+
     public bool swingSword = false;
     public bool shootCrossBow = false;
+    public bool swingAxe = false;
+    public bool shootWand = false;
 
     private Animator animator;
     public Player player;
@@ -65,16 +70,34 @@ public class MovementScript : MonoBehaviour {
             if (player.equippedWeapon.itemClass == Item.ItemClass.Sword) {
                 longSwordEquipped = true;
                 crossBowEquipped = false;
-            } else if (player.equippedWeapon.itemName == "CrossBow") {
+                axeEquipped = false;
+                wandEquipped = false;
+            } else if (player.equippedWeapon.itemClass == Item.ItemClass.Crossbow) {
                 crossBowEquipped = true;
                 longSwordEquipped = false;
+                axeEquipped = false;
+                wandEquipped = false;
+            } else if (player.equippedWeapon.itemClass == Item.ItemClass.Axe) {
+                axeEquipped = true;
+                longSwordEquipped = false;
+                crossBowEquipped = false;
+                wandEquipped = false;
+            } else if (player.equippedWeapon.itemClass == Item.ItemClass.Wand) {
+                axeEquipped = false;
+                longSwordEquipped = false;
+                crossBowEquipped = false;
+                wandEquipped = true;
             } else {
                 longSwordEquipped = false;
                 crossBowEquipped = false;
+                axeEquipped = false;
+                wandEquipped = false;
             }
         } else {
             longSwordEquipped = false;
             crossBowEquipped = false;
+            axeEquipped = false;
+            wandEquipped = false;
         }
         
     }
@@ -85,6 +108,12 @@ public class MovementScript : MonoBehaviour {
         }
         if (shootCrossBow) {
             shootCrossBow = false;
+        }
+        if (shootWand) {
+            shootWand = false;
+        }
+        if (swingAxe) {
+            swingAxe = false;
         }
     }
 
@@ -101,9 +130,13 @@ public class MovementScript : MonoBehaviour {
         animator.SetBool("Moving", moving);
         animator.SetBool("LongSword", longSwordEquipped);
         animator.SetBool("CrossBow", crossBowEquipped);
+        animator.SetBool("Axe", axeEquipped);
+        animator.SetBool("Wand", wandEquipped);
 
         animator.SetBool("SwingSword", swingSword);
         animator.SetBool("ShootCrossBow", shootCrossBow);
+        animator.SetBool("SwingAxe", swingAxe);
+        animator.SetBool("ShootWand", shootWand);
     }
 
      void updatePlayerDir()

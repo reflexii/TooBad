@@ -67,6 +67,10 @@ public class Player : Character
                 ms.swingSword = true;
             } else if (equippedWeapon.itemClass == Item.ItemClass.Crossbow) {
                 ms.shootCrossBow = true;
+            } else if (equippedWeapon.itemClass == Item.ItemClass.Axe) {
+                ms.swingAxe = true;
+            } else if (equippedWeapon.itemClass == Item.ItemClass.Wand) {
+                ms.shootWand = true;
             }
         }
         
