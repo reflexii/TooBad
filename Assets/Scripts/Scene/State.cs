@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public abstract class State
 {
     public SceneID sceneId;
-    protected SceneType sceneType;
+    public SceneType sceneType;
     public int sceneIndex;
 
     public State(SceneID stateType, int sceneIndex)
@@ -16,6 +16,7 @@ public abstract class State
 
     public virtual void LoadScene()
     {
+        Time.timeScale = 1;
         SceneManager.sceneLoaded += OnSceneLoaded;
         SceneManager.LoadScene(sceneIndex);
     }

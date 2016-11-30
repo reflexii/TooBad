@@ -6,11 +6,12 @@ using System.Collections.Generic;
 public class StateManager : Singleton<StateManager>
 {
     public List<State> scenes = new List<State>();
-    private State activeState;
+    public State activeState;
     public State previousState;
 
     public void Init()
     {
+        scenes.Clear();
         scenes.Add(new MenuState(State.SceneID.MainMenu, 0));
         scenes.Add(new GameState(State.SceneID.LevelOne, 1));
         scenes.Add(new GameState(State.SceneID.LevelTwo, 2));
@@ -33,7 +34,10 @@ public class StateManager : Singleton<StateManager>
         foreach (State s in scenes)
         {
             if (s.sceneIndex == sceneIndex)
+            {
+                activeState = s;
                 return s.sceneId;
+            }
         }
 
         return State.SceneID.MainMenu;

@@ -19,7 +19,7 @@ public class DialogBox : MonoBehaviour {
 
     public void SetDialog(string text)
     {
-        if (GameManager.Instance != null)
+        if (this != null)
         {
             transform.position = GameManager.Instance.player.transform.position + new Vector3(-1.5f, 2, 0);
             dialogText.text = text;

@@ -1,15 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
-public class MainMenuButton : MonoBehaviour {
+public class MainMenuButton : MyButton
+{
+    protected override void OnClickFunction()
+    {
+        GameManager.Instance.dialogManager.confirmationDialog.SetConfirmationPreferences(DialogManager.TextKey.Dialog1, OnClick, "Main Menu");
+    }
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    void OnClick()
+    {
+        GameManager.Instance.ReloadObjects();
+        StateManager.Instance.SwitchScene(State.SceneID.MainMenu);
+    }
 }

@@ -1,18 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace KanttuveiGame
-{
     public class DontDestroyOnLoad : MonoBehaviour
     {
-        void Awake()
+    void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+        GameManager.Instance.OnRestart += DestroyOnRestart;
+        if (GameObject.FindGameObjectWithTag(tag) != gameObject)
         {
-            DontDestroyOnLoad(gameObject);
-
-            if (GameObject.FindGameObjectWithTag(tag) != gameObject)
-            {
-                Destroy(gameObject);
-            }
+            Destroy(gameObject);
         }
+    }
+
+    void DestroyOnRestart()
+    {
+        if(this != null)
+            Destroy(gameObject);
     }
 }

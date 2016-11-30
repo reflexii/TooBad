@@ -7,6 +7,7 @@ public class DialogManager : MonoBehaviour
     public TextAsset textFile;
     public DialogBox dialogBox;
     public ScreenDialog screenDialog;
+    public ConfirmationDialog confirmationDialog;
     public int maxWordLength = 8;
     public int maxCharLehght = 60;
 
@@ -89,7 +90,6 @@ public class DialogManager : MonoBehaviour
         string textToDisplay = GetText(textKey.ToString());
         screenDialog.gameObject.SetActive(true);
         screenDialog.SetDialog(textToDisplay);
-
     }
 
     public void NextDialog()
@@ -110,8 +110,11 @@ public class DialogManager : MonoBehaviour
     //If you want to print plain text. Use of GetText() is recommended before calling this method to keep up the localization.
     public void DisplayDialog(string text)
     {
-        dialogBox.gameObject.SetActive(true);
-        dialogBox.SetDialog(text);
+        if (this != null)
+        {
+            dialogBox.gameObject.SetActive(true);
+            dialogBox.SetDialog(text);
+        }
     }
 
     //used by for example items. The name of class as string is used as "key".

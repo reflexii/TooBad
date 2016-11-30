@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public SoundManager soundManager;
     public DialogManager dialogManager;
     public EventManager eventManager;
+    public IngameMenu ingameMenu;
 
     public GameObject player;
 
@@ -17,6 +18,8 @@ public class GameManager : MonoBehaviour
     public event GameActivityState OnStartGame;
 
     public event GameActivityState OnLevelLoad;
+
+    public event GameActivityState OnRestart;
 
     private static GameManager _instance;
 
@@ -50,6 +53,17 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         OnStartGame();
+    }
+
+    public void ReloadObjects()
+    {
+        OnRestart();
+    }
+
+    public void RestartCurrentLevel()
+    {
+        ReloadObjects();
+        StateManager.Instance.SwitchScene(State.SceneID.LevelOne);
     }
 
     public void ActivateIngameObjects()

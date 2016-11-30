@@ -23,6 +23,13 @@ public class LootHandler : MonoBehaviour
             LootItem(new Weapons.Axe()); ;
         if (Input.GetKeyDown(KeyCode.E))
             GameManager.Instance.dialogManager.NextDialog() ;
+        if (Input.GetKeyDown(KeyCode.Escape) && StateManager.Instance.activeState.sceneType == State.SceneType.Level)
+        {
+            if (GameManager.Instance.dialogManager.confirmationDialog.gameObject.activeSelf)
+                GameManager.Instance.dialogManager.confirmationDialog.gameObject.SetActive(false);
+            else
+                GameManager.Instance.ingameMenu.OpenMenu();
+        }
 
         /*if (Input.GetKeyDown (KeyCode.I))
 			inventory.gameObject.SetActive (!inventory.gameObject.activeSelf);*/
