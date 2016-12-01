@@ -22,6 +22,8 @@ public class SoundManager : MonoBehaviour {
     public AudioClip bossTableBreak;
     public AudioClip playerDamaged;
     public AudioClip crossbowSound;
+    public AudioClip wandSound;
+    public AudioClip axeSound;
 
 	
     public void playFootSteps() {
@@ -72,6 +74,18 @@ public class SoundManager : MonoBehaviour {
 
     public void playSwordSwingSound() {
         effectSource.clip = swordswingSound;
+        randomizePitch(effectSource, 0.1f);
+        effectSource.Play();
+    }
+
+    public void playWandShootSound() {
+        effectSource.clip = wandSound;
+        randomizePitch(effectSource, 0.1f);
+        effectSource.Play();
+    }
+
+    public void playAxeSwingSound() {
+        effectSource.clip = axeSound;
         randomizePitch(effectSource, 0.1f);
         effectSource.Play();
     }

@@ -41,6 +41,9 @@ public class MovementScript : MonoBehaviour {
 
     private bool playedFootStepSound = false;
 
+    public bool playerIsDead = false;
+    public bool dead = false;
+
 	// Use this for initialization
 	void Start () {
         animator = GetComponent<Animator>();
@@ -50,12 +53,15 @@ public class MovementScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		mouseLook();
+        if (!dead) {
+            mouseLook();
+            keyboardMovement();
+            updatePlayerDir();
+            checkWalls();
+            checkEquippedWeapons();
+        }
+
         animations();
-        keyboardMovement();
-        updatePlayerDir();
-        checkWalls();
-        checkEquippedWeapons();
         returnAnimations();
 
         if (moving && !playedFootStepSound) {
@@ -115,6 +121,9 @@ public class MovementScript : MonoBehaviour {
         if (swingAxe) {
             swingAxe = false;
         }
+        if (playerIsDead) {
+            playerIsDead = false;
+        }
     }
 
 	void mouseLook() {
@@ -137,6 +146,8 @@ public class MovementScript : MonoBehaviour {
         animator.SetBool("ShootCrossBow", shootCrossBow);
         animator.SetBool("SwingAxe", swingAxe);
         animator.SetBool("ShootWand", shootWand);
+
+        animator.SetBool("Dead", playerIsDead);
     }
 
      void updatePlayerDir()

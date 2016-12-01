@@ -26,10 +26,14 @@ public class Player : Character
 
 	public override void Attack(Vector3 dir)
 	{
-		if(equippedWeapon != null && !equippedWeapon.onCooldown) {
+        if (!ms.dead) {
+            if (equippedWeapon != null && !equippedWeapon.onCooldown) {
             equippedWeapon.Attack(this, dir);
-            playAnimation();
-            playSound();
+            
+                playAnimation();
+                playSound();
+            }
+            
         }
 			
 	}
@@ -45,6 +49,23 @@ public class Player : Character
         secondbox2d.enabled = false;
 
         //TODO: player dying visuals
+        ms.playerIsDead = true;
+        ms.dead = true;
+
+        Invoke("restartGame", 5f);
+
+    }
+
+    void restartGame() {
+        /*
+        StateManager.Instance.SwitchScene(State.SceneID.LevelOne);
+        currentHealth = maxHealth;
+        ms.playerIsDead = false;
+        ms.dead = false;
+        box2d.enabled = true;
+        secondbox2d.enabled = true;
+        equippedWeapon = null;
+        */
     }
 
     void Update() {
@@ -82,6 +103,10 @@ public class Player : Character
                 GameManager.Instance.soundManager.playSwordSwingSound();
             } else if (equippedWeapon.itemClass == Item.ItemClass.Crossbow) {
                 GameManager.Instance.soundManager.playCrossbowSound();
+            } else if (equippedWeapon.itemClass == Item.ItemClass.Wand) {
+                GameManager.Instance.soundManager.playWandShootSound();
+            } else if (equippedWeapon.itemClass == Item.ItemClass.Axe) {
+                GameManager.Instance.soundManager.playAxeSwingSound();
             }
         }
     }
