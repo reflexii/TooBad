@@ -7,6 +7,7 @@ using System.Collections;
     {
         DontDestroyOnLoad(gameObject);
         GameManager.Instance.OnRestart += DestroyOnRestart;
+
         if (GameObject.FindGameObjectWithTag(tag) != gameObject)
         {
             Destroy(gameObject);

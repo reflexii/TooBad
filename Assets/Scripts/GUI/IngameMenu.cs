@@ -5,10 +5,14 @@ using UnityEngine.Events;
 
 public class IngameMenu : MonoBehaviour
 {
-    public Button customButton; 
+    public Button customButton;
+    //Set to true if player has died == you wont be able to leave the menu.
+    public bool forcedMenu = false;
 
-    public void OpenMenu()
+    public void OpenMenu(MenuState ms, bool forcedMenu)
     {
+        this.forcedMenu = forcedMenu;
+
         gameObject.SetActive(!gameObject.activeSelf);
 
         if (!gameObject.activeSelf)
@@ -20,8 +24,16 @@ public class IngameMenu : MonoBehaviour
         {
             Time.timeScale = 0;
 
-            UnityAction _ua = () => GameManager.Instance.dialogManager.confirmationDialog.SetConfirmationPreferences(DialogManager.TextKey.Tutorial1, GameManager.Instance.RestartCurrentLevel, "Restart");
-            SetButtonPreferences(customButton, "Restart Level", _ua);
+            if (ms == MenuState.RestartLevel)
+            {
+                UnityAction _ua = () => GameManager.Instance.dialogManager.confirmationDialog.SetConfirmationPreferences(DialogManager.TextKey.Tutorial1, GameManager.Instance.RestartCurrentLevel, "Restart");
+                SetButtonPreferences(customButton, "Restart Level", _ua);
+            }
+            else if (ms == MenuState.RestartBoss)
+            {
+                UnityAction _ua = () => GameManager.Instance.dialogManager.confirmationDialog.SetConfirmationPreferences(DialogManager.TextKey.Tutorial1, GameManager.Instance.RestartCurrentLevel, "Restart");
+                SetButtonPreferences(customButton, "Restart Fight", _ua);
+            }
         }
     }
 
@@ -29,5 +41,11 @@ public class IngameMenu : MonoBehaviour
     {
         button.GetComponentInChildren<Text>().text = buttonName;
         button.onClick.AddListener(buttonAction);
+    }
+
+    public enum MenuState
+    {
+        RestartLevel,
+        RestartBoss
     }
 }

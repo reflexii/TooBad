@@ -44,6 +44,7 @@ public abstract class State
                 StateManager.Instance.SwitchBack();
             }
 
+            StateManager.Instance.activeState = this;
             SceneManager.sceneLoaded -= OnSceneLoaded;
         }
     }

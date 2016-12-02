@@ -66,6 +66,21 @@ public class Player : Character
         secondbox2d.enabled = true;
         equippedWeapon = null;
         */
+
+        //This defines if the player will be able to restart level or to restart the boss fight. Boss fight reset not implemented yet.
+        IngameMenu.MenuState ms;
+
+        if(GameManager.Instance.bossState)
+        {
+            ms = IngameMenu.MenuState.RestartBoss;
+        }
+        else
+        {
+            ms = IngameMenu.MenuState.RestartLevel;
+        }
+
+        //Opens ingame-menu, player is able to choose what he/she wants to do.
+        GameManager.Instance.ingameMenu.OpenMenu(ms, true);
     }
 
     void Update() {

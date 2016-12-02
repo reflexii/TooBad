@@ -13,12 +13,12 @@ public class GameManager : MonoBehaviour
     public IngameMenu ingameMenu;
 
     public GameObject player;
+    public bool bossState = false;
 
     public delegate void GameActivityState();
+
     public event GameActivityState OnStartGame;
-
     public event GameActivityState OnLevelLoad;
-
     public event GameActivityState OnRestart;
 
     private static GameManager _instance;
@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
     public void RestartCurrentLevel()
     {
         ReloadObjects();
-        StateManager.Instance.SwitchScene(State.SceneID.LevelOne);
+        StateManager.Instance.SwitchScene(StateManager.Instance.activeState.sceneId);
     }
 
     public void ActivateIngameObjects()
