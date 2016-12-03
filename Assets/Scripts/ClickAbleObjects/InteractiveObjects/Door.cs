@@ -26,6 +26,7 @@ public class Door : InteractiveObject
 
             if (count != reqKeys.Count)
             {
+                GameManager.Instance.objectPool.CreatePopUpText(GameManager.Instance.player.transform.position, "I need a key!", PopUpText.TextType.Negative);
                 return false;
             }
         }

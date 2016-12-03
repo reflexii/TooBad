@@ -51,13 +51,17 @@ public class LootHandler : MonoBehaviour
 
 	public void LootItem(LootableItem lootItem)
 	{
-        print(Vector3.Distance(looter.transform.position, lootItem.transform.position));
+
         if (Vector3.Distance(looter.transform.position, lootItem.transform.position) <= lootDistance)
         {
             lootItem.GetItem().master = looter;
 
             if (inventory.AddItem(lootItem.GetItem()))
                 lootItem.DestroyItem();
+        }
+        else
+        {
+            GameManager.Instance.objectPool.CreatePopUpText(looter.transform.position, "It's too far away!", PopUpText.TextType.Negative);
         }
 	}
 }
