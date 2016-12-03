@@ -31,8 +31,7 @@ public abstract class State
                 if (!CheckAndLoadObjects())
                 {
                     return;
-                }
-                
+                }     
             }
             if (sceneType == SceneType.Level)
             {
@@ -57,12 +56,11 @@ public abstract class State
     {
         if (!GameObject.FindWithTag("Managers"))
         {
-            StateManager.Instance.previousState = this;
+            StateManager.Instance.objectLoadCaller = this;
             StateManager.Instance.SwitchScene(SceneID.ObjectLoad);
             SceneManager.sceneLoaded -= OnSceneLoaded;
             return false;
         }
-
         return true;
     }
 

@@ -7,7 +7,7 @@ public class StateManager : Singleton<StateManager>
 {
     public List<State> scenes = new List<State>();
     public State activeState;
-    public State previousState;
+    public State objectLoadCaller;
 
     public void Init()
     {
@@ -45,6 +45,6 @@ public class StateManager : Singleton<StateManager>
 
     public void SwitchBack()
     {
-        SwitchScene(previousState.sceneId);
+        SwitchScene(objectLoadCaller.sceneId);
     }
 }

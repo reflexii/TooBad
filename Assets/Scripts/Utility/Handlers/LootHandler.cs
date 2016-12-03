@@ -7,6 +7,7 @@ public class LootHandler : MonoBehaviour
 	public Character looter;
 	public Inventory inventory;
 	public GameObject lootPrefab;
+    public float lootDistance = 2.5f;
 
 	void Update()
 	{
@@ -50,10 +51,13 @@ public class LootHandler : MonoBehaviour
 
 	public void LootItem(LootableItem lootItem)
 	{
-		lootItem.GetItem().master = looter;
-		if (inventory.AddItem (lootItem.GetItem()))
-			/*print ("INVENTORY IS FULL");
-		else*/
-			lootItem.DestroyItem();
+        print(Vector3.Distance(looter.transform.position, lootItem.transform.position));
+        if (Vector3.Distance(looter.transform.position, lootItem.transform.position) <= lootDistance)
+        {
+            lootItem.GetItem().master = looter;
+
+            if (inventory.AddItem(lootItem.GetItem()))
+                lootItem.DestroyItem();
+        }
 	}
 }
