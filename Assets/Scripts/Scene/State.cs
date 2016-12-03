@@ -43,6 +43,10 @@ public abstract class State
             {
                 StateManager.Instance.SwitchBack();
             }
+            else
+            {
+                GameManager.Instance.soundManager.musicPlayer.SetMusic(sceneId);
+            }
 
             StateManager.Instance.activeState = this;
             SceneManager.sceneLoaded -= OnSceneLoaded;

@@ -6,6 +6,8 @@ public class BreakAbleObject : Character
     private Animator _animator;
     private float timeTillDeath = 1f;
     private float deathTime;
+    private bool destroyed;
+
     void Awake()
     {
         gameObject.tag = "Enemy";
@@ -25,12 +27,13 @@ public class BreakAbleObject : Character
 
     public override void OnDeath()
     {
-        deathTime = Time.time;
-        if (_animator != null)
+        if (_animator != null && !destroyed)
         {
+            deathTime = Time.time;
             _animator.SetTrigger("Explode");
+            destroyed = true;
             _animator = null;
+            GameManager.Instance.soundManager.playTableBreakSound();
         }
-        GameManager.Instance.soundManager.playTableBreakSound();
     }
 }

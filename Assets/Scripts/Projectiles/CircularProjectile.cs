@@ -38,6 +38,7 @@ public class CircularProjectile : Projectile
     void AdjustStartingPos()
     {
         int i = 0;
+
         while (true)
         {
             _angle += RotateSpeed * Time.deltaTime;

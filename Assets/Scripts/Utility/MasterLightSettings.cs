@@ -14,7 +14,9 @@ public class MasterLightSettings : MonoBehaviour {
         if (tunrLightsOffOnPlay)
         {
             candleLight.enabled = true;
-            directionalLight.enabled = false;
+
+            if(directionalLight != null)
+                directionalLight.enabled = false;
         }
         else
         {

@@ -10,21 +10,26 @@ public class MusicScript : MonoBehaviour {
     private float volumeAdded;
     private bool bossMusicSequence = false;
 
+    public AudioClip menuMusic;
     public AudioClip ingameMusic;
     public AudioClip bossMusic;
 
 	// Use this for initialization
 	void Start () {
-        audioS = GetComponent<AudioSource>();
-        volumeAdded = targetVolume / fadeInInSeconds;
-        if (ingameMusic != null) {
-            audioS.clip = ingameMusic;
+
+        if (audioS == null)
+        {
+            audioS = GetComponent<AudioSource>();
         }
-	}
+
+        volumeAdded = targetVolume / fadeInInSeconds;
+        audioS.Play();
+    }
 	
 	// Update is called once per frame
 	void Update () {
-	    if (audioS.volume < targetVolume && !bossMusicSequence) {
+
+        if (audioS.volume < targetVolume && !bossMusicSequence) {
             fadeInMusic();
         }
         if (bossMusicSequence) {
@@ -37,6 +42,49 @@ public class MusicScript : MonoBehaviour {
             }
         }
 	}
+
+    //This is called each time after the scene has been loaded.
+    public void SetMusic(State.SceneID sid)
+    {
+        if (audioS == null)
+        {
+            audioS = GetComponent<AudioSource>();
+        }  
+           
+        setOrLoadClip(sid);
+        resetClip();
+    }
+
+    //The audioclip is loaded from the resources only once. Not each time you change/reset a scene.
+    void setOrLoadClip(State.SceneID sid)
+    {
+
+        if (sid == State.SceneID.LevelOne)
+        {
+            if (ingameMusic == null)
+            {
+                ingameMusic = Resources.Load("Music/InGameMusic") as AudioClip;
+            }
+
+            audioS.clip = ingameMusic;
+        }
+        else if (sid == State.SceneID.MainMenu)
+        {
+            if (menuMusic == null)
+            {
+                menuMusic = Resources.Load("Music/InForest") as AudioClip;
+            }
+
+            audioS.clip = menuMusic;
+        }
+    }
+
+    void resetClip()
+    {
+        audioS.volume = 0.0f;
+        audioS.Stop();
+        audioS.Play();
+    }
 
     public void fadeInMusic() {
         audioS.volume += volumeAdded * Time.deltaTime;

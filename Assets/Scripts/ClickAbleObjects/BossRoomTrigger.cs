@@ -17,7 +17,7 @@ public class BossRoomTrigger : MonoBehaviour
         {
             doorToClose.gameObject.SetActive(true);
             //GameObject.FindGameObjectWithTag("LightSettings").GetComponent<MasterLightSettings>().TurnLightsOnOrOff(true);
-            musicObject.GetComponent<MusicScript>().changeToBossMusic();
+            GameManager.Instance.soundManager.musicPlayer.changeToBossMusic();
 
             startLightSequence();
             

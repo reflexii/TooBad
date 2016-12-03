@@ -3,6 +3,7 @@ using System.Collections;
 
 public class SoundManager : MonoBehaviour {
 
+    public MusicScript musicPlayer;
     public AudioSource effectSource;
     public AudioSource footstepSource;
     public AudioSource hitSource;
@@ -25,6 +26,10 @@ public class SoundManager : MonoBehaviour {
     public AudioClip wandSound;
     public AudioClip axeSound;
 
+    void Awake()
+    {
+        musicPlayer = GameObject.FindObjectOfType<MusicScript>();
+    }
 	
     public void playFootSteps() {
         footstepSource.clip = footstepSound;
