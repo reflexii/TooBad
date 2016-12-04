@@ -189,6 +189,7 @@ public class DialogManager : MonoBehaviour
         Tutorial6,
         Tutorial7,
         Tutorial8,
+        Tutorial9,
         Dialog1_0,
         RestartConfirmation,
         BackToMenuConfirmation,

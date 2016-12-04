@@ -11,6 +11,7 @@ Tutorial5=Loot it by clicking it with left mousebutton.
 Tutorial6=Equip the weapon by pressing the slot key (1 in this case)
 Tutorial7=This weapon sure looks sturdy. However some weapons have limited amount of durability which will be consumed on use. You can regain the durability by looting weapons of the same type. Attack by clicking left mousebutton. Maybe I could destroy that desk...
 Tutorial8=Looks like that desk is blocking my way...(Click left mousebutton to attack)
+Tutorial9=I don't feel so good...
 Dialog1_0=Seven thought he could calm his hunger pains with forest mushrooms,
 Dialog1_1=But those mushrooms don’t calm hunger, they bring fear.
 Dialog1_2=Who ever eats those mushrooms experience their greatest fear.

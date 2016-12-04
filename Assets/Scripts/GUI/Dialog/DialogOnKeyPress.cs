@@ -19,7 +19,15 @@ public class DialogOnKeyPress : MonoBehaviour
                     {
                         GameManager.Instance.dialogManager.DisplayDialog(textKey);
                         Destroy(gameObject);
+                        return;
                     }
+                }
+
+                if (inputKey == GameManager.Instance.inventory.actionBar.consumableSlot.inputKey && GameManager.Instance.inventory.actionBar.consumableSlot.GetItem() != null)
+                {
+                    GameManager.Instance.eventManager.StartEvent(EventManager.Event.Hallucination, DialogManager.TextKey.None);
+                    Destroy(gameObject);
+                    return;
                 }
             }
         }
