@@ -11,6 +11,17 @@ public class DialogManager : MonoBehaviour
     public int maxWordLength = 8;
     public int maxCharLehght = 60;
 
+    public bool anyDialogsOnHold
+    {
+        get
+        {
+            if (screenDialogsOnHold.Count != 0)
+                return true;
+            else
+                return false;
+        }
+    }
+
     private List<string> dialogsOnHold = new List<string>();
     private List<string> screenDialogsOnHold = new List<string>();
     private Dictionary<string, string> texts = new Dictionary<string, string>();
@@ -89,17 +100,30 @@ public class DialogManager : MonoBehaviour
     public void DisplayScreenDialog(TextKey textKey)
     {
         string textToDisplay = GetText(textKey.ToString());
+        int i = 1;
 
         while (true)
         {
             if (textKey.ToString().Contains("_"))
             {
-                
+                string[] split = textKey.ToString().Split('_');
+                string keyWord = split[0] + "_" + i.ToString();
+
+                if (texts.ContainsKey(keyWord))
+                {
+                    screenDialogsOnHold.Add(texts[keyWord]);
+                }
+                else
+                {
+                    break;
+                }
             }
             else
             {
                 break;
             }
+
+            i++;
         }
 
         screenDialog.gameObject.SetActive(true);
@@ -118,6 +142,13 @@ public class DialogManager : MonoBehaviour
         {
             dialogBox.keyToContinue.SetActive(false);
             dialogBox.gameObject.SetActive(false);
+        }
+
+        if (screenDialogsOnHold.Count != 0)
+        {
+            screenDialog.SetDialog(screenDialogsOnHold[0]);
+            screenDialogsOnHold.RemoveAt(0);
+            dialogBox.keyToContinue.SetActive(true);
         }
     }
 

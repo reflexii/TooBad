@@ -10,7 +10,7 @@ public class ScreenDialog : MonoBehaviour
     private string textToDisplay;
     private string currentText = "";
     private float timer;
-    private float displaySpeed = 0.1f;
+    private float displaySpeed = 0.05f;
     private int i = 0;
 
     void Start()
@@ -52,6 +52,8 @@ public class ScreenDialog : MonoBehaviour
     public void SetDialog(string text)
     {
         textToDisplay = text;
+        currentText = "";
+        i = 0;
         playDialog = true;
     }
 

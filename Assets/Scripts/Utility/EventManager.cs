@@ -28,7 +28,7 @@ public class EventManager : MonoBehaviour {
 
         if(Input.GetKeyDown(KeyCode.E))
         {
-            if (!blinking && eventIsActive && !GameManager.Instance.dialogManager.screenDialog.playDialog)
+            if (!blinking && eventIsActive && !GameManager.Instance.dialogManager.screenDialog.playDialog && !GameManager.Instance.dialogManager.anyDialogsOnHold)
             {
                 EndEvent(currentEvent);
             }
