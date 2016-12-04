@@ -19,6 +19,11 @@ public class MouseHandler : MonoBehaviour {
     private bool pointingClickAble;
     private bool pointingClickAbleUI;
 
+    void Start()
+    {
+        player = GameManager.Instance.player.GetComponent<Player>();
+    }
+
     void Update()
 	{
 		if (Input.GetMouseButtonDown (0)) {

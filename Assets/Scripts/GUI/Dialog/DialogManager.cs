@@ -12,6 +12,7 @@ public class DialogManager : MonoBehaviour
     public int maxCharLehght = 60;
 
     private List<string> dialogsOnHold = new List<string>();
+    private List<string> screenDialogsOnHold = new List<string>();
     private Dictionary<string, string> texts = new Dictionary<string, string>();
 
     void Awake()
@@ -88,6 +89,19 @@ public class DialogManager : MonoBehaviour
     public void DisplayScreenDialog(TextKey textKey)
     {
         string textToDisplay = GetText(textKey.ToString());
+
+        while (true)
+        {
+            if (textKey.ToString().Contains("_"))
+            {
+                
+            }
+            else
+            {
+                break;
+            }
+        }
+
         screenDialog.gameObject.SetActive(true);
         screenDialog.SetDialog(textToDisplay);
     }
@@ -144,6 +158,12 @@ public class DialogManager : MonoBehaviour
         Tutorial6,
         Tutorial7,
         Tutorial8,
-        Dialog1
+        Dialog1_0,
+        Dialog1_1,
+        Dialog1_2,
+        Dialog1_3,
+        Dialog1_4,
+        Dialog1_5,
+        Dialog1_6
     }
 }

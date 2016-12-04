@@ -22,7 +22,7 @@ public class RageDrug : Consumable {
 
         if (itemClass == ItemClass.Mushroom)
         {
-            GameManager.Instance.eventManager.StartEvent(EventManager.Event.Prologue, DialogManager.TextKey.Dialog1);
+            GameManager.Instance.eventManager.StartEvent(EventManager.Event.Prologue, DialogManager.TextKey.Dialog1_0);
         }
     }
 }

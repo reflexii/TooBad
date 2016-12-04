@@ -6,7 +6,7 @@ public class MainMenuButton : MyButton
 {
     protected override void OnClickFunction()
     {
-        GameManager.Instance.dialogManager.confirmationDialog.SetConfirmationPreferences(DialogManager.TextKey.Dialog1, OnClick, "Main Menu");
+        GameManager.Instance.dialogManager.confirmationDialog.SetConfirmationPreferences(DialogManager.TextKey.Dialog1_0, OnClick, "Main Menu");
     }
 
     void OnClick()
