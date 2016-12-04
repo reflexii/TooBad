@@ -6,12 +6,12 @@ public class ScreenDialog : MonoBehaviour
 {
     public Text dialogText;
     public GameObject keyToContinue;
+    public float displaySpeed = 0.02f;
 
     public bool playDialog;
     private string textToDisplay;
     private string currentText = "";
     private float timer;
-    private float displaySpeed = 0.05f;
     private int i = 0;
 
     void Start()
