@@ -166,7 +166,7 @@ public class MouseHandler : MonoBehaviour {
 
     void Attack()
     {
-        if (!pointingClickAble && !pointingClickAbleUI)
+        if (!pointingClickAble && !pointingClickAbleUI && Time.timeScale != 0)
         {
             Vector3 dir = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             player.facingDir = DirectionConverter.DirectionPlayerToMouse(player.transform.position, Input.mousePosition);

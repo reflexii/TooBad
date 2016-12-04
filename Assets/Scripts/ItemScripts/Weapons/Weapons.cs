@@ -13,7 +13,7 @@ public class Weapons
 
     public class LongSword : MeleeWeapon
     {
-        public LongSword() : base("Long Sword", 2.5f, 0.5f, 0,40, 90, 1f, 500, ItemClass.Sword)
+        public LongSword() : base("Long Sword", 4f, 0.5f, 0,40, 90, 1f, 500, ItemClass.Sword)
         {
 
         }

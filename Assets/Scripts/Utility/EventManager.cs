@@ -18,6 +18,7 @@ public class EventManager : MonoBehaviour {
     private float _timer;
     private bool eventIsActive;
     private Event currentEvent;
+    private IEnumerator coroutine;
 	
 	void Update ()
     {
@@ -37,18 +38,37 @@ public class EventManager : MonoBehaviour {
 
     public void StartEvent(Event _event, DialogManager.TextKey textKey)
     {
-        blinking = true;
-        eventIsActive = true;
-        currentEvent = _event;
-        GameManager.Instance.dialogManager.HideDialog();
-
-        if(textKey != DialogManager.TextKey.None)
+        if (_event == Event.Prologue)
         {
-            this.textKey = textKey;
+            blinking = true;
+            eventIsActive = true;
+            currentEvent = _event;
+            GameManager.Instance.dialogManager.HideDialog();
+
+            if (textKey != DialogManager.TextKey.None)
+            {
+                this.textKey = textKey;
+            }
+        }
+        else if (_event == Event.End)
+        {
+            coroutine = WaitAndEnable(3);
+            StartCoroutine(coroutine);
         }
     }
 
-    void Blink()
+    private IEnumerator WaitAndEnable(float waitTime)
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(waitTime);
+            GameManager.Instance.ingameMenu.OpenMenu(IngameMenu.MenuState.RestartLevel, true);
+            GameManager.Instance.ingameMenu.DisplayHeader(DialogManager.TextKey.OnEndHeader);
+            break;
+        }
+    }
+
+        void Blink()
     {
         if (!_isOff)
         {
@@ -104,6 +124,7 @@ public class EventManager : MonoBehaviour {
     public enum Event
     {
         None,
-        Prologue
+        Prologue,
+        End
     }
 }

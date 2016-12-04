@@ -1,3 +1,8 @@
+RestartConfirmation=Are you sure that you want to restart the level?
+BackToMenuConfirmation=Are you sure that you want to go back to the Main Menu? 
+QuitGameConfirmation=Are you sure that you want to quit the game?
+OnDeathHeader=You were killed
+OnEndHeader=You have completed the game
 Tutorial1=That mushroom sure looks delicious...
 Tutorial2=Click it with left mousebutton.
 Tutorial3=Press button Q to consume the mushroom.

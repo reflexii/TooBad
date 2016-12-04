@@ -81,6 +81,7 @@ public class Player : Character
 
         //Opens ingame-menu, player is able to choose what he/she wants to do.
         GameManager.Instance.ingameMenu.OpenMenu(ms, true);
+        GameManager.Instance.ingameMenu.DisplayHeader(DialogManager.TextKey.OnDeathHeader);
     }
 
     void Update() {

@@ -69,6 +69,10 @@ public class LevelOneBoss : Enemy {
     public override void OnDeath() {
         DropLoot();
         GameManager.Instance.soundManager.playBossDeathSound();
+
+        //TODO: Change this!
+        GameManager.Instance.eventManager.StartEvent(EventManager.Event.End, DialogManager.TextKey.None);
+
         Destroy(gameObject);
     }
 
