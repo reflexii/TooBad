@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class ScreenDialog : MonoBehaviour
 {
     public Text dialogText;
+    public GameObject keyToContinue;
 
     public bool playDialog;
     private string textToDisplay;
@@ -41,6 +42,7 @@ public class ScreenDialog : MonoBehaviour
             {
                 i = 0;
                 playDialog = false;
+                keyToContinue.SetActive(true);
             }
         }
         else
@@ -55,6 +57,7 @@ public class ScreenDialog : MonoBehaviour
         currentText = "";
         i = 0;
         playDialog = true;
+        keyToContinue.SetActive(false);
     }
 
     void OnStartGame()
