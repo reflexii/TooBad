@@ -12,7 +12,7 @@ public class LootHandler : MonoBehaviour
 	void Update()
 	{
 		//REMOVE THESE!
-		if (Input.GetKeyDown (KeyCode.Alpha0))
+		/*if (Input.GetKeyDown (KeyCode.Alpha0))
 			LootItem (new Weapons.LongSword ());
 		if (Input.GetKeyDown (KeyCode.Alpha6))
 			LootItem (new Consumables.SmallPotion ());
@@ -21,7 +21,7 @@ public class LootHandler : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha8))
             LootItem(new Weapons.FireWand());;
         if (Input.GetKeyDown(KeyCode.Alpha7))
-            LootItem(new Weapons.Axe()); ;
+            LootItem(new Weapons.Axe()); ;*/
         if (Input.GetKeyDown(KeyCode.E))
             GameManager.Instance.dialogManager.NextDialog();
 
@@ -35,11 +35,6 @@ public class LootHandler : MonoBehaviour
 
         /*if (Input.GetKeyDown (KeyCode.I))
 			inventory.gameObject.SetActive (!inventory.gameObject.activeSelf);*/
-
-        if (Input.GetKeyDown (KeyCode.KeypadPlus)) {
-			GameObject o = (GameObject)Instantiate (lootPrefab);
-			o.GetComponent<LootableItem> ().SetItem (new Weapons.ShortSword ());
-		}
 	}
 
 	public void LootItem(Item item)
